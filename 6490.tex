@@ -1,10 +1,10 @@
 \documentclass[oneside]{article}
 
 \usepackage[
-  paperheight=9in,
-  textheight=7.5in,
-  paperwidth=6in,
-  textwidth=5in,
+  paperheight = 9in,
+  paperwidth  = 6in,
+  textheight  = 7.5in,
+  textwidth   = 5in,
 ]{geometry}
 
 \usepackage{
@@ -14,29 +14,32 @@
   bm,          % boldsymbol
   bookmark,    % replaces (and loads) hyperref
   mathrsfs,    % mathscr
+  microtype,   % improved looks
   style,       % custom style file
 }
+
 \usepackage[
-  hyperref=true, % links to online documents
-  backend=bibtex,
-  style=alphabetic
+  hyperref = true,      % links to online documents
+  backend  = bibtex,    % use bibtex instead of biber
+  sorting  = nyt,       % sort by (name, year, title)
+  style    = alphabetic % citations look like [Har77]
 ]{biblatex}
 \addbibresource{sources.bib}
 
 \hypersetup{
-  colorlinks=true,
-  linkcolor=blue,
-  urlcolor=cyan
+  colorlinks = true,
+  linkcolor  = blue,
+  urlcolor   = cyan
 }
 
 \pagestyle{myheadings}
 \markright{\hfill Algebraic groups\hfill\thepage}
 
 
-
 \title{Algebraic groups}
 \author{Daniel Miller and David Zywina}
 \date{Fall 2014}
+
 
 \begin{document}
 \fontsize{10.5}{12.6} % default is 10,12
@@ -46,10 +49,16 @@
 \tableofcontents
 
 
+
+
+
 \section{Introduction}
 
-A good document is \cite{hartshorne-1977}. Also \cite{sga3} is good. 
+A good document is \cite{hartshorne-1977}. Also \cite{sga3-i,sga3-iii} are good. 
 Finally, check out \cite{milne-LAG}. 
+
+
+
 
 
 \printbibliography
