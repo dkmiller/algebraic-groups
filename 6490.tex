@@ -11,18 +11,18 @@
   amsmath,
   amssymb,
   anyfontsize, % arbitrary font size
-%  biblatex,    % better bibliography
   bm,          % boldsymbol
   bookmark,    % replaces (and loads) hyperref
   mathrsfs,    % mathscr
   style,       % custom style file
 }
 \usepackage[
+  hyperref=true, % links to online documents
   backend=bibtex,
-%  style=authoryear,
-%  citestyle=alphabetic
+  style=alphabetic
 ]{biblatex}
 \addbibresource{sources.bib}
+
 \hypersetup{
   colorlinks=true,
   linkcolor=blue,
@@ -49,6 +49,7 @@
 \section{Introduction}
 
 A good document is \cite{hartshorne-1977}. Also \cite{sga3} is good. 
+Finally, check out \cite{milne-LAG}. 
 
 
 \printbibliography
