@@ -16,6 +16,7 @@
   mathrsfs,    % mathscr
   microtype,   % improved looks
   style,       % custom style file
+  tikz-cd,     % better commutative diagrams
 }
 
 \usepackage[
@@ -56,6 +57,12 @@
 
 A good document is \cite{hartshorne-1977}. Also \cite{sga3-i,sga3-iii} are good. 
 Finally, check out \cite{milne-LAG}. 
+\begin{equation*}
+\begin{tikzcd}
+A \arrow[rd] \arrow[r, "\phi", hook] & B \arrow[d,twoheadrightarrow]\\
+& C
+\end{tikzcd}
+\end{equation*}
 
 
 
