@@ -19,22 +19,24 @@
 \newcommand{\sO}{\mathscr{O}}
 
 % algebraic groups 
-\DeclareMathOperator{\Ga}{\mathbf{G}_a}
+\newcommand{\Ga}{\mathbf{G}_\mathrm{a}}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\GSp}{GSp}
-\DeclareMathOperator{\Gm}{\mathbf{G}_m}
+\newcommand{\Gm}{\mathbf{G}_\mathrm{m}}
 \DeclareMathOperator{\PGL}{PGL}
 \DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\SO}{SO}
 \DeclareMathOperator{\Sp}{Sp}
 
 % special operators
+\DeclareMathOperator{\automorphisms}{Aut}
 \DeclareMathOperator{\characters}{X}
 \DeclareMathOperator{\h}{H}
 \DeclareMathOperator{\lie}{Lie}
 \DeclareMathOperator{\matrices}{M}
 \DeclareMathOperator{\spectrum}{Spec}
 \DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\weil}{R} % Weil restriction
 
 % miscellaneous commands
 \newcommand{\transpose}[1]{\prescript{\mathrm{t}}{}{#1}}
@@ -43,3 +45,14 @@
 \newcommand{\iso}{\xrightarrow\sim}
 \newcommand{\monic}{\hookrightarrow}
 \newcommand{\epic}{\twoheadrightarrow}
+
+% theorem environments
+\newtheorem{conjecture}[subsubsection]{Conjecture}
+\newtheorem{corollary}[subsubsection]{Corollary}
+\newtheorem{lemma}[subsubsection]{Lemma}
+\newtheorem{theorem}[subsubsection]{Theorem}
+\newtheorem{definition}[subsubsection]{Definition}
+\theoremstyle{definition} % contents are not italic
+\declaretheorem[sibling=subsubsection, qed=$\triangleright$]{example}
+
+\newenvironment{hard}{$\star$}{$\star$}

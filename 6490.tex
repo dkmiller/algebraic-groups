@@ -10,23 +10,26 @@
 \usepackage{
   amsmath,
   amssymb,
+  amsthm,
   anyfontsize, % arbitrary font size
   bm,          % boldsymbol
   bookmark,    % replaces (and loads) hyperref
   mathrsfs,    % mathscr
   mathtools,   % allows prescript
   microtype,   % improved looks
-  style,       % custom style file
   tikz-cd,     % better commutative diagrams
+  thmtools,    % custom end to example environment
+  6490,        % custom style file
 }
+\usetikzlibrary{matrix,decorations.pathreplacing}
 
 \usepackage[
   hyperref = true,      % links to online documents
   backend  = bibtex,    % use bibtex instead of biber
-  sorting  = nyt,       % sort by (name, year, title)
+  sorting  = nyt,       % nyt to sort by (name, year, title)
   style    = alphabetic % citations look like [Har77]
 ]{biblatex}
-\addbibresource{sources.bib}
+\addbibresource{6490.bib}
 
 \hypersetup{
   colorlinks = true,
@@ -57,5 +60,6 @@
 
 
 
-\printbibliography
+\newpage
+\printbibliography[heading=bibintoc]
 \end{document}

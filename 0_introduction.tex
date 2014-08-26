@@ -20,7 +20,9 @@ appreciated.
 These notes originated in the course MATH 6490: Linear algebraic groups and 
 their Lie algebras, taught by David Zywina at Cornell University. However, the 
 notes have been substantially modified since then, and are not an exact 
-reflection of the content and style of the original lectures. 
+reflection of the content and style of the original lectures. In particular, 
+the notes often switch from a somewhat elementary approach to a more 
+sheaf-theoretic approach. 
 
 
 
@@ -43,6 +45,11 @@ $\spectrum(A)$.
 
 We write $\transpose X$ for the transpose of a matrix $X$. 
 
+Examples are closed with a triangle $\triangleright$. 
+
+Content that can be skipped will be delimited by a star $\star$. Usually 
+this material will be much more advanced. 
+
 
 
 
@@ -50,11 +57,11 @@ We write $\transpose X$ for the transpose of a matrix $X$.
 \subsection{Main references}
 
 The standard texts are \cite{borel-1991,humphreys-1975,springer-2009}. In 
-these, the algebraic geometry is done from scratch in an archaic language. A 
-good reference for modern (scheme-theoretic) algebraic geometry is 
-\cite{hartshorne-1977}, and a (very abstract) modern reference is the 
-three volumes on group schemes \cite{sga3-i,sga3-ii,sga3-iii} from the 
-\emph{S\'eminaire de G\'eom\'etrie Alg\'ebrique}. 
+these, the requisite algebraic geometry is done from scratch in an archaic 
+language. A good reference for modern (scheme-theoretic) algebraic geometry is 
+\cite{hartshorne-1977}, and a (very abstract) modern reference for algebraic 
+groups is the three volumes on group schemes \cite{sga3-i,sga3-ii,sga3-iii} 
+from the \emph{S\'eminaire de G\'eom\'etrie Alg\'ebrique}. 
 
 
 
@@ -62,55 +69,97 @@ three volumes on group schemes \cite{sga3-i,sga3-ii,sga3-iii} from the
 
 \subsection{A bestiary of examples}
 
-Let $k$ be an algebraically closed field, for example $\dC$. Our initial 
-working definition of a linear algebraic group is a subgroup $G$ of 
-$\GL_n(k)$ defined by polynomial equations. Here are some standard examples:
-\begin{itemize}
-  \item $\GL_n(k)$ 
-  \item the \emph{special linear group} $\SL_n(k)=\{\det=1\}\subset \GL_n(k)$
-  \item an \emph{orthogonal group} 
-    $\operatorname{O}_n(k)=\{g\in \GL_n(k):g \transpose g=1\}$. This is cut 
-    out by the equations 
-    \[
-      \sum_{j=1}^n a_{i j} a_{k j} = \delta_{i k} .
-    \]
-  \item the \emph{special orthogonal group} $\SO_n(k)=\operatorname{O}_n(k)\cap \SL_n(k)$
-  \item Symplectic groups. Let $J=\begin{pmatrix} & I_n \\ -I_n \end{pmatrix}\in \GL_{2n}(k)$. We put $\Sp_{2n}(k)=\{g\in \GL_{2n}(k):\transpose g J g=J\}$. 
-  \item The group of unipotent matrices 
-    \[
-      U_n(k) = \begin{pmatrix} 1 & \cdots & \ast \\ & \ddots & \vdots \\ & & 1 \end{pmatrix} \subset \GL_n(k)
-    \]
-    Recall that $g\in \GL_n(k)$ is \emph{unipotent} if $(g-I)^m=0$ for some 
-    $m\geqslant 1$. 
-  \item We write $\Gm(k)=k^\times$ for the \emph{multiplicative group} 
-    $\GL_1(k)$. 
-  \item The \emph{additive group} $\Ga(k)=k$, with the usual additive structure. 
-    This is actually $U_2(k)$. Indeed, $\Ga\iso U_2$ via 
-    $x\mapsto \begin{pmatrix} 1 & x \\ & 1 \end{pmatrix}$. Since 
-    \[
-      \begin{pmatrix} 1 & x \\ & 1 \end{pmatrix} \begin{pmatrix} 1 & y \\ & 1 \end{pmatrix} = \begin{pmatrix} 1 & x+y \\ & 1 \end{pmatrix}
-    \]
-    this is actually a morphism of algebraic groups. 
-  \item For any $n\geqslant 0$, $\Ga^n(k)=k^n$ with the usual addition is a 
-    linear algebraic group. We could embed it into $\GL_{2n}(k)$ via $2\times 2$ blocks 
-    and the isomorphism $\Ga\iso U_2$ above.
-  \item For any $n\geqslant 1$ we have a \emph{torus} of rank $n$, namely 
-    \[
-      T(k) = \begin{pmatrix} \ast \\ & \ddots \\ & & \ast \end{pmatrix}\subset \GL_n(k) .
-    \]
-    This is clearly isomorphic to $\Gm^n(k)$.  
-\end{itemize}
+Let $k$ be an algebraically closed field whose characteristic is \emph{not} 
+$2$. For example, $k$ could be $\dC$. At the moment, we define a 
+\emph{linear algebraic group} over $k$ to be a subgroup $G\subset \GL_n(k)$ 
+defined by polynomial equations. 
 
-This list almost exhausts the class of \emph{simple algebraic groups} over an 
+\begin{example}
+The archetypal example of an algebraic group is 
+$\GL_n(k)=\{g\in \matrices_n(k):g\text{ is invertible}\}$. As a subset of 
+$\GL_n(k)$, this is defined by the empty set of polynomial equations. 
+\end{example}
+
+\begin{example}[Special linear]
+Let $\SL_n(k)=\{g\in \GL_n(k):\det(g)=1\}$. This is defined by the equation 
+$\det(g)=1$. 
+\end{example}
+
+\begin{example}[Orthogonal]
+Let $\operatorname{O}_n(k)=\{g\in \GL_n(k):g \transpose g=1\}$. This is cut 
+out by the equations 
+\[
+  \sum_{j=1}^n a_{i j} a_{k j} = \delta_{i k}
+\]
+for $1\leqslant i,k\leqslant n$. 
+\end{example}
+
+\begin{example}[Special orthogonal]
+This is $\SO_n(k)=\operatorname{O}_n(k)\cap \SL_n(k)$. 
+\end{example}
+
+\begin{example}
+This group doesn't have a special name, but for the moment we will write 
+$U_n(k)$ for the group of unipotent matrices: 
+\[
+  U_n(k) = \begin{pmatrix} 1 & \cdots & \ast \\ & \ddots & \vdots \\ & & 1 \end{pmatrix} \subset \GL_n(k) .
+\]
+Recall that a matrix $g\in \GL_n(k)$ is \emph{unipotent} if $(g-1)^m=0$ for 
+some $m\geqslant 1$. The group $U_n(k)$ is defined by the equations 
+\[
+  \{g_{i j}=0\text{ for }j<i, g_{ii}=1\} .
+\]
+\end{example}
+
+\begin{example}[Multiplicative]
+We write $\Gm(k)=k^\times$ for the multiplicative group of $k$ with its obvious 
+group structure. Note that $\Gm=\GL(1)$. 
+\end{example}
+
+\begin{example}[Additive]\label{eg:additive}
+Write $\Ga(k)=k$, with its additive group structure. There is a natural 
+isomorphism $\varphi:\Ga\to U_2$ given by $\varphi(x)=\begin{pmatrix} 1 & x \\ & 1 \end{pmatrix}$. Since 
+\[
+  \begin{pmatrix} 1 & x \\ & 1 \end{pmatrix} \begin{pmatrix} 1 & y \\ & 1 \end{pmatrix} = \begin{pmatrix} 1 & x+y \\ & 1 \end{pmatrix} ,
+\]
+this is a group homomorphism, and it is easy to see that $\varphi$ is an 
+isomorphism of the underlying varieties. 
+\end{example}
+
+\begin{example}
+For any $n\geqslant 0$, $\Ga^n(k)=k^n$ with the usual addition is a linear 
+algebraic group. We could embed it into $\GL_{2n}(k)$ via $2\times 2$ blocks 
+and the isomorphism $\Ga\iso U_2$ in \autoref{eg:additive}.
+\end{example}
+
+\begin{example}[Tori]
+For any $n\geqslant 0$, we have a \emph{torus} of rank $n$, namely 
+\[
+  T(k) = \begin{pmatrix} \ast \\ & \ddots \\ & & \ast \end{pmatrix}\subset \GL_n(k) .
+\]
+This is clearly isomorphic to $\Gm^n(k)$. We call any linear algebraic group 
+isomorphic to some $\Gm^n$ a torus.  
+\end{example}
+
+This list almost exhausts the class of simple algebraic groups over an 
 algebraically closed field. But note that all of these groups make sense over 
-an arbitrary field. 
+an arbitrary field. But over non-algebraically closed fields (or even base 
+rings that are not fields) thinking of algebraic groups in terms of their sets 
+of points doesn't work very well. 
+
+
+
+
+
+\subsection{Coordinate rings}
 
 The standard references \cite{borel-1991,humphreys-1975,springer-2009} all treat 
 algebraic groups in terms of their sets of points in an algebraically closed 
 field. This leads to convoluted arguments, and (sometimes) theorems that are 
 actually wrong. 
 
-Example. Consider $G=\GL_n(k)$. For $g=(g_{i j})\in \matrices_n(k)$, we have 
+\begin{example}
+Consider $G=\GL_n(k)$. For $g=(g_{i j})\in \matrices_n(k)$, we have 
 $g\in G$ if and only if $\det(g)\ne 0$. But this isn't an honest algebraic 
 equation. We can remedy this by noting that $\det(g)\ne 0$ if and only if 
 there exists $y\in k$ such that $\det(g)\cdot y=1$. Thus we can define the 
@@ -128,26 +177,29 @@ $b=\varphi(y)$. Then $\varphi$ is well-defined exactly if
 $\det(g)\cdot b=1$. So $\varphi$ is uniquely determined by the choice of an 
 invertible matrix $g\in \GL_n(k)$. Since $b$ is determined by $g$ and $g$ can 
 be chosen arbitrarily in $\GL_n(k)$, this correspondence is a bijection. So in 
-some sense, $k[G]$ ``recovers'' $\GL_n(k)$. 
+some sense, $k[G]$ recovers $\GL_n(k)$. 
+\end{example}
 
 Now let $k$ be an arbitrary field. For concreteness, you could think of one of 
-$\{\dR,\dC,\dQ,\dF_p\}$. Put $A=k[x_{i j},y]/(\det(x_{i j}) y-1)$, and define 
-$\GL_n(R)=\hom_k(A,R)$ for any $k$-algebra $R$. We will think of 
+$\dQ$, $\dR$, $\dC$, or $\dF_p$. Put $A=k[x_{i j},y]/(\det(x_{i j}) y-1)$, and 
+define $\GL_n(R)=\hom_k(A,R)$ for any $k$-algebra $R$. We will think of 
 ``$\GL(n)_{/k}$'' as $\spectrum(A)$, which is a topological space with structure 
 sheaf (essentially) $A$. The punchline is that the coordinate ring 
-$k[G]$ of an algebraic group $G$ determines ``everything we need to know'' about 
+$k[G]$ of an algebraic group $G$ determines everything we need to know about 
 $G$. 
 
-Example. Let $k$ be a field not of characteristic $2$. Fix $d\in k^\times$. 
-Let $G_d\subset \dA_{/k}^2$ be the subscheme cut out by $\{x^2-d y^2=1\}$. In 
-other words, $k[G_d]=k[x,y]/(x^2-d y^2-1)$. We 
-would like to realize $G_d$ as a matrix group. Consider the map 
-$\varphi_d:G_d\to \GL(2)_{/k}$ given by $(x,y)\mapsto \begin{pmatrix} x & d y \\ y & x\end{pmatrix}$. 
-This is an isomorphism between $G_d$ and the subgroup 
+\begin{example}
+Let $k$ be a field not of characteristic $2$. For $d\in k^\times$, let 
+$G_d\subset \dA_{/k}^2$ be the subscheme cut out by $\{x^2-d y^2=1\}$. In 
+other words, $k[G_d]=k[x,y]/(x^2-d y^2-1)$. The group operation is 
+\[
+  (x_1,y_1)\cdot (x_2,y_2) = (x_1 x_2+d y_1 y_2, x_1 y_2+x_2 y_1) .
+\]
+We would like to realize $G_d$ as a matrix group. Consider the map 
+$\varphi_d:G_d\to \GL(2)_{/k}$ given by 
+$(x,y)\mapsto \begin{pmatrix} x & d y \\ y & x\end{pmatrix}$. As an exercise, 
+check that this is an isomorphism between $G_d$ and the subgroup 
 $\{g_{11}=g_{22},x_{12}=d x_{21}\}$ of $\GL(2)_{/k}$. 
-
-[work this out as example of Weil restriction of $\Gm$ down from the ring of 
-integers in $\dQ(\sqrt{-d})$.]
 
 If $k=\bar k$, then consider the composite of $G_d\monic \GL(2)_{/k}\iso \GL(2)_{/k}$, 
 the second map being given by 
@@ -157,45 +209,82 @@ the second map being given by
 It sends $(x,y)\in G_d$ to $\begin{pmatrix} a & b\sqrt d \\ b\sqrt d & a \end{pmatrix}$. 
 This has the same image as $\varphi_1:G_1\to \GL(2)_{/k}$. So if $k=\bar k$, then 
 $G_d\simeq G_1$. 
+\end{example}
 
-Example. Set $k=\dR$. We claim that $G_1\not\simeq G_{-1}$. We give a topological 
+\begin{hard}
+A more conceptual definition of $G_d$ is that it is the restriction of scalars 
+$G_d=\weil_{\dZ[\sqrt d]/k} \Gm$. That is, for any $k$-algebra $A$, we have 
+$G_d(A) = (A\otimes_k (\dZ[\sqrt d]\otimes k)$. This shows that it would be 
+more natural to work with $G_d=\weil_{\dZ[\sqrt d]/\dZ}\Gm$ as a group scheme 
+over $\spectrum(\dZ)$. 
+\end{hard}
+
+\begin{example}
+Set $k=\dR$. We claim that $G_1\not\simeq G_{-1}$. We give a topological 
 proof. The group $G_1(\dR)\subset \dA^2(\dR)$ is cut out by $x^2-y^2=1$, hence 
 non-compact. But $G_{-1}(\dR)=\{x^2+y^2=1\}$ is compact. Thus 
 $G_1\not\simeq G_{-1}$ over $\dR$. 
-But we have seen that $G_{-1}\simeq G_1$ ``over $\dC$.'' 
-
-Exercise. Convince yourself that $G_1\simeq \Gm$. 
+But we have seen that $G_{-1}\simeq G_1$ ``over $\dC$.'' As an exercise, 
+convince yourself that $G_1\simeq \Gm$. 
+\end{example}
 
 It turns out that ``twists of $\Gm$ over $k$ up to isomorphism'' are in 
 bijective correspondence with $k^\times/2$, via the correspondence 
 $d\mapsto G_d$. 
 
+\begin{hard}
+This is easy to see. $k$-forms of $\Gm$ are classified by 
+$\h^1(k,\automorphisms \Gm)=\h^1(k,\dZ/2)$. Kummer theory tells us that 
+$\h^1(k,\dZ/2)=k^\times/2$. 
+\end{hard}
 
 
 
 
-------------------------------
+
+\subsection{Structure theory for linear algebraic groups}
 
 Let $G$ be linear algebraic group over $k$. There is a nice filtration of normal 
 subgroups 
-\[
-  G\supset G^\circ\supset \rad G\supset \urad G \supset 1,
-\]
-where $G^\circ$ is the \emph{identity component}  for the Zariski topology) of $G$, 
-$\rad G$ is the \emph{radical} of $G$, $\urad G$ is the \emph{unipotent 
-radical} of $G$, and $1$ is the trivial group. 
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [
+    matrix of nodes,
+    nodes={anchor=west}
+  ] {
+    & $G$ \\
+    & $\cup$ & finite\\
+    connected & $G^\circ$ \\
+    & $\cup$ & semisimple \\
+    solvable & $\rad G$ \\
+    & $\cup$ & torus \\
+    unipotent & $\urad G$ \\
+    & $\cup$ \\
+    & $1$ \\
+  };
+  
+  \draw [decoration={brace,amplitude=0.5em},decorate]
+        (m-3-2.north -| m.east) -- (m-7-2.south -| m.east) 
+        node [midway,xshift=1cm] {reductive};
+\end{tikzpicture}
+\end{center}
 
-The quotient $\pi_0(G)=G/G^\circ$ is a finite group, the quotient 
-$G^\circ/\rad(G)$ is semisimple, the quotient $\rad G/\urad G$ is a torus, 
-and $\urad G$ is unipotent. The group $\rad G$ is solvable. The quotient 
-$G^\circ/\urad G$ is \emph{reductive}. 
-
-[Draw diagram.]
+Here, $G^\circ$ is the \emph{identity component} (for the Zariski topology) of 
+$G$. The quotient $\pi_0(G)=G/G^\circ$ is a finite group. We write 
+$\rad G$ for the \emph{radical} of $G$, namely the maximal smooth connected 
+solvable normal subgroup of $G$. Finally, $\urad G$ is the \emph{unipotent 
+radical} of $G$, namely the largest smooth connected unipotent subgroup of 
+$G$. The quotient $G^\circ/\rad G$ is semisimple, and the quotient 
+$G^\circ/\urad G$ is reductive. In general, we say a connected algebraic 
+group $G$ is \emph{semisimple} if $\rad G=1$, and \emph{reductive} if 
+$\urad G=1$. 
 
 We've seen examples of tori and unipotent groups, and everybody knows plenty of 
-finite groups. 
+finite groups. Here is a more direct definition of semisimple groups that 
+allows us to give some basic examples. 
 
-Example. Semisimple group. Let $k=\dC$, and let $G$ be a connected linear 
+\begin{example}[Semisimple]
+Let $k=\dC$, and let $G$ be a connected linear 
 algebraic group over $k$. We say that $G$ is \emph{simple} if it is 
 non-commutative, and has no proper nontrivial closed normal subgroups. We say 
 $G$ is \emph{almost simple} if the only such subgroups are finite. 
@@ -206,21 +295,29 @@ closed normal subgroup is $\{\pm 1\}$.
 A group $G$ is \emph{semisimple} if we have an isogeny 
 $G_1\times \cdots \times G_r\to G$ with the $G_i$ almost simple. Here an 
 \emph{isogeny} is a surjection with finite kernel. 
+\end{example}
 
 Over $\dC$, the almost simple groups (up to isogeny) are: 
 \begin{center}
-\begin{tabular}{c|c}
-$A_n$ $(n\geqslant 1)$ & $\SL(n+1)$ \\
-$B_n$ $(n\geqslant 2)$ & $\SO(2n+1)$ \\
-$C_n$ $(n\geqslant 3)$ & $\Sp(2n)$ \\
-$D_n$ $(n\geqslant 4)$ & $\SO(2n)$
+\begin{tabular}{c|c|c}
+label & group & dimension \\ \hline
+$A_n$ $(n\geqslant 1)$ & $\SL(n+1)$ & $n^2-1$ \\
+$B_n$ $(n\geqslant 2)$ & $\SO(2n+1)$ & $n(2n+1)$\\
+$C_n$ $(n\geqslant 3)$ & $\Sp(2n)$ & $n(2n+1)$ \\
+$D_n$ $(n\geqslant 4)$ & $\SO(2n)$ & $n(2n-1)$
 \end{tabular}
 \end{center}
 We make requirements on the index in these families to prevent degenerate 
 cases (e.g.~$B_1=1$) or matching (e.g.~$A_2=C_2$). There are five 
 \emph{exceptional groups} 
-\[
-  E_6,E_7,E_8,F_4,G_2 .
-\]
-For example, $\dim(G_2)=14$ and $\dim(E_8)=248$. Later on, we'll be able to 
-understand \emph{why} this list is complete. 
+\begin{center}
+\begin{tabular}{c|l}
+label & dimension \\ \hline
+$E_6$ & $78$ \\
+$E_7$ & $133$ \\
+$E_8$ & $248$ \\
+$F_4$ & $52$ \\
+$G_2$ & $14$
+\end{tabular}
+\end{center}
+Later on, we'll be able to understand why this list is complete.
