@@ -74,7 +74,7 @@ $2$. For example, $k$ could be $\dC$. At the moment, we define a
 \emph{linear algebraic group} over $k$ to be a subgroup $G\subset \GL_n(k)$ 
 defined by polynomial equations. 
 
-\begin{example}
+\begin{example}[General linear]
 The archetypal example of an algebraic group is 
 $\GL_n(k)=\{g\in \matrices_n(k):g\text{ is invertible}\}$. As a subset of 
 $\GL_n(k)$, this is defined by the empty set of polynomial equations. 
@@ -89,7 +89,7 @@ $\det(g)=1$.
 Let $\operatorname{O}_n(k)=\{g\in \GL_n(k):g \transpose g=1\}$. This is cut 
 out by the equations 
 \[
-  \sum_{j=1}^n a_{i j} a_{k j} = \delta_{i k}
+  \sum_{j=1}^n g_{i j} g_{k j} = \delta_{i k}
 \]
 for $1\leqslant i,k\leqslant n$. 
 \end{example}
@@ -100,12 +100,13 @@ This is $\SO_n(k)=\operatorname{O}_n(k)\cap \SL_n(k)$.
 
 \begin{example}
 This group doesn't have a special name, but for the moment we will write 
-$U_n(k)$ for the group of unipotent matrices: 
+$U_n(k)$ for the group of strictly upper triangular matrices: 
 \[
   U_n(k) = \begin{pmatrix} 1 & \cdots & \ast \\ & \ddots & \vdots \\ & & 1 \end{pmatrix} \subset \GL_n(k) .
 \]
 Recall that a matrix $g\in \GL_n(k)$ is \emph{unipotent} if $(g-1)^m=0$ for 
-some $m\geqslant 1$. The group $U_n(k)$ is defined by the equations 
+some $m\geqslant 1$. All elements of $U_n(k)$ are unipotent. The group $U_n(k)$ 
+is defined by the equations 
 \[
   \{g_{i j}=0\text{ for }j<i, g_{ii}=1\} .
 \]
@@ -118,7 +119,7 @@ group structure. Note that $\Gm=\GL(1)$.
 
 \begin{example}[Additive]\label{eg:additive}
 Write $\Ga(k)=k$, with its additive group structure. There is a natural 
-isomorphism $\varphi:\Ga\to U_2$ given by $\varphi(x)=\begin{pmatrix} 1 & x \\ & 1 \end{pmatrix}$. Since 
+isomorphism $\varphi:\Ga\iso U_2$ given by $\varphi(x)=\begin{pmatrix} 1 & x \\ & 1 \end{pmatrix}$. Since 
 \[
   \begin{pmatrix} 1 & x \\ & 1 \end{pmatrix} \begin{pmatrix} 1 & y \\ & 1 \end{pmatrix} = \begin{pmatrix} 1 & x+y \\ & 1 \end{pmatrix} ,
 \]
@@ -165,7 +166,7 @@ equation. We can remedy this by noting that $\det(g)\ne 0$ if and only if
 there exists $y\in k$ such that $\det(g)\cdot y=1$. Thus we can define the 
 \emph{coordinate ring} $k[G]$ of $G$, as 
 \[
-  k[G] = k[x_{i j},y] / (\det(x_{i j})y=1) .
+  k[G] = k[x_{i j},y] / (\det(x_{i j})y-1) .
 \]
 For $k$-algebras $A,B$, write $\hom_k(A,B)$ for the set of $k$-algebra 
 homomorphisms $A\to B$. There is a natural identification 
@@ -190,7 +191,7 @@ $G$.
 
 \begin{example}
 Let $k$ be a field not of characteristic $2$. For $d\in k^\times$, let 
-$G_d\subset \dA_{/k}^2$ be the subscheme cut out by $\{x^2-d y^2=1\}$. In 
+$G_d\subset \dA_{/k}^2$ be the subscheme cut out by $x^2-d y^2=1$. In 
 other words, $k[G_d]=k[x,y]/(x^2-d y^2-1)$. The group operation is 
 \[
   (x_1,y_1)\cdot (x_2,y_2) = (x_1 x_2+d y_1 y_2, x_1 y_2+x_2 y_1) .
@@ -212,11 +213,9 @@ $G_d\simeq G_1$.
 \end{example}
 
 \begin{hard}
-A more conceptual definition of $G_d$ is that it is the restriction of scalars 
-$G_d=\weil_{\dZ[\sqrt d]/k} \Gm$. That is, for any $k$-algebra $A$, we have 
-$G_d(A) = (A\otimes_k (\dZ[\sqrt d]\otimes k)$. This shows that it would be 
-more natural to work with $G_d=\weil_{\dZ[\sqrt d]/\dZ}\Gm$ as a group scheme 
-over $\spectrum(\dZ)$. 
+Write $A_d=k[x]/(x^2-d)$. A more conceptual definition of $G_d$ is that it is 
+the restriction of scalars $G_d=\weil_{A_d/k} \Gm$. That is, for any 
+$k$-algebra $A$, we have $G_d(A) = \Gm(A\otimes_k A_d)$. 
 \end{hard}
 
 \begin{example}
@@ -233,7 +232,7 @@ bijective correspondence with $k^\times/2$, via the correspondence
 $d\mapsto G_d$. 
 
 \begin{hard}
-This is easy to see. $k$-forms of $\Gm$ are classified by 
+This is easy to see. The $k$-forms of $\Gm$ is in natural bijection with
 $\h^1(k,\automorphisms \Gm)=\h^1(k,\dZ/2)$. Kummer theory tells us that 
 $\h^1(k,\dZ/2)=k^\times/2$. 
 \end{hard}
