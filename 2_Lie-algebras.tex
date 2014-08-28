@@ -1,0 +1,305 @@
+% !TEX root = 6490.tex
+
+\section{Lie algebras}
+
+
+
+
+
+A \emph{Lie algebra} is a linear object whose representation theory is (in 
+principle) manageable. To any linear algebraic group $G$ we will associate a 
+Lie algebra $\fg=\lie(G)$, and study the representation theory of $G$ via that 
+of $\fg$. 
+
+
+
+
+
+\subsection{Definition and first properties}
+
+Fix a field $k$. Eventually we'll avoid characteristic $2$, and some theorems 
+will only be valid in characteristic zero. 
+
+\begin{definition}
+A \emph{Lie algebra} over $k$ is a $k$-vector space $\fg$ equipped with a map 
+$[\cdot,\cdot]:\fg\times \fg\to \fg$ such that the following hold:
+\begin{itemize}
+  \item $[\cdot,\cdot]$ is bilinear (it factors through $\fg\otimes\fg$). 
+  \item $[x,x]=0$ for all $x\in \fg$ ($[\cdot,\cdot]$ factors through 
+    $\bigwedge^2 \fg$).
+  \item The Jacobi identity $[x,[y,z]]+[y,[z,x]]+[z,[x,y]]=0$ holds for all 
+    $x,y,z\in \fg$.  
+\end{itemize}
+\end{definition}
+
+We could have defined a Lie algebra over $k$ as being a $k$-vector space 
+$\fg$ together with $[\cdot,\cdot]:\bigwedge^2 \fg\to \fg$ satisfying the 
+Jacobi identity. We call $[\cdot,\cdot]$ the \emph{Lie bracket}. 
+
+The Lie bracket satisfies a number of basic properties. For example, 
+$[x,y]=-[y,x]$ because 
+\begin{align*}
+  0 &= [x+y,x+y] && \text{(alternating)} \\
+    &= [x,x]+[x,y]+[y,x]+[y,y] && \text{(bilinear)} \\
+    &= [x,y] + [y,x] . && \text{(alternating)}
+\end{align*}
+Later on, we'll use an alternate form of the Jacobi identity: 
+\begin{equation*}\label{eq:jac-ident}\tag{$*$}
+  [x,[y,z]]-[y,[x,z]] = [[x,y],z] .
+\end{equation*}
+
+
+
+
+
+\subsection{The main examples}
+
+\begin{example}
+Let $V$ be any $k$-vector space. Then the zero map $\bigwedge^2 V\to V$ 
+trivially satisfies the Jacobi identity. We call any Lie algebra whose 
+bracket is identically zero \emph{commutative} (or \emph{abelian}). 
+\end{example}
+
+\begin{example}[General linear]
+Again, let $V$ be a $k$-vector space. The Lie algebra $\gl(V)=\End_k(V)$ as a 
+$k$-vector space, with bracket $[X,Y]=X\circ Y-Y\circ X$. It is a good exercise 
+(which everyone should do at least once in their life) to check that this 
+actually is Lie algebra. When $V=k^n$, we write $\gl_n(k)$ instead of 
+$\gl(k^n)$. 
+\end{example}
+
+Often, we will just write $\gl_n$ instead of $\gl_n(k)$. We will also do this 
+for the other named Lie algebras. 
+
+\begin{example}[Special linear]
+Put $\Sl_n(k)=\{X\in \gl_n(k):\trace X=0\}$. Since $\trace [X,Y]=0$, this is a 
+Lie subalgebra of $\gl_n$. In fact, $[\gl_n,\gl_n]\subset \Sl_n$. 
+\end{example}
+
+\begin{example}[Special orthogonal]
+Put $\so_n(k) = \{X\in \gl_n(k):\transpose X=-X\}$. This is a Lie subalgebra 
+of $\gl_n(k)$ because if $X,Y\in \so_n(k)$, then 
+\begin{align*}
+  \transpose{[X,Y]} 
+    &= \transpose Y \transpose X-\transpose X \transpose Y \\
+    &= (-Y)(-X) - (-X)(-Y) \\
+    &= -[X,Y] .
+\end{align*}
+\end{example}
+
+\begin{example}[Symplectic]
+Let $J_n=\begin{pmatrix} & -I_n \\ I_n \end{pmatrix}\in \gl_{2n}(k)$. Put 
+\[
+  \fsp_{2n}(k) = \{X\in \gl_{2n}(k):J X+\transpose X\cdot J=0\} .
+\]
+As an exercise, check that this is a Lie subalgebra of $\gl_{2n}$. 
+\end{example}
+
+As an exercise, show that $\dR^3$ with the bracket $[u,v]=u\times v$ (cross 
+product) is a Lie algebra over $\dR$. 
+
+\begin{theorem}[Ado]
+Any finite dimensional Lie algebra over $k$ is isomorphic to a Lie subalgebra 
+of some $\gl_n(k)$. 
+\end{theorem}
+\begin{proof}
+In characteristic zero, this is in \cite[I \S 7.3]{bourbaki-lie-alg-1-3}. The 
+positive-characteristic case is dealt with in \cite[VI \S3]{jacobson-1979}.
+\end{proof}
+
+Another good exercise is to realize $\dR^3$ with bracket $[u,v]=u\times v$ as 
+a subalgebra of some $\gl_n(\dR)$. 
+
+
+
+
+
+\subsection{Homomorphisms and the adjoint representation}
+
+\begin{definition}
+A \emph{homomorphism} of Lie algebras $\varphi:\fg\to \fh$ is a $k$-linear map 
+such that $\varphi([x,y])=[\varphi x,\varphi y]$. 
+\end{definition}
+
+If $\varphi:\fg\to \fh$ is a homomorphism of Lie algebras, then 
+$\fa=\ker(\varphi)$ is a Lie subalgebra of $\fg$. This is easy: 
+\begin{align*}
+  \varphi[x,y]
+    &= [\varphi(x),\varphi(y)] \\
+    &= [0,0] \\
+    &= 0 .
+\end{align*}
+
+\begin{definition}
+A Lie subalgebra $\fa$ of $\fg$ is an \emph{ideal} if 
+$[\fa,\fg]\subset \fa$, i.e.~$[a,x]\in \fa$ for all $a\in \fa$, $x\in \fg$. 
+\end{definition}
+
+Equivalently, $\fa\subset \fg$ is an ideal if $[\fg,\fa]\subset \fa$. If 
+$\fa\subset \fg$ is an ideal, we define the \emph{quotient algebra} $\fg/\fa$ 
+to be $\fg/\fa$ as a vector space, with bracket induced by that of $\fg$. So 
+\[
+  [x+\fa,y+\fa] = [x,y]+\fa .
+\]
+Let's check that this makes sense. If $a_1,a_2\in \fa$, then 
+\begin{align*}
+  [x+a_1,x+a_2] 
+    &= [x,y] + [x,a_2]+[a_1,y]+[a_1,a_2] \\
+    &\equiv [x,y] \pmod \fa .
+\end{align*}
+
+If $\varphi:\fg\to \fh$ is a Lie homomorphism, then we get an induced 
+isomorphism  $\fg/\ker(\varphi)\iso \image(\varphi)\subset \fh$. 
+
+\begin{example}
+Give $k$ the trivial Lie bracket. Then $\trace:\gl_n(k) \to k$ is a a 
+homomorphism. Indeed, 
+\[
+  \trace [X,Y]=\trace(X Y)-\trace(Y X)= 0 .
+\]
+We could have defined $\Sl_n(k)=\ker(\trace)$; this is an ideal in 
+$\gl_n$, and $\gl_n(k)/\Sl_n(k)\iso k$. 
+\end{example}
+
+\begin{definition}
+Let $\fg$ be a Lie algebra over $k$. The \emph{adjoint representation} of $\fg$ 
+is the map $\adjoint:\fg\to \gl(\fg)$ defined by $\adjoint(x)(y) = [x,y]$ for 
+$x,y\in \fg$. 
+\end{definition}
+
+It is easy to check that $\adjoint:\fg\to \gl(\fg)$ is $k$-linear, that is 
+$\adjoint(c x)=c\adjoint(x)$ and $\adjoint(x+y)=\adjoint(x)+\adjoint(y)$. 
+It is bit less obvious how the adjoint action behaves with respect to 
+the Lie bracket. We compute 
+\begin{align*}
+  \adjoint([x,y])(z) 
+    &= [[x,y],z] \\
+    &=_\eqref{eq:jac-ident} [x,[y,z]]-[y,[x,z]] \\
+    &= (\adjoint(x) \adjoint(y))(z) - (\adjoint(y)\adjoint(x))(z) .
+\end{align*}
+Thus $\adjoint[x,y] = [\adjoint(x),\adjoint(y)]$ and we have shown that 
+$\adjoint:\fg\to \gl(\fg)$ is a homomorphism of Lie algebras. If 
+$n=\dim_k(\fg)<\infty$, then $\adjoint:\fg\to \gl(\fg)\simeq \gl_n(k)$ is 
+an interesting finite-dimensional representation of $\fg$. If 
+$\dim(\fg)>1$, it cannot be surjective, and there are easy ways for it to 
+fail to be injective. 
+
+\begin{definition}
+Let $\fg$ be a Lie algebra over $k$. The \emph{center} of $\fg$ is 
+\[
+  \zentrum(\fg) = \{x\in \fg:[x,y]=0\text{ for all }y\in \fg\} .
+\]
+\end{definition}
+
+Note that $\zentrum(\fg)=\ker(\adjoint)$. There is a natural injection 
+$\fg/\zentrum(\fg)\monic \gl(\fg)$. 
+
+\begin{definition}
+A Lie algebra $\fg$ is \emph{simple} if it is non-commutative, and has no 
+ideals except $0$ and $\fg$. 
+\end{definition}
+
+Just as with simple algebraic groups, there is a classification theorem for 
+simple Lie algebras. Even better, since Lie algebras are more ``rigid'' than 
+algebraic groups, we don't have to worry about isogeny. 
+
+\begin{theorem}
+Let $k$ be an algebraically closed field of characteristic zero. Up to 
+isomorphism, every Lie algebra is a member of the following list: 
+\begin{center}
+\begin{tabular}{c|c}
+$\typeA_n$ ($n\geqslant 1$) & $\Sl_{n+1}$ \\
+$\typeB_n$ ($n\geqslant 2$) & $\so_{2n+1}$ \\
+$\typeC_n$ ($n\geqslant 3$) & $\fsp_{2n}$ \\
+$\typeD_n$ ($n\geqslant 4$)  & $\so_{2n}$ \\
+exceptional & $\fe_6$, $\fe_7$, $\fe_8$, $\ff_4$, $\fg_2$
+\end{tabular}
+\end{center}
+\end{theorem}
+
+The classification theorem for algebraic groups is proved via the 
+classification theorem for Lie algebras, which ends up being a matter of 
+combinatorics. 
+
+
+
+
+
+\subsection{Lie algebra of an algebraic group}
+
+For the sake of clarity, we give a scheme-theoretic definition of algebraic 
+groups:
+
+\begin{definition}
+Let $S$ be a scheme. An \emph{algebraic group} over $S$ is an affine group 
+scheme of finite type over $S$. 
+\end{definition}
+
+For the moment, we will say that an algebraic group $G$ over $S$ is 
+\emph{linear} if $G$ is a subgroup scheme of $\GL(\sL)$ for some locally 
+free sheaf $\sL$ on $S$. 
+
+Fix a field $k$, and let $G\subset \GL(n)_{/k}$ be a linear algebraic group cut 
+out by polynomials $f_1,\dots,f_r$. For any $k$-algebra $R$, we define
+\[
+  G(R) = \{g\in \GL_n(R):f_1(g)=\cdots = f_r(g)=0\} .
+\]
+This is a functor $\algebras k\to \sets$. Since $G$ is a subgroup scheme of 
+$\GL(n)_{/k}$, the set $G(R)$ inherits the group structure from $\GL_n(R)$. 
+So we will think of $G$ as a functor $G:\algebras k \to \groups$. By the Yoneda 
+Lemma, the variety $G$ is determined by its functor of points 
+$G:\algebras k\to \sets$. 
+
+We are especially interested in the $k$-algebra of \emph{dual numbers}, 
+$k[\varepsilon]=k[x]/x^2$. Informally, $\varepsilon$ should be thought of as a 
+``infinitesimal quantity'' in the style of Newton and Leibniz. The scheme 
+$\spectrum(k[\varepsilon])$ should be thought of as a ``point together with 
+a direction.'' 
+
+\begin{hard}
+For the moment, let $k$ be an arbitrary base ring, $X_{/k}$ a scheme. We define 
+the \emph{$n$-th Jet space} of $X$ to be the scheme $\jet_n X$ whose functor of 
+points is $(\jet_n X)(A) = X(A[t]/t^{n+1})$. By \cite[1.8]{vojta-2007}, this 
+functor is representable, so $\jet_n X$ is actually a scheme. The first jet 
+space $\jet_1 X$ is called the \emph{tangent space} of $X$, and denoted 
+$\tangent X$. The maps $A[t]/t^{n+1}\epic A[t]/t^n$ induce projections 
+$\jet_{n+1} X\to \jet_n X$. In particular, the tangent space of $X$ comes with 
+a canonical projection $\pi:\tangent X\to X$. 
+\end{hard}
+
+Consider $G(k[\varepsilon])$. As a set, this consists of invertible $n\times n$ 
+matrices with entries in $k[\varepsilon]$ on which the $f_i$ vanish. The map 
+$\varepsilon\mapsto 0$ from $k[\varepsilon]\to k$ induces a group homomorphism 
+$\pi:G(k[\varepsilon])\to G(k)$. We will consider this map as the ``tangent 
+space'' of $G(k)$. For each $g\in G(k)$, the fiber 
+$\pi^{-1}(g)$ is the ``tangent space of $G$ at $g$.'' 
+
+Note that 
+\[
+  \pi^{-1}(g) = \{g+\varepsilon v:v\in \matrices_n(k):f_i(g+\varepsilon v)=0\text{ for all }i\} .
+\]
+For each $s$, the polynomial $f_s$ has a Taylor series expansion 
+\[
+  f_s(x_{i j}) = f_s(g) + \sum_{i,j} \frac{\partial f_s}{\partial x_{i,j}}(g) (x_{i,j}-g_{i,j}) .
+\]
+Since $f_s(g)=0$, we get 
+$f_s(g+\varepsilon v) = \varepsilon \sum_{i,j} \frac{\partial f_s}{\partial x_{i,j}}(g) v_{i,j}$. 
+It follows that 
+\[
+  \pi^{-1}(g) = \left\{g+\varepsilon v:v\in \matrices_n(k):\sum_{i,j} \frac{\partial f_s}{\partial x_{i j}}(g) v_{i j}=0\text{ for all }1\leqslant s\leqslant r\right\} .
+\]
+We will be especially interested in $\fg=\pi^{-1}(1)$. We will turn this into a 
+Lie algebra using the group structure on $G$. 
+
+\begin{hard}
+From the scheme-theoretic perspective, the identity element $1\in G(k)$ comes 
+from a section $e:\spectrum(k)\to G$ of the structure $G\to \spectrum(k)$. The 
+\emph{scheme-theoretic Lie algebra} of $G$ is the fiber product 
+\[
+  \fg = e^\ast 1 = \tangent(G)\times_G \spectrum(k) .
+\]
+By definition, $\fg(A)=\ker\left(G(A[\varepsilon])\to G(A)\right)$ for any 
+$k$-algebra $A$. Just as with algebraic groups, we will write $\fg_{/k}$ for 
+$\fg$ thought of as a group scheme 
+over $k$, and just $\fg$ for the $\fg(k)$. 
+\end{hard}
