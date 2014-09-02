@@ -303,3 +303,170 @@ $k$-algebra $A$. Just as with algebraic groups, we will write $\fg_{/k}$ for
 $\fg$ thought of as a group scheme 
 over $k$, and just $\fg$ for the $\fg(k)$. 
 \end{hard}
+
+Recall that schemes can be thought of as functors $\algebras k\to \sets$. For 
+example, affine $n$-space is the functor $\dA^n(A)=A^n$. In fact, this is an 
+algebraic group, the operation coming from addition on $A$. Moreover, $\dA^n$ 
+is \emph{representable} in the sense that 
+\[
+  \dA^n(A) = \hom_k(k[x_1,\dots,x_n],A) ,
+\]
+via $(a_1,\dots,a_n)\mapsto (x_i\mapsto a_i)$. Similarly, 
+$\SL(n)_{/k}$ sends a $k$-algebra $A$ to $\SL_n(A)$. It is represented by the 
+ring $k[x_{i j}]/(\det(x)-1)$. In general, we take some polynomials 
+$f_1,\dots,f_r\in k[x_1,\dots,x_n]$, and consider the subscheme 
+$X=V(f_1,\dots,f_r)\subset \dA^n$ which represents the functor 
+\[
+  X(A) = \{a\in A^n:f_1(a)=\cdots = f_r(a)=0\} .
+\]
+This has coordinate ring $k[x_1,\dots,x_n]/(f_1,\dots,f_r)$. Note that 
+\emph{any} finitely generated $k$-algebras is of this form. In other words, all 
+affine schemes of finite type over $k$ are subschemes of some affine space. 
+
+Clasically, one gives $X(\bar k)$ the \emph{Zariski topology}. If 
+$f\in k[X]=\dA^1(X)$, we get (by definition) a function 
+$f:X(\bar k)\to \bar k$. We define open subsets of $X(\bar k)$ to be 
+those of the form $\{x\in X(\bar k):f(x)\ne 0\}$. More scheme-theoretically, 
+we say that an \emph{open subscheme} of $X$ is the complement of any 
+$V(f)$ for $f\in k[X]$. 
+
+\begin{hard}
+We can think of the Zariski topology as giving a Grothendieck topology on the 
+category of affine schemes over $k$. It is subcanonical, i.e.~all representable 
+functors are sheaves. So if we formally put $\affine k = (\algebras k)^\circ$, 
+then the category of schemes over $k$ embeds into 
+$\sheaves_\zariski(\affine k)$. When working with algebraic groups, often it is 
+better with the \'etale or fppf topologies. In particular, we will think of 
+quotients as living in $\sheaves_\fppf(\affine k)$. 
+\end{hard}
+
+\begin{definition}
+Let $k$ be a feld. A \emph{variety} over $k$ is a reduced separated scheme of 
+finite type over $k$. 
+\end{definition}
+
+In particular, an affine variety is determined by a reduced $k$-algebra. We 
+can directly associate a ``geometric object'' to a $k$-algebra $A$, namely its 
+\emph{spectrum} $\spectrum(A)=\{\fp\subset A\text{ prime ideal}\}$. Finally, we 
+note that if $X=\spectrum(A)$ is of finite type over $k$ and if $k=\bar k$, then 
+$X(k)=\hom_k(A,k)$ is the set of maximal ideas in $A$. 
+
+A affine group $G_{/k}$ will give us a functor $G:\algebras k\to \groups$. As 
+such, it should have morphisms 
+\begin{align*}
+  m :G\times G &\to G && \text{``multiplication''} \\
+  e:1=\spectrum(k) &\to G && \text{``identity''} \\
+  i:G &\to G && \text{``inverse''}
+\end{align*}
+These correspond to ring homomorphisms 
+\begin{align*}
+  \Delta:A &\to A\otimes_k A && \text{``comultiplication''} \\
+  \varepsilon : A &\to k && \text{``counit''} \\
+  \sigma:A &\to A && \text{``coinverse''}
+\end{align*}
+Obviously the maps on groups satisfy some axioms like associativity etc. These 
+can be phrased by the commutativity of diagrams like 
+\[\begin{tikzcd}
+  G\times G\times G \ar[r, "\id\times m"] \ar[d, "m\times \id"] 
+    & G\times G \ar[d, "m"] \\ 
+  G\times G \ar[r, "m"] 
+    & G 
+\end{tikzcd}\]
+It is a good exercise to show that we have the following maps for the additive 
+and multiplicative groups:
+\begin{center}
+\begin{tabular}{c|cccc}
+group & ring & comult. & coident. & coinverse \\ \hline
+$\Ga$ & $k[x]$ & $x\mapsto x\otimes 1+1\otimes x$ & $x\mapsto 0$ & $x\mapsto -x$ \\
+$\Gm$ & $k[x^{\pm 1}]$ & $x\mapsto x\otimes x$ & $x\mapsto 1$ & $x\mapsto x^{-1}$
+\end{tabular}
+\end{center}
+The analogue of associativity for coordinate rings and comultiplication is the 
+commutativity of the following diagram:
+\[\begin{tikzcd}
+  A \ar[r, "\Delta"] \ar[d, "\Delta"] 
+    & A\otimes_k A \ar[d, "\id\otimes \Delta"] \\
+  A\otimes_k A \ar[r, "\Delta\otimes \id"] 
+    & A\otimes_k A\otimes_k A
+\end{tikzcd}\]
+The tuple $(A,\Delta,\varepsilon,\sigma)$ is called a \emph{Hopf algebra}. In 
+principle, all theorems about algebraic groups can be rephrased as theorems 
+about Hopf algebras, but this is not very illuminating. The one advantage is 
+that it is possible to speak of Hopf algebras for which the ring $A$ is 
+\emph{not} commutative. These show up in algebraic number theory, combinatorics, 
+and physics. 
+
+\begin{theorem}
+If $G$ is an affine group scheme of finite type over $k$, then it is a 
+linear algebraic group over $k$. 
+\end{theorem}
+\begin{proof}
+Cite SGA. Morally, look at the action of $G$ on $k[G]$. 
+\end{proof}
+
+So all group varieties over $k$ embed into $\GL(n)_{/k}$ \emph{as an algebraic 
+group}. We can think of an algebraic group in several ways: 
+\begin{enumerate}
+  \item As a group-valued functor on $\algebras k$. 
+  \item As a commutative Hopf algebra over $k$. 
+  \item As a subgroup of $\GL_n(k)$ cut out by poynomials. 
+\end{enumerate}
+
+\begin{example}
+The group of \emph{$n$-th roots of unity} is $\dmu_n$. Its coordinate ring is 
+$k[x]/(x^n-1)$. So 
+\[
+  \dmu_n(A) = \{a\in A:a^n=1\} ,
+\]
+with the group operation coming from multiplication in $A$. Note that 
+$\dmu_n\subset \Gm$. If the base field $k$ has characteristic 
+$p\nmid n$, then $\dmu_n(\bar k)$ is a cyclic group of order $n$. However, if 
+$n=p$, then $x^p-1=(x-1)^p$. So the coordinate ring 
+$k[x]/((x-1)^p)$ is non-reduced. This is our first example of a group scheme 
+that is \emph{not} a group variety. One realization of this is that 
+$\dmu_p(\overline{\dF_p})=1$. These problems can only occur in characteristic 
+$p>0$. If $G$ is a group scheme over a characteristic zero field, then 
+$G$ is automatically reduced [find source]. 
+
+Let $\phi:\Gm\to \Gm$ be the homomorphism $x\mapsto x^p$. Note that 
+$\ker(\phi)=\dmu_p$. On $\overline{\dF_p}$-points, this map is an isomorphism, 
+but $\phi$ is \emph{not} an isomorphism of algebraic groups. 
+\end{example}
+
+Let $G_{/k}$ be a linear algebraic group. Recall that we defined the \emph{Lie 
+algebra} $\fg=\lie(G)$ of $G$ to be the functor on $k$-algebras given by 
+\[
+  \fg(A) = \ker\left(G(A[\varepsilon]/\varepsilon^2) \to G(A)\right) .
+\]
+In [reference here] we saw that if $G\subset \GL(n)_{/k}$ is cut out by 
+$f_1,\dots,f_r$, then the $k$-valued points could be computed as 
+\[
+  \fg = \left\{B\in \matrices_n(k):\sum_{i,j} \frac{\partial f_\alpha}{\partial x_{i j}}(1_n)\cdot B_{i j}=0\right\} .
+\]
+
+\begin{example}[Special linear]
+Let $G=\SL(n)_{/k}$. Note that $G\subset \GL(n)$ is cut out by $\det=1$. So 
+$\fg=\lie(G)=\Sl_n$ is 
+\[
+  \Sl_n = \left\{1+B\varepsilon:B\in \matrices_n(k)\text{ and }\det(1+B\varepsilon)=1\right\} .
+\]
+The expansion of determinant is 
+$\det(1+B\varepsilon)=1+\trace(B)\varepsilon + O(\varepsilon^2)$. Thus 
+\[
+  \Sl_n = \left\{B\in \matrices_n(k):\trace(B)=0\right\} .
+\]
+As a functor, $\Sl_n(A)=\{A\in \matrices_n(A):\trace A=0\}$. 
+\end{example}
+
+\begin{example}[Orthogonal]
+Recall that $G=\Or(n)\subset \GL(n)$ is cut out by $A \transpose A=1$. So 
+\begin{align*}
+  \fg
+    &= \{1+B\varepsilon  (1+B\varepsilon) \transpose{(1+B\varepsilon)}=1\} \\
+    &= \{1+B\varepsilon:B+\transpose B=0\} \\
+    &\simeq \{B\in \matrices_n(k):\transpose B=-B\} \\
+    &= \so_n(k) .
+\end{align*}
+If the characteristic of $k$ is not $2$, then $\dim(\so_n)=n(n-1)/2$. 
+\end{example}
+
