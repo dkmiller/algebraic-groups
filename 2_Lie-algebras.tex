@@ -304,6 +304,12 @@ $\fg$ thought of as a group scheme
 over $k$, and just $\fg$ for the $\fg(k)$. 
 \end{hard}
 
+
+
+
+
+\subsection{Functors of points}
+
 Recall that schemes can be thought of as functors $\algebras k\to \sets$. For 
 example, affine $n$-space is the functor $\dA^n(A)=A^n$. In fact, this is an 
 algebraic group, the operation coming from addition on $A$. Moreover, $\dA^n$ 
@@ -351,6 +357,12 @@ can directly associate a ``geometric object'' to a $k$-algebra $A$, namely its
 note that if $X=\spectrum(A)$ is of finite type over $k$ and if $k=\bar k$, then 
 $X(k)=\hom_k(A,k)$ is the set of maximal ideas in $A$. 
 
+
+
+
+
+\subsection{Affine group schemes and Hopf algebras}
+
 A affine group $G_{/k}$ will give us a functor $G:\algebras k\to \groups$. As 
 such, it should have morphisms 
 \begin{align*}
@@ -370,13 +382,16 @@ can be phrased by the commutativity of diagrams like
   G\times G\times G \ar[r, "\id\times m"] \ar[d, "m\times \id"] 
     & G\times G \ar[d, "m"] \\ 
   G\times G \ar[r, "m"] 
-    & G 
+    & G .
 \end{tikzcd}\]
+Most sources do not give all these diagrams explicitly. One that does is 
+the book \cite{waterhouse-1979}. 
+
 It is a good exercise to show that we have the following maps for the additive 
 and multiplicative groups:
 \begin{center}
 \begin{tabular}{c|cccc}
-group & ring & comult. & coident. & coinverse \\ \hline
+group & ring & comultiplication & coident. & coinverse \\ \hline
 $\Ga$ & $k[x]$ & $x\mapsto x\otimes 1+1\otimes x$ & $x\mapsto 0$ & $x\mapsto -x$ \\
 $\Gm$ & $k[x^{\pm 1}]$ & $x\mapsto x\otimes x$ & $x\mapsto 1$ & $x\mapsto x^{-1}$
 \end{tabular}
@@ -396,13 +411,31 @@ that it is possible to speak of Hopf algebras for which the ring $A$ is
 \emph{not} commutative. These show up in algebraic number theory, combinatorics, 
 and physics. 
 
-\begin{theorem}
+\begin{theorem}\label{thm:groups-linear}
 If $G$ is an affine group scheme of finite type over $k$, then it is a 
 linear algebraic group over $k$. 
 \end{theorem}
 \begin{proof}
-Cite SGA. Morally, look at the action of $G$ on $k[G]$. 
+This is \cite[6b.11.11]{sga3-i}. Essentially, one looks at the action of $G$ 
+on the (possibly infinite-dimensional) vector space $k[G]$. A general theorem 
+yields a faithful finite-dimensional representation $V$, and we get $G$ as a 
+subgroup-scheme of $\GL(V)$. 
 \end{proof}
+
+\begin{hard}
+If $S$ is a dedekind scheme (noetherian, one-dimensional, regular) and $G_{/S}$ 
+is a affine flat separated group scheme of finite type over $S$, then the 
+obvious generalization of autoref{thm:groups-linear} holds for $G$; it is a 
+closed subgroup of $\GL(\sL)$ for $\sL$ a locally free sheaf on $S$ 
+\cite[6b.11.11.1]{sga3-i}. 
+Interestingly, this fails for more general base schemes. 
+\end{hard}
+
+
+
+
+
+\subsection{Examples of group schemes}
 
 So all group varieties over $k$ embed into $\GL(n)_{/k}$ \emph{as an algebraic 
 group}. We can think of an algebraic group in several ways: 
@@ -426,7 +459,7 @@ $k[x]/((x-1)^p)$ is non-reduced. This is our first example of a group scheme
 that is \emph{not} a group variety. One realization of this is that 
 $\dmu_p(\overline{\dF_p})=1$. These problems can only occur in characteristic 
 $p>0$. If $G$ is a group scheme over a characteristic zero field, then 
-$G$ is automatically reduced [find source]. 
+$G$ is automatically reduced. 
 
 Let $\phi:\Gm\to \Gm$ be the homomorphism $x\mapsto x^p$. Note that 
 $\ker(\phi)=\dmu_p$. On $\overline{\dF_p}$-points, this map is an isomorphism, 
