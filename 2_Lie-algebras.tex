@@ -474,32 +474,263 @@ algebra} $\fg=\lie(G)$ of $G$ to be the functor on $k$-algebras given by
 In \autoref{sec:tangent-space}, we saw that if $G\subset \GL(n)_{/k}$ is cut out by 
 $f_1,\dots,f_r$, then the $k$-valued points could be computed as 
 \[
-  \fg = \left\{B\in \matrices_n(k):\sum_{i,j} \frac{\partial f_\alpha}{\partial x_{i j}}(1_n)\cdot B_{i j}=0\right\} .
+  \fg = \left\{X\in \matrices_n(k):\sum_{i,j} \frac{\partial f_\alpha}{\partial x_{i j}}(1_n)\cdot X_{i j}=0\right\} .
 \]
 
 \begin{example}[Special linear]
 Let $G=\SL(n)_{/k}$. Note that $G\subset \GL(n)$ is cut out by $\det=1$. So 
 $\fg=\lie(G)=\Sl_n$ is 
 \[
-  \Sl_n = \left\{1+B\varepsilon:B\in \matrices_n(k)\text{ and }\det(1+B\varepsilon)=1\right\} .
+  \Sl_n = \left\{1+X\varepsilon:X\in \matrices_n(k)\text{ and }\det(1+X\varepsilon)=1\right\} .
 \]
 The expansion of determinant is 
-$\det(1+B\varepsilon)=1+\trace(B)\varepsilon + O(\varepsilon^2)$. Thus 
+$\det(1+X\varepsilon)=1+\trace(X)\varepsilon + O(\varepsilon^2)$. Thus 
 \[
-  \Sl_n = \left\{B\in \matrices_n(k):\trace(B)=0\right\} .
+  \Sl_n = \left\{X\in \matrices_n(k):\trace(X)=0\right\} .
 \]
-As a functor, $\Sl_n(A)=\{A\in \matrices_n(A):\trace A=0\}$. 
+As a functor, $\Sl_n(A)=\{X\in \matrices_n(A):\trace X=0\}$. 
 \end{example}
 
 \begin{example}[Orthogonal]
-Recall that $G=\Or(n)\subset \GL(n)$ is cut out by $A \transpose A=1$. So 
+Recall that $G=\Or(n)\subset \GL(n)$ is cut out by $g \transpose g=1$. So 
 \begin{align*}
   \fg
-    &= \{1+B\varepsilon  (1+B\varepsilon) \transpose{(1+B\varepsilon)}=1\} \\
-    &= \{1+B\varepsilon:B+\transpose B=0\} \\
-    &\simeq \{B\in \matrices_n(k):\transpose B=-B\} \\
+    &= \{1+X\varepsilon  (1+X\varepsilon) \transpose{(1+X\varepsilon)}=1\} \\
+    &= \{1+X\varepsilon:X+\transpose X=0\} \\
+    &\simeq \{X\in \matrices_n(k):\transpose X=-X\} \\
     &= \so_n(k) .
 \end{align*}
 If the characteristic of $k$ is not $2$, then $\dim(\so_n)=n(n-1)/2$. 
 \end{example}
+
+
+
+
+
+\subsection{Lie algebra of an algebraic group}
+
+Fix a field $k$. Let $G_{/k}$ be a linear algebraic group. For any $k$-algebra 
+$A$, write $A[\varepsilon]=k[t]/t^2$. Then $A\mapsto G(A[\varepsilon])$ is a 
+new group functor, and we can define the \emph{Lie algebra} of $G$ to be 
+\[
+  \lie(G)(A) = \ker\left(G(A[\varepsilon]) \to G(A)\right) .
+\]
+A priori, this is a group functor. Often, we will write $\fg=\lie(G)$ to mean 
+$\lie(G)(k)$. If $G\subset \GL(n)$ is cut out by $f_1,\dots,f_r$, then 
+\[
+  \fg=\left\{1+\varepsilon X:X\in \matrices_n(k)\text{ and }f_\alpha(1+\varepsilon X)=0\text{ for all }\alpha\right\} .
+\]
+The group operation is addition on $X$, 
+i.e.~$(1+\varepsilon X)(1+\varepsilon Y)=1+\varepsilon(X+Y)$. Thus 
+$\fg$ is a $k$-vector space. 
+
+\begin{hard}
+This section will contain many ``high-level'' interludes on the functorial 
+definition of $\lie(G)$. They are all strongly influenced by the exposition in 
+\cite[II \S3--4]{sga3-i}. Let $\sO:\algebras k\to \algebras k$ be the functor 
+$A\mapsto A$. Note that $\sO$ is represented by $k[t]$. Thus $\dA^1_{/k}$ has 
+the structure not only of a group scheme, but of a $k$-ring scheme, or 
+$(k,k)$-biring in the sense of \cite{borger-wieland-2005}. We define an 
+\emph{$\sO$-module} to be a functor $V:\algebras k\to \sets$ such that for each 
+$A$, the set $V(A)$ is given an $\sO(A)=A$-module structure in a functorial 
+way. 
+
+If $S:\algebras k \to \sets$ is a functor, we will write 
+$\schemes S$ for the category of representable functors 
+$X:\algebras k\to \sets$ together with a morphism $X\to S$. A morphism 
+$(X\to S)\to (Y\to S)$ in $\schemes S$ is a morphism of functors 
+$X\to Y$ making the following diagram commute:
+\[\begin{tikzcd}
+  X \ar[r] \ar[dr] 
+    & Y \ar[d] \\
+  & S 
+\end{tikzcd}\]
+There is an easy generalization of $\sO$ to a ring object 
+$\sO\in\schemes S$. It sends a scheme $X$ to the ring $\h^0(X,\sO_X)$ of 
+regular functions on $X$. 
+
+For a scheme $X$, the first jet space 
+$\jet_1 X$ is naturally an $\sO$-module in $\schemes X$. We could be fancy and 
+say that for any ring $A$, $A[\varepsilon]$ is naturally an abelian group 
+object in $\algebras A/A$, or we could define the $\sO$-module structure on 
+$\jet_1 X\xrightarrow\pi X$ directly. For $\varphi:\spectrum(A)\to X$, we need 
+to give 
+\[
+  (\jet_1 X)_{/X}(A) = \{f\in (\jet_1 X)(A):\pi\circ f = \varphi\} 
+\]
+the structure of an $A$-module. Given $a\in A$, define 
+$\sigma_a:A[\varepsilon]\to A[\varepsilon]$ by 
+$\varepsilon\mapsto a\varepsilon$. This is a ring homomorphism,so it induces 
+$\sigma_a:\jet_1 X(A)\to \jet_1 X(A)$. The restriction of this map to 
+$(\jet_1 X)_{/X}(A)$ is the desired action of $A$. See \cite[II 3.4.1]{sga3-i} 
+for a more careful proof that this gives $(\jet_1 X)_{/X}$ the structure of 
+an $\sO$-module in $\schemes X$. 
+
+The point of all this is that if $M$ is an $\sO$-module in 
+$\schemes Y$ and $f:X\to Y$ is a morphism of schemes, then 
+$f^\ast M$, defined by 
+\[
+  (f^\ast M)(\spectrum(A)\xrightarrow p X) = M(\spectrum(A)\xrightarrow p X\xrightarrow f Y)
+\]
+is naturally an $\sO$-module in $\schemes X$. So if $G$ is an algebraic group, 
+$\jet_1 X$ is naturally an $\sO$-module in $\schemes G$, and the morphism 
+$e:1\to G$ gives $\fg=e^\ast \jet_1 G$ the structure of an $\sO$-module in 
+$\schemes k$. 
+\end{hard}
+
+\begin{example}[Symplectic]
+Let $J=\begin{pmatrix} & -1_n \\ 1_n \end{pmatrix}$. Recall that 
+\[
+  \Sp_{2n}(A) = \left\{g\in \GL_{2n}(A) : \transpose g J g=J\right\} .
+\]
+Let's compute the Lie algebra of $\Sp_{2n}$. For $X\in \matrices_{2n}(A)$, we 
+have 
+\begin{align*}
+  \transpose{(1+\varepsilon X)} J (1+\varepsilon X) 
+    &= (1+\varepsilon\transpose X) J (1+\varepsilon X) \\
+    &= J+\varepsilon(\transpose X J+J X) .
+\end{align*}
+So 
+$\fsp_{2n}(A) \simeq \left\{X\in \matrices_{2n}(A):\transpose X J+J X = 0\right\}$. 
+\end{example}
+
+Algebraic groups can be highly non-abelian, and so far all we've done is give 
+$\fg=\lie(G)$ the structure of a vector space. We'd like to give $\fg$ the 
+structure of a Lie algebra. 
+
+Let $f:G\to H$ be a homomorphism of algebraic groups. Then $f:G(A)\to H(A)$ is 
+a homomorphism for all $k$-algebras $A$. A morphism $f:G\to H$ corresponds 
+by the Yoneda Lemma to a unique element $\varphi\in \hom_k(k[H],k[G])$. For all 
+$A$, the induced map $G(A)\to H(A)$ is defined by 
+$\psi\mapsto \psi\circ\varphi$ via the identifications 
+$G(A)=\hom(k[G],A)$ and $H(A)=\hom(k[H],A)$. 
+
+\begin{example}
+Recall that $\Gm(A)=A^\times = \hom(k[x^{\pm 1}], A)$. All homomorphisms 
+$f:\Gm\to \Gm$ come from $x\mapsto x^n$ for some $n\in \dZ$. On functors of 
+points, this is $a\mapsto a^n$ for $a\in A^\times$. 
+\end{example}
+
+As before, let $f:G\to H$ be a morphism of algebraic groups. Let 
+$\fg=\lie(G)$, $\fh=\lie(G)$. There is an induced map 
+$f_\ast=\lie(f):\fg\to \fh$. On functors of points, it is induced by the 
+inclusions $\fg\subset \jet_1 G$, $\fh\subset \jet_1 H$ and the fact that 
+$f:\jet_1 G\to \jet_1 H$ is a group homomorphism. That is, for each 
+$k$-algebra $A$, $f_\ast:\fg(A)\to \fh(A)$ is induced by the commutative 
+diagram 
+\[\begin{tikzcd}
+  G(A[\varepsilon]) \ar[r, "f"] 
+    & H(A[\varepsilon]) \\
+  \fg(A) \ar[r, "f_\ast"] \ar[u, hook] 
+    & \fh(A). \ar[u, hook]
+\end{tikzcd}\]
+In particular, a representation $\rho:G\to \GL(n)$ induces a map on 
+Lie algebras $\fg\to \gl_n$. 
+
+\begin{hard}
+The natural way of stating the above is that $\lie$ is a functor from group 
+schemes over $k$ to $\sO$-modules in $\schemes k$. What's more, if $G$ is a 
+group scheme and $\fg=\lie(G)$, then by \cite[II 3.3]{sga3-i}, 
+there is a natural isomorphism of $A$-modules 
+$\fg(k)\otimes_k A\iso \fg(A)$. So the functor $\fg$ is actually determined 
+by the vector space $\fg(k)$. This justifies our passing between 
+$\fg$ and $\fg(k)$. 
+\end{hard}
+
+Let's construct the Lie bracket on the Lie algebra of an algebraic group. 
+Recall that for a Lie algebra $\fg$, we defined a map 
+$\adjoint:\fg\to \gl(\fg) = \End_k(\fg)$ by $\adjoint(x)(y)=[x,y]$. The 
+bracket on $\fg$ is clearly determined by the adjoint map. 
+
+For $\fg=\lie(G)$, we'll define the adjoint map directly, then use this to 
+give $\fg$ the structure of a Lie algebra. For any $g\in G(A)$, we have an 
+action $\adjoint(g):G_A\to G_A$ given by $x\mapsto g x g^{-1}$ for any 
+$B\in \algebras A$. So we have a homomorphism of group functors 
+$\adjoint:G\to \automorphisms(G)$. In particular, $G(k)$ acts on $G$ by 
+$k$-automorphisms. 
+
+\begin{hard}
+The general philosophy, due to Grothendieck and worked out carefully in 
+SGA, is that ``everything is a functor.'' That is, we think of every object 
+as living in the category of functors $\algebras k\to \sets$. For example, 
+if $X$ and $Y$ are schemes over $k$, then $\hom(X,Y)$ is the functor whose 
+\[
+  \hom(X,Y)(A) = \hom_{\schemes A}(X_A, Y_A) .
+\]
+We recover the usual hom-set as $\hom(X,Y)(k)$. Similarly, we define 
+$\automorphisms(G)(A)=\automorphisms_{\groups_A}(G_A)$. These functors are not 
+usually representable, but they are sheaves all the reasonable Grothendieck 
+topologies on $\schemes k$. See \cite[I \S 1--3, II \S 1]{sga3-i} for a careful 
+exposition along these lines. 
+\end{hard}
+
+By functoriality, there is a natural homomorphism 
+$\automorphisms(G)\to \automorphisms(\fg)$. Composing this with the map 
+$\adjoint:G\to \automorphisms(G)$ gives a map 
+$\adjoint:G\to \automorphisms(\fg)$. Explicitly, the map 
+$\adjoint:G(A)\to \automorphisms(\fg)(A)=\automorphisms(\fg_A)$ sends 
+$g$ to the automorphism $X\mapsto g X g^{-1}$ for any 
+$X\in G(B[\varepsilon])$, $B\in \algebras A$. It is easy to see that this 
+action respects $\sO$-module structure on $\fg$, so we in fact have a 
+representation $\adjoint:G\to \GL(\fg)$. Since 
+$\fg(A)=\fg(k)\otimes_k A$, we can think of $\fg$ as an honest 
+$k$-vector space and define $\GL(\fg)$ as the functor 
+$A\mapsto \automorphisms_A(\fg\otimes_k A)$. In either case, we have a 
+morphism $\adjoint:G\to \GL(\fg)$ of linear algebraic groups. 
+
+Apply $\lie(-)$ to the adjoint representation $\adjoint:G\to \GL(\fg)$. We 
+get a map $\adjoint:\fg\to \lie(\GL(\fg))=\gl(\fg)$. We claim that 
+$\fg$ together with $[x,y]=\adjoint(x)(y)$ is a Lie algebra. 
+
+\begin{example}
+Let $G=\GL(n)$. We wish to verify that our functorial definition of 
+$\adjoint:\gl_n\to \gl(\gl_n)$ agrees with the elementary definition 
+$\adjoint(x)(y)=[x,y]$. Start with the action of $\GL(n)$ on 
+$\gl_n$. For any $k$-algebra $A$, this is the action by conjugation of 
+$\GL_n(A)\subset \GL_n(A[\varepsilon])$ on 
+$\gl_n(A)=\ker(\GL_n(A[\varepsilon])\to \GL_n(A))$. This is because 
+\[
+  g\cdot (1+\varepsilon x)(g^{-1}) = 1+\varepsilon \adjoint(g)(x) .
+\]
+So the functorial and elementary definitions of $\adjoint:\GL(n)\to \GL(\gl_n)$ 
+agree. 
+
+Now let's differentiate $\adjoint:\GL(n)\to \GL(\gl_n)$. For 
+$A\in \algebras k$, we have a commutative diagram:
+\[\begin{tikzcd}
+  \gl_n(A) \ar[r, hook] \ar[d, "\adjoint"] 
+    & \GL_n(A[\varepsilon]) \ar[r, twoheadrightarrow] \ar[d, "\adjoint"]
+    & \GL_n(A) \ar[d, "\adjoint"] \\
+  \gl(\gl_n)(A) \ar[r, hook]
+    & \GL(\gl_n\otimes A[\varepsilon]) \ar[r, twoheadrightarrow] 
+    & \GL(\gl_n\otimes A)
+\end{tikzcd}\]
+All that remains is the simple computation 
+\begin{align*}
+  \adjoint(1+ \varepsilon x)(y)
+    &= (1+\varepsilon x)y(1-\varepsilon x) \\
+    &= y+[x,y]\varepsilon
+\end{align*}
+So as an endomorphism of $\gl_n\otimes A[\varepsilon]$, 
+$\adjoint(1+\varepsilon x)$ is of the form $1+\varepsilon [x,-]$. So when we 
+identify $1+\varepsilon x$ with $x$, we get that $\adjoint(x)=[x,-]$ as 
+desired. See \cite[II 4.8]{sga3-i} for a proof in much greater generality. 
+\end{example}
+
+This example yields the general fact that $\lie(G)$ is a Lie algebra. Choose an 
+embedding $G\monic \GL(n)$. By construction, the Lie functor is 
+limit-preserving, so $\fg\monic \gl_n$. The bracket on $\fg$ (as a subspace of 
+$\gl_n$ is induced by the bracket on $\gl_n$. We have seen that the functorial 
+definition of the bracket on $\gl_n$ matches the elementary definition, so 
+$\gl_n$ is a Lie algebra and $\fg$ is a Lie subalgebras of $\gl_n$. 
+
+Does $\lie(G)$ determine $G$? The answer is an easy no! For example, 
+$\SO(n)$ and $\Or(n)$ both have Lie algebra $\so_n$. Also 
+$\SL(n)$ and $\PSL(n)$ both have Lie algebra $\Sl_n$. Also, there is are the 
+easy examples $\lie(\Ga)=\lie(\Gm)=\gl_1$. Finally, 
+$\lie(G)=\lie(G^\circ)$, so $\lie(G)$ does not depend on the group 
+$\pi_0(G)=G/G^\circ$ of connected components of $G$. 
+
+
+
 
