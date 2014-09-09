@@ -730,17 +730,17 @@ $\SL(n)$ and $\PSL(n)$ both have Lie algebra $\Sl_n$. There is are the
 easy example $\lie(\Ga)=\lie(\Gm)=\gl_1$. Finally, 
 $\lie(G)=\lie(G^\circ)$, so $\lie(G)$ does not depend on the group 
 $\pi_0(G)=G/G^\circ$ of connected components of $G$. However, given a 
-reductive Lie algebra $\fg$, there are a couple good ways of picking a 
-canonical ``best'' algebraic group $G$ with $\lie(G)=\fg$. 
+semisimple Lie algebra $\fg$, there is a unique split connected, 
+simply-connected semisimple algebraic group $G$ with $\lie(G)=\fg$. 
 
 \begin{example}
 Let's go over the Lie bracket on $\GL(n)$ in a more elementary manner. We have 
 \[
   \gl_n = \ker\left(\GL_n(k[\varepsilon])\to\GL_n(k)\right) = \{1+\varepsilon X:X\in \matrices_n(k)\} \iso \matrices_n(k) .
 \]
-We'll write elements of $\matrices_n(k[\varepsilon])$ as $X+Y\varepsilon$; 
-these should be thought of as a ``point'' $X$ together with an ``infinitesimal 
-direction'' $Y$ at $X$. The adjoint map is the homomorphism 
+We'll write elements of $\matrices_n(k[\varepsilon])$ as $x+y\varepsilon$; 
+these should be thought of as a ``point'' $x$ together with an ``infinitesimal 
+direction'' $y$. The adjoint map is the homomorphism 
 $\adjoint:\GL(n)\to \GL(\gl_n)$, defined on $A$-points as the map 
 $\GL_n(A)\to \GL(\gl_n(A))$ given by $\adjoint(g)(x) = g x g^{-1}$. So for 
 $A=k[\varepsilon]$, the group $\GL_n(k[\varepsilon])$ acts on 
@@ -766,10 +766,14 @@ diagram:
 so that $\adjoint(x)(y) = [x,y]$. 
 \end{example}
 
-As we have already seen, $\lie(G)$ does not determine $G$. Nor is the functor 
-$\lie$ full or faithful. It's not faithful because $\lie(G)$ doesn't see 
-$\pi_0(G)$, and it's not full because $\hom(\gl_1,\gl_1)$ is a one-dimensional 
-vector space, while $\hom(\Gm,\Gm)=\dZ$. 
+As we have already seen, $\lie(G)$ does not determine $G$. Even worse, the 
+functor $\lie$ is neither full nor faithful. It's not faithful because, for 
+example, if $\Gamma$ is a finite group and $G$ a connected group, then 
+$\automorphisms(\Gamma)\hookrightarrow \automorphisms(\Gamma\times G)$, but 
+since $(G\times\Gamma)^\circ\subset G$, any automorphism of $\Gamma$ acts 
+trivially on $\lie(\Gamma\times G)$. To see that $\lie$ is not faithful, 
+note that $\hom(\gl_1,\gl_1)$ is a one-dimensional vector space, while 
+$\hom(\Gm,\Gm)=\dZ$. 
 
 \begin{theorem}\label{thm:subgroup-lie-alg}
 Let $k$ be a field of characteristic zero, $G_{/k}$ a linear algebraic group. 
@@ -777,20 +781,16 @@ Let $\fg=\lie(G)$. The map $H\mapsto \lie(H)$ from connected closed subgroups
 of $G$ to Lie subalgebras of $\fg$ is injective and preserves inclusions. 
 \end{theorem}
 \begin{proof}
-Find this in SGA. That this correspondence preserves inclusion is trivial. Just 
-apply functoriality to $H_1\monic H_2$. In characteristic zero, Cartier's 
-Theorem (\autoref{thm:cartier}) tells us that $G$ is smooth, so in particular 
-$\dim G=\dim \fg$. We will show injectivity. Let $H_1$, $H_2$ be be two closed 
-connected subgroups of $G$ such that $\lie(H_1)=\lie(H_2)$. Then $H_1\cap H_2$ 
-is a (not necessarily connected) closed subgroup of $G$. It is easy to see that 
-$\lie(H_1\cap H_2)=\lie(H_1)=\lie(H_2)$ (fiber products are computed 
-``pointwise'' in the category fppf sheaves). We have 
-$(H_1\cap H_2)^\circ\subset H_1$, and 
-\[
-  \dim((H_1\cap H_2)^\circ)=\dim \lie((H_1\cap H_2)^\circ) = \dim \lie(H_1\cap H_2) =\dim\lie(H_1) .
-\]
-The point is that $(H_1\cap H_2)^\circ$ and $H_1$ have the same dimension. 
-This forces $(H_1\cap H_2)^\circ=H_1$, and the result follows. 
+If $H_1\subset H_2$, use the functoriality of forming Lie algebras to see that 
+$\lie(H_1)\subset \lie(H_2)$ as subalgebras of $\fg$. The nontrivial part is to 
+show that $\lie(H)$, as a subalgebra of $\fg$, determines $H$. 
+Let $H_1$, $H_2$ be be two closed connected subgroups of $G$ such that 
+$\fh=\lie(H_1)=\lie(H_2)$. Then $H_3=(H_1\cap H_2)^\circ$ is a closed connected 
+subgroup of $G$. Since fiber products are computed pointwise and the Lie 
+functor is exact, we have $\lie(H_3)=\fh$. By \autoref{thm:cartier}, the 
+$H_i$ are all smooth, so $\dim(H_i)=\dim \fh$. But the only way 
+$H_3\subset H_1$ can both be smooth and irreducible with the same dimension is 
+for $H_1=H_3$. Similarly $H_2=H_3$, so $H_1=H_2$. 
 \end{proof}
 
 \begin{example}
@@ -798,7 +798,8 @@ The subgroup
 $\Gm\simeq \left\{\begin{pmatrix} a \\ & a^{-1} \end{pmatrix}\right\}$ 
 and $\Ga\simeq \begin{pmatrix} 1 & \ast \\ & 1 \end{pmatrix}$ of $\GL(2)$ have 
 Lie algebras that are abstractly isomorphic, but distinct as subalgebras of 
-$\gl_2$. 
+$\gl_2$. Thus $\lie(H)$, seen as an abstract Lie algebra, does not determine 
+$H$ as a subgroup of $G$. 
 \end{example}
 
 \autoref{thm:subgroup-lie-alg} fails in positive characteristic. Also, 
@@ -813,22 +814,24 @@ Then $G$ is smooth.
 \begin{proof}
 The idea is that for $k=\dC$, $G(\dC)$ must be smooth at ``most'' points 
 $g$. But any two points in $G(\dC)$ have diffeomorphic neighborhoods, so 
-$G(\dC)$ itself is smooth. Also see \url{http://mathoverflow.net/questions/22553}. 
+$G(\dC)$ itself is smooth. For a careful proof in much greater generality, 
+see \cite[6a 1.6]{sga3-i}. Even SGA assumes that $G$ is locally of finite type, 
+but this is not necessary. See \url{http://mathoverflow.net/questions/22553} 
+for some discussion and references. 
 \end{proof}
 
 \begin{example}
 Consider $\dmu_p=\ker(\Gm\xrightarrow p \Gm)$ over $k=\dF_p$. That is, 
 $\dmu_p(A)=\{a\in A:a^p=1\}$. The coordinate ring of $\dmu_p$ is 
-$k[x]/(x^p-1)$. Thus 
+$k[x]/(x^p-1)$. Note that  
 \begin{align*}
-  \lie(\dmu_p)
-    &= \{1+\varepsilon x:x\in k\text{ and }(1+\varepsilon x)^p=1\} \\
+  \lie(\dmu_p)(A)
+    &= \{1+\varepsilon x:x\in A\text{ and }(1+\varepsilon x)^p=1\} \\
     &= \{1+\varepsilon x:1+(\varepsilon x)^p = 1\} \\
-    &= k .
+    &= A .
 \end{align*}
-In other words, $\dmu_p\subset \Gm=\GL(1)$ has Lie algebra 
-$\lie(\dmu_p) = \lie(\Gm)=\gl_1$. Since $\dmu_p$ is connected over 
-$\dF_p$, this provides a counterexample to 
+In other words, $\dmu_p\subset \GL(1)$ has Lie algebra $\gl_1$. Since $\dmu_p$ 
+is connected over $\dF_p$, this provides a counterexample to 
 \autoref{thm:subgroup-lie-alg} in characteristic $p$. Moreover, 
 $\dmu_p(\overline{\dF_p})=1$, so ``$\dmu_p$ has no points.''
 \end{example}
