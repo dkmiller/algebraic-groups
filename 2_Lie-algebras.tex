@@ -726,10 +726,117 @@ $\gl_n$ is a Lie algebra and $\fg$ is a Lie subalgebras of $\gl_n$.
 
 Does $\lie(G)$ determine $G$? The answer is an easy no! For example, 
 $\SO(n)$ and $\Or(n)$ both have Lie algebra $\so_n$. Also 
-$\SL(n)$ and $\PSL(n)$ both have Lie algebra $\Sl_n$. Also, there is are the 
-easy examples $\lie(\Ga)=\lie(\Gm)=\gl_1$. Finally, 
+$\SL(n)$ and $\PSL(n)$ both have Lie algebra $\Sl_n$. There is are the 
+easy example $\lie(\Ga)=\lie(\Gm)=\gl_1$. Finally, 
 $\lie(G)=\lie(G^\circ)$, so $\lie(G)$ does not depend on the group 
-$\pi_0(G)=G/G^\circ$ of connected components of $G$. 
+$\pi_0(G)=G/G^\circ$ of connected components of $G$. However, given a 
+reductive Lie algebra $\fg$, there are a couple good ways of picking a 
+canonical ``best'' algebraic group $G$ with $\lie(G)=\fg$. 
+
+\begin{example}
+Let's go over the Lie bracket on $\GL(n)$ in a more elementary manner. We have 
+\[
+  \gl_n = \ker\left(\GL_n(k[\varepsilon])\to\GL_n(k)\right) = \{1+\varepsilon X:X\in \matrices_n(k)\} \iso \matrices_n(k) .
+\]
+We'll write elements of $\matrices_n(k[\varepsilon])$ as $X+Y\varepsilon$; 
+these should be thought of as a ``point'' $X$ together with an ``infinitesimal 
+direction'' $Y$ at $X$. The adjoint map is the homomorphism 
+$\adjoint:\GL(n)\to \GL(\gl_n)$, defined on $A$-points as the map 
+$\GL_n(A)\to \GL(\gl_n(A))$ given by $\adjoint(g)(x) = g x g^{-1}$. So for 
+$A=k[\varepsilon]$, the group $\GL_n(k[\varepsilon])$ acts on 
+$\matrices_n(k[\varepsilon])$ by conjugation. Take any 
+$1+\varepsilon b\in \GL_n(k[\varepsilon])$, and any 
+$x+\varepsilon y\in \matrices_n(k[\varepsilon])$. We compute: 
+\begin{align*}
+  (1+\varepsilon b)(x+\varepsilon y)(1-\varepsilon b)^{-1} 
+    &= (x+\varepsilon y+\varepsilon b x)(1-\varepsilon b) \\
+    &= x+\varepsilon y + \varepsilon(b x-x b) \\
+    &= x+\varepsilon y + \varepsilon [b,x] \\
+    &= (1+\varepsilon[b,-])(x+\varepsilon y) .
+\end{align*}
+Thus $\adjoint(1+\varepsilon b)=1+\varepsilon [b,-]$ as an element of 
+$\End_k(\gl_n) = \gl(\gl_n)$. Summing it all up, we have a commutative 
+diagram: 
+\[\begin{tikzcd}
+  \gl_n \ar[r, "\adjoint"] \ar[d, "\wr"]
+    & \gl(\gl_n) \ar[d, "\wr"] \\
+  \matrices_n \ar[r, "\adjoint"] 
+    & \End(\matrices_n)
+\end{tikzcd}\]
+so that $\adjoint(x)(y) = [x,y]$. 
+\end{example}
+
+As we have already seen, $\lie(G)$ does not determine $G$. Nor is the functor 
+$\lie$ full or faithful. It's not faithful because $\lie(G)$ doesn't see 
+$\pi_0(G)$, and it's not full because $\hom(\gl_1,\gl_1)$ is a one-dimensional 
+vector space, while $\hom(\Gm,\Gm)=\dZ$. 
+
+\begin{theorem}\label{thm:subgroup-lie-alg}
+Let $k$ be a field of characteristic zero, $G_{/k}$ a linear algebraic group. 
+Let $\fg=\lie(G)$. The map $H\mapsto \lie(H)$ from connected closed subgroups 
+of $G$ to Lie subalgebras of $\fg$ is injective and preserves inclusions. 
+\end{theorem}
+\begin{proof}
+Find this in SGA. That this correspondence preserves inclusion is trivial. Just 
+apply functoriality to $H_1\monic H_2$. In characteristic zero, Cartier's 
+Theorem (\autoref{thm:cartier}) tells us that $G$ is smooth, so in particular 
+$\dim G=\dim \fg$. We will show injectivity. Let $H_1$, $H_2$ be be two closed 
+connected subgroups of $G$ such that $\lie(H_1)=\lie(H_2)$. Then $H_1\cap H_2$ 
+is a (not necessarily connected) closed subgroup of $G$. It is easy to see that 
+$\lie(H_1\cap H_2)=\lie(H_1)=\lie(H_2)$ (fiber products are computed 
+``pointwise'' in the category fppf sheaves). We have 
+$(H_1\cap H_2)^\circ\subset H_1$, and 
+\[
+  \dim((H_1\cap H_2)^\circ)=\dim \lie((H_1\cap H_2)^\circ) = \dim \lie(H_1\cap H_2) =\dim\lie(H_1) .
+\]
+The point is that $(H_1\cap H_2)^\circ$ and $H_1$ have the same dimension. 
+This forces $(H_1\cap H_2)^\circ=H_1$, and the result follows. 
+\end{proof}
+
+\begin{example}
+The subgroup 
+$\Gm\simeq \left\{\begin{pmatrix} a \\ & a^{-1} \end{pmatrix}\right\}$ 
+and $\Ga\simeq \begin{pmatrix} 1 & \ast \\ & 1 \end{pmatrix}$ of $\GL(2)$ have 
+Lie algebras that are abstractly isomorphic, but distinct as subalgebras of 
+$\gl_2$. 
+\end{example}
+
+\autoref{thm:subgroup-lie-alg} fails in positive characteristic. Also, 
+surjectivity need not hold, see e.g.~$\GL(5)$. If we instead work in the 
+category of smooth manifolds and Lie groups, then \emph{every} Lie subalgebra 
+comes from a subgroup. 
+
+\begin{theorem}[Cartier]\label{thm:cartier}
+Let $k$ be a field of characteristic zero, $G_{/k}$ a linear algebraic group. 
+Then $G$ is smooth. 
+\end{theorem}
+\begin{proof}
+The idea is that for $k=\dC$, $G(\dC)$ must be smooth at ``most'' points 
+$g$. But any two points in $G(\dC)$ have diffeomorphic neighborhoods, so 
+$G(\dC)$ itself is smooth. Also see \url{http://mathoverflow.net/questions/22553}. 
+\end{proof}
+
+\begin{example}
+Consider $\dmu_p=\ker(\Gm\xrightarrow p \Gm)$ over $k=\dF_p$. That is, 
+$\dmu_p(A)=\{a\in A:a^p=1\}$. The coordinate ring of $\dmu_p$ is 
+$k[x]/(x^p-1)$. Thus 
+\begin{align*}
+  \lie(\dmu_p)
+    &= \{1+\varepsilon x:x\in k\text{ and }(1+\varepsilon x)^p=1\} \\
+    &= \{1+\varepsilon x:1+(\varepsilon x)^p = 1\} \\
+    &= k .
+\end{align*}
+In other words, $\dmu_p\subset \Gm=\GL(1)$ has Lie algebra 
+$\lie(\dmu_p) = \lie(\Gm)=\gl_1$. Since $\dmu_p$ is connected over 
+$\dF_p$, this provides a counterexample to 
+\autoref{thm:subgroup-lie-alg} in characteristic $p$. Moreover, 
+$\dmu_p(\overline{\dF_p})=1$, so ``$\dmu_p$ has no points.''
+\end{example}
+
+If, on the other hand, the base field has 
+characteristic not $p$, then $(1+\varepsilon x)^p = 1+p\varepsilon x$, which is 
+$1$ exactly when $x=0$. So $\lie(\dmu_p)=0$ as expected. 
+
 
 
 
