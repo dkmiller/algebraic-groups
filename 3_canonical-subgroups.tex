@@ -434,20 +434,25 @@ over $k$ such that
 Clearly, unipotent groups are solvable. If $k$ has characteristic zero, we can 
 assume $G_i/G_{i+1}\simeq \Ga$. If $k$ has characteristic $p>0$, then we have 
 to worry about things like $\dalpha_p=\ker(\Ga\xrightarrow p \Ga)$. 
-Fortunately, the only possible closed subgroups of $\Ga$ are $0$, $\Ga$, and 
-$\alpha_{p^e}$ for varying $e$. 
+Fortunately, by \cite[XVII 1.5]{sga3-ii}, the only possible closed subgroups of 
+$\Ga$ over a field of characteristic $p$ are $0$, $\Ga$ and extensions of 
+$(\dZ/p)^r$ by $\dalpha_{p^e}$. 
 
 \begin{theorem}
 Let $G_{/k}$ be a connected linear algebraic group. Then $G$ is unipotent 
 if and only if it is isomorphic to a closed subgroup of some $U(n)_{/k}$. 
 \end{theorem}
 \begin{proof}
-This is \cite[XV 2.2]{milne-AGS}. 
+This follows directly from \cite[XV 2.2]{milne-AGS}. 
 \end{proof}
 
 If $G_{/k}$ is unipotent and $\rho:G\to \GL(n)$ is a representation, then for 
 all $g\in G(\bar k)$, the matrix $\rho(g)$ is unipotent, i.e.~$(\rho(g)-1)^n=0$ 
-for some $n\geqslant 1$. [find source] The converse holds as long as the group 
+for some $n\geqslant 1$. Indeed, the result in \cite{milne-AGS}
+
+See \cite[XVII 3.5]{sga3-ii}. 
+
+[find source] The converse holds as long as the group 
 is smooth [maybe need characteristic zero: find source]
 
 \begin{theorem}
@@ -536,10 +541,167 @@ $\rad G=1$.
 \end{definition}
 
 \begin{example}
-The group $\SL(n)$ is semisimple. The subgroup $\dmu_n\subset \zentrum(\SL_n)$ is 
+The group $\SL(n)$ is semisimple. The subgroup $\dmu_n= \zentrum(\SL_n)$ is 
 a solvable normal subgroup, but it's not connected (or not smooth, if the 
 base characteristic divides $n$). 
 \end{example}
+
+
+
+
+
+\subsection{Jordan decomposition}
+
+Let $k$ be a field, $V$ a finite-dimensional $k$-vector space. Choose some 
+$g\in \GL(V)=\automorphisms_k(V)$. Recall the \emph{characteristic 
+polynomial} of $g$ will factor (over $\bar k$) as
+\[
+  \det(t\cdot 1-g) = \prod_i (t-\lambda_i)^{n_i}
+\]
+where the $\lambda_i$ are distinct. Let 
+\[
+  V_{\lambda_i} = \{v\in V:(g-\lambda_i\cdot 1)^{n_i} v=0\} .
+\]
+Consider the action of $k[t]$ on $V$ in which $t$ acts via $g$. Then $V$ is 
+a finitely generated torsion $k[t]$-module, so we can write it as 
+$k[t]/f_1\oplus \cdots \oplus k[t]/f_r$. (This is just the fundamental theorem 
+of finitely generated modules over a principal ideal domain.) We can take the 
+$f_i$ to be powers of irreducible polynomials. If $k=\bar k$, then we get 
+$V=\bigoplus_i k[t]/(t-\lambda_i)^{n_i}$, i.e.~$V=\bigoplus V_{\lambda_i}$. 
+
+As a $k$-vector space, $k[t]/(t-\lambda)^n$ has basis 
+$\{v_i=(t-\lambda)^{n-i}\}_{i=1}^n$. Moreover, 
+\begin{align*}
+  t v_1 &= \lambda v_1 \\
+  t v_2 &= \lambda v_2 + v_2 \
+  \cdots 
+\end{align*}
+When we write $g$ with respect to this basis, we get the $n\times n$ matrix 
+$J_n(\lambda)$ which is $\lambda$ along the diagonal, $1$ just above the 
+diagonal, and zeros everywhere else. We end up with a direct sum decomposition 
+(with respect to some basis) $g=\bigoplus J_{n_i}(\lambda_i)$. 
+
+[go back and clarify]
+
+In all of this, we used $k=\bar k$. Over a general field $k$, we'll be able to 
+write a matrix $g$ as the sum of a diagonal matrix and a strictly upper 
+triangular (hence nilpotent) matrix. Suppose we have written 
+$g=g_\semisimple+g_\nilpotent$, where $g_\semisimple$ is diagonal and 
+$g_\nilpotent$ is nilpotent. It turns out that $g_\semisimple$ is uniquely 
+determined, and is a polynomial in $g$. That is, there exists a polynomial 
+$Q\in k[x]$ such that $g_\semisimple=Q(g)$ for all $g$. [cite source]
+Similarly $g_\nilpotent=g-g_\semisimple$ is a polynomial in $g$. [all this only 
+over $k=\bar k$.]
+
+Now let $k$ be an arbitrary perfect field, $V$ a finite-dimensional $k$-vector 
+space. 
+
+\begin{definition}
+An element $g\in \gl(V)$ is \emph{semisimple} if it is diagonalizable after 
+base-change to an extension of $k$.  
+\end{definition}
+
+\begin{definition}
+An element $g\in \gl(V)$ is \emph{nilpotent} if $g^n=0$ for some $n\geqslant 1$. 
+\end{definition}
+
+\begin{definition}
+An element $g\in \GL(V)$ is \emph{unipotent} if $g-1$ is nilpotent. 
+\end{definition}
+
+\begin{theorem}[Additive Jordan decomposition]
+For any $g\in \gl(V)$, there exists unique elements $g_\semisimple\in \GL(V)$, 
+$g_\nilpotent\in \gl(V)$, such that 
+\begin{enumerate}
+  \item $g=g_\semisimple+g_\nilpotent$, 
+  \item $g_\semisimple$ is semisimple, 
+  \item $g_\nilpotent$ is nilpotent, and 
+  \item $[g_\semisimple,g_\nilpotent]=0$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Case 1: the eigenvalues of $g$ lie in $k$. Existence you've already done. 
+Suppose $g=g_\semisimple+g_\nilpotent = h_\semisimple+h_\nilpotent$ are two 
+distinct decompositions. Then 
+$g_\semisimple-h_\semisimple=-g_\nilpotent+h_\nilpotent$, and 
+$g_\semisimple$, $g_\nilpotent$ commute with $h_\semisimple$, $h_\nilpotent$. 
+This is because $g_\semisimple$ and $g_\nilpotent$ are polynomials in $g$. It 
+follows that $-g_\nilpotent+h_\nilpotent$ is nilpotent. The matrices 
+$g_\semisimple$, $h_\semisimple$ commute, so they are simultaneously 
+diagonalizable. So $g_\semisimple-h_\semisimple$ is still semisimple. But 
+$g_\semisimple-h_\semisimple$ is also nilpotent, so 
+$g_\semisimple=h_\semisimple$. 
+
+Case 2: the eigenvalues of $g$ may not lie in $k$. Take a Galois extension 
+$K/k$ containing all the eigenvalues of $g$. (For example, we could let $K$ be 
+the extension of $k$ generated by the eigenvalues of $g$.) We can write 
+$g=g_\semisimple+g_\nilpotent$, where 
+$g_\semisimple,g_\nilpotent\in \gl(V)\otimes K$. For any 
+$\sigma\in \galois(K/k)$, we have $\sigma(g)=g$, because $g\in \gl(V)$. But 
+then $g=\sigma(g_\semisimple)+\sigma(g_\nilpotent)$, and this is another 
+additive Jordan decomposition of $g$. By uniqueness in the first case, we 
+see that $g_\semisimple$ and $g_\nilpotent$ are fixed by $\sigma$. Since 
+$\sigma$ was arbitrary, $g_\semisimple$ and $g_\nilpotent$ lie in 
+$\gl(V)$. 
+\end{proof}
+
+[change notation to $x\in \gl(V)$]
+
+\begin{example}
+This shows that the perfectness hypothesis on $k$ is necessary. Let 
+$k=\dF_2(t)$. Consider the matrix $x=\begin{pmatrix} & 1 \\ t \end{pmatrix}$. 
+This has characteristic polynomial $x^2-t$, so its only eigenvalue is 
+$\sqrt 2$ appearing with multiplicity two. So the only way we could 
+give $x$ a Jordan decomposition is 
+$\begin{pmatrix} \sqrt t \\ & \sqrt t\end{pmatrix} + \begin{pmatrix} -\sqrt t & 1 \\ t & -\sqrt t\end{pmatrix}$. 
+The problem is, this doesn't work after a separable base change. More 
+concretely, this doesn't descend back to $k$. 
+\end{example}
+
+\begin{theorem}[Multiplicative Jordan decomposition]
+Let $k$ be a perfect field, $V$ a finite-dimensional $k$-vector space. For any 
+$g\in \GL(V)$, there exists unique $g_\semisimple, g_\unipotent\in \GL(V)$ such 
+that 
+\begin{enumerate}
+  \item $g=g_\semisimple g_\unipotent$, 
+  \item $g_\semisimple$ is semisimple, 
+  \item $g_\unipotent$ is unipotent, and 
+  \item $g_\semisimple$ and $g_\unipotent$ commute. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Recall that we can write $g=g_\semisimple+g_\nilpotent$. Just rewrite it as 
+$g_\semisimple(1+g_\semisimple^{-1} g_\nilpotent)$, and note that 
+$g_\semisimple^{-1} g_\nilpotent$ is nilpotent because 
+$g_\nilpotent$ is nilpotent and $g_\semisimple$ commutes with $g_\nilpotent$. 
+So $g_\unipotent = 1+g_\semisimple^{-1} g_\nilpotent$. Uniqueness is similarly 
+easy. 
+\end{proof}
+
+We'd like to connect the theory of Jordan decomposition with algebraic groups. 
+Let $G_{/k}$ be a linear algebraic group, $\rho:G\to \GL(n)$ a representation. 
+For $g\in G(k)$, we can write $\rho(g)=h_\semisimple h_\unipotent$. It is a 
+beautiful fact that in fact $h_\semisimple=\rho(g_\semisimple)$, 
+$h_\unipotent=\rho(g_\unipotent)$ for uniquely determined 
+$g_\semisimple, g_\unipotent\in G(k)$. 
+
+Similarly, let $\fg$ be a $k$-Lie algebra, $\rho:\fg\to \gl(V)$ a 
+representation. For $x\in \fg$, the decomposition 
+$\rho(x)=\rho(x)_\semisimple+\rho(x)_\nilpotent$ comes from a uniquely 
+determined decomposition $x=x_\semisimple+x_\nilpotent$. [find assumptions, 
+cite source.]
+
+Unfortunately, not all Lie algebras have this property. For example, this fails 
+for Lie algebras which don't come from algebraic groups. 
+
+Let $f:G\to H$ be a homomorphism of linear algebraic groups defined over a 
+perfect field $k$. Let $g\in G(k)$. Then 
+$f(g)_\semisimple=f(g_\semisimple)$ and $f(g)_\unipotent=f(g_\unipotent)$. 
+In other words, the Jordan decomposition is functorial. 
+It follows that if $G_{/k}$ is an affine algebraic group (without a choice of 
+embedding $G\hookrightarrow \GL(n)$), then the multiplicative Jordan 
+decomposition within $G$ is well-defined, independent of any choice of 
+embedding. 
 
 
 
