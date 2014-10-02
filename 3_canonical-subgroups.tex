@@ -443,17 +443,19 @@ Let $G_{/k}$ be a connected linear algebraic group. Then $G$ is unipotent
 if and only if it is isomorphic to a closed subgroup of some $U(n)_{/k}$. 
 \end{theorem}
 \begin{proof}
-This follows directly from \cite[XV 2.2]{milne-AGS}. 
+This follows directly from \cite[XVII 3.5]{sga3-ii}. 
 \end{proof}
 
-If $G_{/k}$ is unipotent and $\rho:G\to \GL(n)$ is a representation, then for 
+If $G_{/k}$ is unipotent and $\rho:G\to \GL(V)$ is a representation, then for 
 all $g\in G(\bar k)$, the matrix $\rho(g)$ is unipotent, i.e.~$(\rho(g)-1)^n=0$ 
-for some $n\geqslant 1$. Indeed, the result in \cite{milne-AGS}
-
-See \cite[XVII 3.5]{sga3-ii}. 
-
-[find source] The converse holds as long as the group 
-is smooth [maybe need characteristic zero: find source]
+for some $n\geqslant 1$. Indeed, by \cite[XVII 3.4]{sga3-ii}, for any such 
+representation, there is a 
+$G$-stable filtration $\filtration^\bullet V$ for which the action of $G$ 
+on $\graded^\bullet(V)$ is trivial. In other words, $\rho$ is conjugate to 
+a representation which factors through some $U(n)$, and elements of 
+$U(n)(k)$ are all unipotent. Conversely, by \cite[XVII 3.8]{sga3-ii}, if 
+$k$ is algebraically closed and every element of $G(k)\subset \GL_n(k)$ is 
+unipotent, then $G$ is unipotent when considered as an algebraic group. 
 
 \begin{theorem}
 Let $G_{/k}$ be a connected solvable smooth group over a perfect field $k$. 
@@ -463,17 +465,18 @@ Then there exists a unique connected normal $G_\unipotent\subset G$ such that
   \item $G/G_\unipotent$ is of multiplicative type .
 \end{enumerate}
 \end{theorem}
+\begin{proof}
+This is \cite[XVII 17.23]{milne-iAG}. 
+\end{proof}
 
-[mention pseudo-reductive groups for non-perfect fields, cite 
-CGP.]
-
-[Define ``of multiplicative type.'']
-
+Recall that an algebraic group $G_{/k}$ is \emph{of multiplicative type} 
+if it is locally (in the fpqc topology) the form 
+$A\mapsto \hom(M,A^\times)$, for $M$ an (abstract) abelian group 
+\cite[IX 1.1]{sga3-ii}. Over a perfect field, any group of multiplicative type 
+is locally of this form after an \'etale base change. 
 In particular, if $k$ has characteristic zero, $G/G_\unipotent$ will be a 
 torus. If moreover $k=\bar k$, then $G/G_\unipotent\simeq \Gm^r$. In general, 
 $G/G_\unipotent$ will be a closed subgroup of a torus. 
-
-[This construction works well with base-change: cite SGA.]
 
 \begin{example}
 If $G=B(n)\subset \GL(n)$, then $G_\unipotent=U(n)$, the subgroup of strictly 
@@ -529,7 +532,15 @@ Let $k$ be a perfect field. A connected linear algebraic group $G_{/k}$
 is \emph{reductive} if $\urad G=1$. 
 \end{definition}
 
-[mention $\urad(G_{\bar k})$... pseudo-reductive groups]
+Over a non-perfect field $k$, we say $G_{/k}$ is reductive if 
+$\urad(G_{\bar k})=1$. If $k$ is perfect, then $\urad(G_{\bar k})$ descends 
+uniquely to a group $\urad G$ defined over $k$, but this is not true in 
+general. Over a non-perfect field, one calls $G$ \emph{pseudo-reductive} if we 
+only have $\urad G=1$. The main example of a pseudo-reductive group which is 
+not reductive is any group of the form $\weil_{K/k} G$, where $K/k$ is purely 
+inseparable and $G_{/K}$ is reductive. There is a reasonably satisfying 
+structure theory for pseudo-reductive groups, worked out in 
+\cite{conrad-gabber-prasad-2010}. 
 
 \begin{example}
 The group $\GL(n)$ is reductive, even though $\rad \GL(n)=\Gm$ is nontrivial. 
@@ -552,100 +563,101 @@ base characteristic divides $n$).
 
 \subsection{Jordan decomposition}
 
-Let $k$ be a field, $V$ a finite-dimensional $k$-vector space. Choose some 
-$g\in \GL(V)=\automorphisms_k(V)$. Recall the \emph{characteristic 
-polynomial} of $g$ will factor (over $\bar k$) as
+To begin with, let $k$ be an algebraically closed field, $V$ a 
+finite-dimensional $k$-vector space. Let $x\in \gl(V)$. Then we can consider 
+the action of a polynomial ring $k[x]$ on $V$ via $x$. By the 
+fundamental theorem of finitely generated modules over a principal ideal 
+domain \cite[VII \S2.2 thm.1]{bourbaki-algebra-4-7}, we have 
+$V=\bigoplus_\lambda V_\lambda$, where for $\lambda\in k$, we define 
 \[
-  \det(t\cdot 1-g) = \prod_i (t-\lambda_i)^{n_i}
+  V_\lambda = \{v\in V:(x-\lambda)^n v=0\text{ for some }n\geqslant 1\} .
 \]
-where the $\lambda_i$ are distinct. Let 
-\[
-  V_{\lambda_i} = \{v\in V:(g-\lambda_i\cdot 1)^{n_i} v=0\} .
-\]
-Consider the action of $k[t]$ on $V$ in which $t$ acts via $g$. Then $V$ is 
-a finitely generated torsion $k[t]$-module, so we can write it as 
-$k[t]/f_1\oplus \cdots \oplus k[t]/f_r$. (This is just the fundamental theorem 
-of finitely generated modules over a principal ideal domain.) We can take the 
-$f_i$ to be powers of irreducible polynomials. If $k=\bar k$, then we get 
-$V=\bigoplus_i k[t]/(t-\lambda_i)^{n_i}$, i.e.~$V=\bigoplus V_{\lambda_i}$. 
+The $\lambda$ for which $V_\lambda\ne 0$ are called \emph{eigenvalues} of 
+$x$, and $\dim(V_\lambda)$ is the \emph{multiplicity} of $\lambda$. By a 
+further application of the fundamental theorem for modules over a PID, we 
+get that each $V_\lambda\simeq \bigoplus_i k[x]/(x-\lambda)^{n_i}$. 
 
-As a $k$-vector space, $k[t]/(t-\lambda)^n$ has basis 
+The $k$-vector space $k[x]/(t-\lambda)^n$ has basis 
 $\{v_i=(t-\lambda)^{n-i}\}_{i=1}^n$. Moreover, 
 \begin{align*}
   t v_1 &= \lambda v_1 \\
   t v_2 &= \lambda v_2 + v_2 \
   \cdots 
 \end{align*}
-When we write $g$ with respect to this basis, we get the $n\times n$ matrix 
+When we write $x$ with respect to this basis, we get the $n\times n$ matrix 
 $J_n(\lambda)$ which is $\lambda$ along the diagonal, $1$ just above the 
-diagonal, and zeros everywhere else. We end up with a direct sum decomposition 
-(with respect to some basis) $g=\bigoplus J_{n_i}(\lambda_i)$. 
+diagonal, and zeros everywhere else. 
 
-[go back and clarify]
+For a general endomorphism $x\in \gl(V)$, we end up with a direct sum 
+decomposition (with respect to some basis) $g=\bigoplus J_{n_i}(\lambda_i)$. 
+
 
 In all of this, we used $k=\bar k$. Over a general field $k$, we'll be able to 
-write a matrix $g$ as the sum of a diagonal matrix and a strictly upper 
+write a matrix $x$ as the sum of a diagonal matrix and a strictly upper 
 triangular (hence nilpotent) matrix. Suppose we have written 
-$g=g_\semisimple+g_\nilpotent$, where $g_\semisimple$ is diagonal and 
-$g_\nilpotent$ is nilpotent. It turns out that $g_\semisimple$ is uniquely 
-determined, and is a polynomial in $g$. That is, there exists a polynomial 
-$Q\in k[x]$ such that $g_\semisimple=Q(g)$ for all $g$. [cite source]
-Similarly $g_\nilpotent=g-g_\semisimple$ is a polynomial in $g$. [all this only 
-over $k=\bar k$.]
+$x=x_\semisimple+x_\nilpotent$, where $x_\semisimple$ is diagonal and 
+$x_\nilpotent$ is nilpotent. It turns out that $x_\semisimple$ is uniquely 
+determined, and is a polynomial in $x$. That is, there exists a polynomial 
+$f\in k[x]$, possibly depending on $x$, such that $x_\semisimple=f(x)$, and 
+similarly for $x_\nilpotent$. 
 
-Now let $k$ be an arbitrary perfect field, $V$ a finite-dimensional $k$-vector 
-space. 
+For the remainder of this section, let $k$ be an arbitrary perfect field, $V$ 
+a finite-dimensional $k$-vector space. 
 
 \begin{definition}
-An element $g\in \gl(V)$ is \emph{semisimple} if it is diagonalizable after 
+An element $x\in \gl(V)$ is \emph{semisimple} if it is diagonalizable after 
 base-change to an extension of $k$.  
 \end{definition}
 
 \begin{definition}
-An element $g\in \gl(V)$ is \emph{nilpotent} if $g^n=0$ for some $n\geqslant 1$. 
+An element $x\in \gl(V)$ is \emph{nilpotent} if $x^n=0$ for some $n\geqslant 1$. 
 \end{definition}
 
 \begin{definition}
-An element $g\in \GL(V)$ is \emph{unipotent} if $g-1$ is nilpotent. 
+An element $x\in \GL(V)$ is \emph{unipotent} if $x-1$ is nilpotent. 
 \end{definition}
 
 \begin{theorem}[Additive Jordan decomposition]
-For any $g\in \gl(V)$, there exists unique elements $g_\semisimple\in \GL(V)$, 
-$g_\nilpotent\in \gl(V)$, such that 
+For any $x\in \gl(V)$, there exists unique elements $x_\semisimple\in \GL(V)$, 
+$x_\nilpotent\in \gl(V)$, such that 
 \begin{enumerate}
-  \item $g=g_\semisimple+g_\nilpotent$, 
-  \item $g_\semisimple$ is semisimple, 
-  \item $g_\nilpotent$ is nilpotent, and 
-  \item $[g_\semisimple,g_\nilpotent]=0$. 
+  \item $x=x_\semisimple+g_\nilpotent$, 
+  \item $x_\semisimple$ is semisimple, 
+  \item $x_\nilpotent$ is nilpotent, and 
+  \item $[x_\semisimple,x_\nilpotent]=0$. 
 \end{enumerate}
+Moreover, there exist polynomials $f,g\in k[x]$ such that 
+$x_\semisimple=f(x)$ and $x_\nilpotent=g(x)$. 
 \end{theorem}
 \begin{proof}
-Case 1: the eigenvalues of $g$ lie in $k$. Existence you've already done. 
-Suppose $g=g_\semisimple+g_\nilpotent = h_\semisimple+h_\nilpotent$ are two 
+Case 1: the eigenvalues of $x$ lie in $k$. Then by the theory of Jordan 
+normal form, we get existence of a decomposition. 
+Suppose $x=x_\semisimple+x_\nilpotent = y_\semisimple+y_\nilpotent$ are two 
 distinct decompositions. Then 
-$g_\semisimple-h_\semisimple=-g_\nilpotent+h_\nilpotent$, and 
-$g_\semisimple$, $g_\nilpotent$ commute with $h_\semisimple$, $h_\nilpotent$. 
-This is because $g_\semisimple$ and $g_\nilpotent$ are polynomials in $g$. It 
-follows that $-g_\nilpotent+h_\nilpotent$ is nilpotent. The matrices 
-$g_\semisimple$, $h_\semisimple$ commute, so they are simultaneously 
-diagonalizable. So $g_\semisimple-h_\semisimple$ is still semisimple. But 
-$g_\semisimple-h_\semisimple$ is also nilpotent, so 
-$g_\semisimple=h_\semisimple$. 
+$y_\semisimple-y_\semisimple=-y_\nilpotent+h_\nilpotent$, and 
+$x_\semisimple$, $x_\nilpotent$ commute with $t_\semisimple$, $t_\nilpotent$. 
+This is because $x_\semisimple$ and $x_\nilpotent$ are polynomials in $x$. It 
+follows that $-x_\nilpotent+y_\nilpotent$ is nilpotent. The matrices 
+$x_\semisimple$, $y_\semisimple$ commute, so they are simultaneously 
+diagonalizable. So $x_\semisimple-y_\semisimple$ is still semisimple. But 
+$x_\semisimple-y_\semisimple$ is also nilpotent, so 
+$x_\semisimple=y_\semisimple$. 
 
-Case 2: the eigenvalues of $g$ may not lie in $k$. Take a Galois extension 
-$K/k$ containing all the eigenvalues of $g$. (For example, we could let $K$ be 
-the extension of $k$ generated by the eigenvalues of $g$.) We can write 
-$g=g_\semisimple+g_\nilpotent$, where 
-$g_\semisimple,g_\nilpotent\in \gl(V)\otimes K$. For any 
-$\sigma\in \galois(K/k)$, we have $\sigma(g)=g$, because $g\in \gl(V)$. But 
-then $g=\sigma(g_\semisimple)+\sigma(g_\nilpotent)$, and this is another 
-additive Jordan decomposition of $g$. By uniqueness in the first case, we 
-see that $g_\semisimple$ and $g_\nilpotent$ are fixed by $\sigma$. Since 
-$\sigma$ was arbitrary, $g_\semisimple$ and $g_\nilpotent$ lie in 
+Case 2: the eigenvalues of $x$ may not lie in $k$. Take a Galois extension 
+$K/k$ containing all the eigenvalues of $x$. (For example, we could let $K$ be 
+the extension of $k$ generated by the eigenvalues of $x$.) We can write 
+$x=x_\semisimple+x_\nilpotent$, where 
+$x_\semisimple,x_\nilpotent\in \gl(V)\otimes K$. For any 
+$\sigma\in \galois(K/k)$, we have $\sigma(x)=x$, because $x\in \gl(V)$. But 
+then $x=\sigma(x_\semisimple)+\sigma(x_\nilpotent)$, and this is another 
+additive Jordan decomposition of $x$. By uniqueness in the first case, we 
+see that $x_\semisimple$ and $x_\nilpotent$ are fixed by $\sigma$. Since 
+$\sigma$ was arbitrary, $x_\semisimple$ and $x_\nilpotent$ lie in 
 $\gl(V)$. 
 \end{proof}
 
-[change notation to $x\in \gl(V)$]
+For a more careful proof, see \cite[VII \S 5.8 thm.1]{bourbaki-algebra-4-7}. 
+
 
 \begin{example}
 This shows that the perfectness hypothesis on $k$ is necessary. Let 
