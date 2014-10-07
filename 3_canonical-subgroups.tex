@@ -721,10 +721,18 @@ embedding.
 
 \subsection{Groups of multiplicative type}
 
-Let $k$ be a field, $G_{/k}$ an affine algebraic group. Note that we can 
-recover the coordinate ring $\sO(G)$ as $\hom(G,\dA^1_{/k})$. This is a 
-commutative ring because $\dA^1_{/k}$ is naturally a commutative ring object 
-in the category of schemes over $k$. We will be interested in 
+Let $k$ be a field; recall that we are working in the category of fppf sheaves 
+on $\schemes k$. The affine line $\dA^1(S)=\Gamma(S,\sO_S)$ is such a sheaf. 
+We have already written $\Ga$ for the affine line considered as an algebraic 
+group. Since $\Gamma(S,\sO_S)$ is naturally a commutative ring, we can consider 
+$\dA^1$ as a \emph{ring scheme}, i.e.~a commutative ring object in the category 
+of schemes. We will write $\sO$ for $\dA^1$ so considered. 
+
+Thus if $G_{/k}$ is an affine algebraic group, the coordinate ring of $G$ is 
+\[
+  \sO(G)=\hom(G,\dA^1) .
+\]
+We will be interested in 
 \[
   \characters(G) = \hom_{\groups_{/k}}(G,\Gm) \subset \sO(G) ,
 \]
@@ -734,23 +742,24 @@ the set of \emph{characters} of $G$.
 The set $\characters(G)$ is linearly independent in $\sO(G)$. 
 \end{lemma}
 \begin{proof}
-For simplicity, assume $G$ is smooth. We may assume $k$ is algebraically 
-closed. Let $\chi_1,\dots,\chi_n$ be distinct 
-characters of $G$, and suppose there is some relation 
-$\sum c_i \chi_i=0$ in $\sO(G)$ with the $c_i\in k$. We induct on $n$. If 
-$n=1$, there is nothing to prove. In the general case, we may assume 
-$c_1\ne 0$. There exists $h\in G(k)$ such that $\chi_1(h)\ne \chi_n(h)$. 
-Then 
+We may assume $k$ is algebraically closed. Let $\chi_1,\dots,\chi_n$ be 
+distinct characters of $G$, and suppose there is some relation 
+$\sum c_i \chi_i=0$ in $\sO(G)$ with the $c_i\in k$. If $n=1$, there is 
+nothing to prove. In the general case, we may assume $c_1\ne 0$. There exists 
+a $k$-algebra $A$ and $h\in G(A)$ such that $\chi_1(h)\ne \chi_n(h)$. Note 
+that 
 \[
-  \sum c_i \chi_n(h)\chi_i(g) = \sum c_i \chi_i(h) \chi_i(g) = 0 
+  \sum c_i \chi_n(h)\chi_i(g) = \sum c_i \chi_i(h) \chi_i(g) = 0 ,
 \]
-so that 
+for all $g\in G$. This implies 
 \[
-  c_1(\chi_n(h)-\chi_1(h))\chi_1(g) + \cdots + c_{n-1} (\chi_n(h)-\chi_{n-1}(h))\chi_{n-1}(g)=0 .
+  \sum_{i=1}^{n-1} c_i(\chi_n(h)-\chi_i(h)) \chi_i(g) = 0 
 \]
-This is a new linear dependence with fewer terms, a contradiction. 
-
-[find general proof in SGA]
+for all $g\in G(B)$ for $A$-algebras $B$. 
+Thus $\chi_1,\dots,\chi_{n-1}$ are linearly dependent in 
+$\sO(G)\otimes_k A$. The only way this can happen is for 
+$\chi_1,\dots,\chi_{n-1}$ to be linearly dependent in $\sO(G)$. Induction 
+yields a contradiction. 
 \end{proof}
 
 The set $\characters(G)$ naturally has the structure of a group, coming from 
@@ -759,11 +768,11 @@ the group law on $\Gm$. If $\chi_1,\chi_2\in \characters(G)$, then
   (\chi_1+\chi_2)(g) = \chi_1(g)\chi_2(g) .
 \]
 \emph{Warning}: this notation is confusing, because the group law in $\Gm$ is 
-written multiplicatively. But the group law on $\characters(G)$ is essentially 
-always written additively. 
+written multiplicatively. But the group law on $\characters(G)$ will always be 
+written additively. 
 
 \begin{example}
-It is easy to check that $\characters(\Ga)=0$. 
+As an exercise, check that $\characters(\Ga)=0$. 
 \end{example}
 
 \begin{example}
@@ -790,7 +799,7 @@ to the character $(t_1,\dots,t_n)\mapsto \prod t_i^{a_i}$.
 There is a canonical isomorphism $\characters(\dmu_n)=\dZ/n$, even if 
 $n$ is not invertible in $k$. There is an obvious inclusion 
 $\dZ/n\monic \characters(\dmu_n)$ sending $a\in \dZ/n$ to the character 
-$t\mapsto t^a$. This inclusion is an isomorphism. [cite SGA for details]
+$t\mapsto t^a$. This inclusion is an isomorphism. 
 \end{example}
 
 In classical texts, if the base field has characteristic $p>0$, then 
@@ -816,24 +825,17 @@ representations.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-$3\Rightarrow 1$. By \autoref{thm:groups-linear}, there exists an embedding 
-$G\monic \GL(n)$, and by 3, we can assume the image of $G$ lies in the 
-subgroup of diagonal matrices, which is isomorphic to $\Gm^n$. 
-
-$2\Rightarrow 1$. Let $\chi_1,\dots,\chi_n$ be a set of generators for 
-$\characters(G)$. We get a map $\varphi:G\to \Gm^n$ given by 
-$g\mapsto (\chi_1(g),\dots,\chi_n(g))$. This is clearly a group homomorphism, 
-but we need to check it is injective. If $G$ is smooth and 
-$\varphi(g)=1$ for some $g\in G(\bar k)$, then 
-$\chi_i(g)=1$ for all $i$, whence $f(g)=f(1)$ for all $f\in \sO(G)$. This 
-implies $g=1$, so we're done. 
-
 $1\Rightarrow 2$. An embedding $G\monic \Gm^n$ induces a surjection 
 $\sO(\Gm^n)\epic \sO(G)$. The image in $\sO(G)$ of a character 
 $\chi\in \sO(\Gm^n)$ is a character, and $\sO(\Gm^n)$ has a basis consisting 
 of characters. The image of a basis is a generating set, so we're done. 
+Alternatively, see \cite[14.8]{milne-iAG}. 
 
-[find general proof in SGA]
+$2\Rightarrow 3$. This is \cite[14.11]{milne-iAG}. 
+
+$3\Rightarrow 1$. By \autoref{thm:groups-linear}, there exists an embedding 
+$G\monic \GL(n)$, and by 3, we can assume the image of $G$ lies in the 
+subgroup of diagonal matrices, which is isomorphic to $\Gm^n$. 
 \end{proof}
 
 \begin{definition}
@@ -865,15 +867,16 @@ defined on $A$-points by
 \[
   \chi_m(\phi) = \phi(m) \qquad (\phi:M\to A^\times) .
 \]
-By [cite SGA], this is an isomorphism. 
+We will see that this is an isomorphism. 
 
 The operation ``take $\diag(-)$'' is naturally a contravariant functor from the 
 category of finitely generated abelian groups to the category of diagonalizable 
-groups over $k$. It induces an (anti-) equivalence of categories 
+groups over $k$. By \cite[VIII 1.6]{sga3-ii}, it induces an (anti-) equivalence 
+of categories 
 \[
   \diag:\{\text{f.g.~ab.~groups}\} \rightleftarrows \{\text{diagonalizable gps.~over $k$}\}: \characters .
 \]
-[cite SGA for proof]. So diagonalizable groups are exactly those of the form 
+So diagonalizable groups are exactly those of the form 
 $\diag(M)$ for a finitely generated abelian group $M$. More concretely, every 
 diagonalizable group will be of the form 
 \[
