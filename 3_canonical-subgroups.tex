@@ -718,3 +718,168 @@ embedding.
 
 
 
+
+\subsection{Groups of multiplicative type}
+
+Let $k$ be a field, $G_{/k}$ an affine algebraic group. Note that we can 
+recover the coordinate ring $\sO(G)$ as $\hom(G,\dA^1_{/k})$. This is a 
+commutative ring because $\dA^1_{/k}$ is naturally a commutative ring object 
+in the category of schemes over $k$. We will be interested in 
+\[
+  \characters(G) = \hom_{\groups_{/k}}(G,\Gm) \subset \sO(G) ,
+\]
+the set of \emph{characters} of $G$. 
+
+\begin{lemma}
+The set $\characters(G)$ is linearly independent in $\sO(G)$. 
+\end{lemma}
+\begin{proof}
+For simplicity, assume $G$ is smooth. We may assume $k$ is algebraically 
+closed. Let $\chi_1,\dots,\chi_n$ be distinct 
+characters of $G$, and suppose there is some relation 
+$\sum c_i \chi_i=0$ in $\sO(G)$ with the $c_i\in k$. We induct on $n$. If 
+$n=1$, there is nothing to prove. In the general case, we may assume 
+$c_1\ne 0$. There exists $h\in G(k)$ such that $\chi_1(h)\ne \chi_n(h)$. 
+Then 
+\[
+  \sum c_i \chi_n(h)\chi_i(g) = \sum c_i \chi_i(h) \chi_i(g) = 0 
+\]
+so that 
+\[
+  c_1(\chi_n(h)-\chi_1(h))\chi_1(g) + \cdots + c_{n-1} (\chi_n(h)-\chi_{n-1}(h))\chi_{n-1}(g)=0 .
+\]
+This is a new linear dependence with fewer terms, a contradiction. 
+
+[find general proof in SGA]
+\end{proof}
+
+The set $\characters(G)$ naturally has the structure of a group, coming from 
+the group law on $\Gm$. If $\chi_1,\chi_2\in \characters(G)$, then 
+\[
+  (\chi_1+\chi_2)(g) = \chi_1(g)\chi_2(g) .
+\]
+\emph{Warning}: this notation is confusing, because the group law in $\Gm$ is 
+written multiplicatively. But the group law on $\characters(G)$ is essentially 
+always written additively. 
+
+\begin{example}
+It is easy to check that $\characters(\Ga)=0$. 
+\end{example}
+
+\begin{example}
+One has $\characters(\SL_2)=0$. More generally, $\characters(\SL_n)=0$ for all 
+$n$. 
+\end{example}
+
+\begin{example}\label{eg:chars-Gm}
+Let's compute $\characters(\Gm)=\hom_\groups(\Gm,\Gm)$. We claim that 
+$\characters(\Gm)\simeq \dZ$ as a group, with $n\in \dZ$ corresponding to the 
+character $t\mapsto t^n$. Indeed, $\sO(\Gm)=k[t^{\pm 1}]$, so we have to 
+classify elements $f\in k[t^{\pm 1}]$ such that $\Delta(f)=f\otimes f$. It is 
+easy to check that these are precisely the powers of $t$. Alternatively, use 
+the fact that $\sO(G)$ has a basis consisting of the obvious characters; by 
+linear independence of characters, these are the only ones. 
+\end{example}
+
+It is easy to check that 
+$\characters(G_1\times G_2)=\characters(G_1)\oplus \characters(G_2)$. Thus 
+$\characters(\Gm^n) = \dZ^n$. A tuple $a=(a_1,\dots,a_n)\in \dZ^n$ corresponds 
+to the character $(t_1,\dots,t_n)\mapsto \prod t_i^{a_i}$. 
+
+\begin{example}\label{eg:chars-mun}
+There is a canonical isomorphism $\characters(\dmu_n)=\dZ/n$, even if 
+$n$ is not invertible in $k$. There is an obvious inclusion 
+$\dZ/n\monic \characters(\dmu_n)$ sending $a\in \dZ/n$ to the character 
+$t\mapsto t^a$. This inclusion is an isomorphism. [cite SGA for details]
+\end{example}
+
+In classical texts, if the base field has characteristic $p>0$, then 
+$\characters(\dmu_p)=0$ because they only treat $\bar k$-points. In fact, in 
+such texts, they have ``$\dmu_p=1$.'' 
+
+From \autoref{eg:chars-Gm} and \autoref{eg:chars-mun}, we see that all finitely 
+generated abelian groups arise as $\characters(G)$ for some $G$. 
+
+\begin{theorem}\label{thm:diag-groups}
+Let $G_{/k}$ be a linear algebraic group. Then the following are equivalent: 
+\begin{enumerate}
+\item
+$G$ is isomorphic to a closed subgroup of some $\Gm^n$. 
+
+\item
+$\characters(G)$ is a finitely generated abelian group, and forms a $k$-basis 
+for $\sO(G)$. 
+
+\item 
+Any representation $\rho:G\to \GL(n)$ is a direct sum of one-dimensional 
+representations. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$3\Rightarrow 1$. By \autoref{thm:groups-linear}, there exists an embedding 
+$G\monic \GL(n)$, and by 3, we can assume the image of $G$ lies in the 
+subgroup of diagonal matrices, which is isomorphic to $\Gm^n$. 
+
+$2\Rightarrow 1$. Let $\chi_1,\dots,\chi_n$ be a set of generators for 
+$\characters(G)$. We get a map $\varphi:G\to \Gm^n$ given by 
+$g\mapsto (\chi_1(g),\dots,\chi_n(g))$. This is clearly a group homomorphism, 
+but we need to check it is injective. If $G$ is smooth and 
+$\varphi(g)=1$ for some $g\in G(\bar k)$, then 
+$\chi_i(g)=1$ for all $i$, whence $f(g)=f(1)$ for all $f\in \sO(G)$. This 
+implies $g=1$, so we're done. 
+
+$1\Rightarrow 2$. An embedding $G\monic \Gm^n$ induces a surjection 
+$\sO(\Gm^n)\epic \sO(G)$. The image in $\sO(G)$ of a character 
+$\chi\in \sO(\Gm^n)$ is a character, and $\sO(\Gm^n)$ has a basis consisting 
+of characters. The image of a basis is a generating set, so we're done. 
+
+[find general proof in SGA]
+\end{proof}
+
+\begin{definition}
+Let $G$ be a linear algebraic group. If $G$ satisfies any of the 
+equivalent conditions of \autoref{thm:diag-groups}, we say that $G$ is 
+\emph{diagonalizable}. 
+\end{definition}
+
+It is possible to classify diagonalizable groups. Let $M$ be a finitely 
+generated abelian group, whose group law is written multiplicatively. The basic 
+idea is to construct an algebraic group $\diag(M)$ such that there is a 
+natural isomorphism $\characters(\diag(M)) = M$. We first define $\diag(M)$ as 
+a functor $\algebras k\to \groups$ by 
+\[
+  \diag(M)(A) = \hom_\groups(M,A^\times) .
+\]
+This is representable, with coordinate ring the group ring 
+\[
+  k[M] = \left\{\sum_{m\in M} c_m\cdot m : c_m\ne 0\text{ for only finitely many }m\right\} .
+\]
+In other words, $k[M]$ is the free $k$-vector space on $M$. Addition is formal, 
+and multiplication is defined by $(c_1 m_1)(c_2 m_2) = c_1 c_2 (m_1 m_2)$, the 
+multiplication $m_1 m_2$ taking place in $M$. It is easy to check that 
+$\diag(M)(A)=\hom(k[M],A)$. 
+
+There is a canonical isomorphism $\characters(\diag(M))=M$. Given 
+$m\in \characters(\diag(M))$, we get a character $\chi_m:\diag(M)\to\Gm$ 
+defined on $A$-points by 
+\[
+  \chi_m(\phi) = \phi(m) \qquad (\phi:M\to A^\times) .
+\]
+By [cite SGA], this is an isomorphism. 
+
+The operation ``take $\diag(-)$'' is naturally a contravariant functor from the 
+category of finitely generated abelian groups to the category of diagonalizable 
+groups over $k$. It induces an (anti-) equivalence of categories 
+\[
+  \diag:\{\text{f.g.~ab.~groups}\} \rightleftarrows \{\text{diagonalizable gps.~over $k$}\}: \characters .
+\]
+[cite SGA for proof]. So diagonalizable groups are exactly those of the form 
+$\diag(M)$ for a finitely generated abelian group $M$. More concretely, every 
+diagonalizable group will be of the form 
+\[
+  \Gm^n \times \dmu_{n_1} \times \cdots \times \dmu_{n_r} .
+\]
+
+
+
+
