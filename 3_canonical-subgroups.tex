@@ -719,7 +719,7 @@ embedding.
 
 
 
-\subsection{Groups of multiplicative type}
+\subsection{Diagonalizable groups}
 
 Let $k$ be a field; recall that we are working in the category of fppf sheaves 
 on $\schemes k$. The affine line $\dA^1(S)=\Gamma(S,\sO_S)$ is such a sheaf. 
@@ -882,6 +882,160 @@ diagonalizable group will be of the form
 \[
   \Gm^n \times \dmu_{n_1} \times \cdots \times \dmu_{n_r} .
 \]
+
+
+
+
+
+\subsection{Tori}
+
+Let $k$ be a field. Recall that we have an equivalence of categories: 
+\[
+  \characters:\{\text{diagonalizable groups }/k\} \rightleftarrows \{\text{f.g.~ab.~groups}\}:\diag .
+\]
+Here $\characters(G)=\hom(G,\Gm)$ and $\diag(M)(A)=\hom(M,A^\times)$. 
+
+\begin{definition}
+An algebraic group $G_{/k}$ has \emph{multiplicative type} if $G_{\bar k}$ is 
+diagonalizable. 
+\end{definition}
+
+By [cite source], if $G$ is of multiplicative type, then there exists a finite 
+\emph{separable} extension $K\supset k$ such that $G_K$ is diagonalizable. 
+
+\begin{definition}
+An algebraic group $G_{/k}$ is a \emph{split torus} if 
+$G\simeq \Gm^n$ for some $n$. The group $G$ is a \emph{torus} if 
+$G_{\bar k}$ is a split torus over $k$. 
+\end{definition}
+
+\begin{example}\label{eg:nonsplit-torus}
+The group 
+\[
+  G=\left\{\begin{pmatrix} a & -b \\ b & a \end{pmatrix}\right\}\subset \GL(2) ,
+\]
+is a torus, but is not diagonalizable over the base field $\dR$. This follows 
+from the fact that $\begin{pmatrix} & -1 \\ 1 \end{pmatrix}$ is not 
+diagonalizable over $\dR$. But the group $G_\dC$ is a split torus, because 
+there exists $p\in \GL_2(\dC)$ such that 
+\[
+  p\begin{pmatrix} & -1 \\ 1 \end{pmatrix} p^{-1} = \begin{pmatrix} i \\ & -i \end{pmatrix} .
+\]
+It follows that 
+\[
+  p G p^{-1} = \left\{\begin{pmatrix} a + b i \\ & a-b i \end{pmatrix}\right\}\subset \GL(2)_{/\dC} .
+\]
+If we had started with $G_{/\dQ}$, we would need to base-change to 
+$\dQ(i)$ for $G$ to split. 
+\end{example}
+
+Just as we have a nice classification of diagonalizable groups, we'd like to 
+have a classification theorem for tori (or, more generally, groups of 
+multiplicative type). For general groups $G$, we define 
+\[
+  \characters^\ast(G) = \hom(G_{k^\mathrm{sep}},\Gm) .
+\]
+[interlude: $\characters^\ast(G)(A)=\hom_{\groups_{/A}}(G_{/A},{\Gm}_{/A})$.]
+
+\begin{example}
+Let $G$ be the group in \autoref{eg:nonsplit-torus}. Then over $\dR$, all 
+characters are powers of 
+\[
+  \begin{pmatrix} a & -b \\ b & a \end{pmatrix}\mapsto a^2 + b^2 .
+\]
+But over $\dC$, there are two characters $\chi_1,\chi_2$, namely those that map 
+the matrix $\begin{pmatrix} a & -b\\ b & a \end{pmatrix}$ to 
+$a+i b$, resp.~$a-b i$. The group $\characters^\ast(G_\dC)$ has some extra 
+structure, namely an action of the group $\galois(\dC/\dR)=\langle c\rangle$. 
+We have $c(\chi_1) = \chi_2$, $c(\chi_2)=\chi_1$. In general, 
+$c(\chi_1^{n_1} \chi_2^{n_2}) = \chi_1^{n_2}\chi_2^{n_1}$. So under the obvious 
+isomorphism $\characters^\ast(G)\simeq \dZ^2$, the action of 
+$\galois(\dC/\dR)$ is $c\cdot(n_1,n_2) = (n_2,n_1)$. Moreover, 
+$\h^0(\dR,\characters^\ast(G)) = \det^\dZ$, and the kernel of $\det$ on $G$ is 
+\[
+  H = \left\{\begin{pmatrix} a & -b \\ b & a \end{pmatrix}:a^2+b^2=1\right\}\subset \GL(2) .
+\]
+The group $H$ fits inside a short exact sequence 
+$1\to H\to G\xrightarrow{\det} \Gm\to 1$, so on the level of characters, we 
+have a short exact sequence of $\dZ[\galois(\dC/\dR)]$-modules 
+\[\
+  0 \to \characters^\ast(\Gm) \to \characters^\ast(G) \to \characters^\ast(H) \to 0.
+\]
+Complex conjugation $c$ acts on the quotient 
+$\characters^\ast(H)$ as multiplication by $-1$. 
+\end{example}
+
+\begin{theorem}
+Let $k$ be a field, $\Gamma=\galois(k^\mathrm{sep}/k)$. Then the functor 
+$\characters^\ast$ induces an exact anti-equivalence of categories 
+\[
+  \{\text{groups of mult.~type over $k$}\} \iso \{\text{f.g.~ab.~groups with cont.~$\Gamma$-action}\} .
+\]
+\end{theorem}
+\begin{proof}
+Cite SGA.
+\end{proof}
+
+Here, we say that $\Gamma$ acts continuously on a discrete set $X$ if the 
+map $\Gamma\times X\to X$ is continuous. Equivalently, for each $x\in X$, the 
+stabilizer $\stabilizer_\Gamma(x)$ is open. We need to describe the 
+$\Gamma$-action on $\characters^\ast(G)$. If $\gamma\in \Gamma$ and 
+$\chi\in \characters^\ast(G)$, then $\gamma(\chi):G_{k^\mathrm{sep}}\to \Gm$ 
+is given by $(\gamma\chi)(g)=\gamma(\chi(\gamma^{-1} g))$ on 
+$k^\mathrm{sep}$-points. 
+
+[Maybe put interlude on $\characters^\ast(G)$ as \'etale sheaf here.]
+
+\begin{example}
+Let $K/k$ be a finite field extension. Then the Weil restriction 
+$\weil_{K/k}\Gm:\algebras k\to \groups$ is defined by 
+$A\mapsto (A\otimes_k K)^\times$. This is an algebraic group (a torus, in 
+fact) over $k$, which satisfies $(\weil_{K/k}\Gm)_K\simeq \Gm^{[K:k]}$. 
+\end{example}
+
+\begin{example}
+Let $k$ be a field of characteristic $\ne 2$. The Kummer theory tells us that 
+quadratic extensions $K/k$ are all of the form $k(\sqrt d)/k$ for 
+$d\in k^\times/2$. The Weil restriction 
+$\weil_{k(\sqrt d)/k}\Gm$ can be identified with the subgroup 
+\[
+  G_d = \left\{\begin{pmatrix} a & b d \\ b & a \end{pmatrix}\right\} \subset \GL(2)_{/k} .
+\]
+The isomorphism type of $G_d$ depends only on the class of $d$ in 
+$k^\times/2$. Moreover, $\characters^\ast(G_d)\simeq \dZ^2$, with the action 
+of $\Gamma_k$ factoring through $\galois(k(\sqrt d)/k)$ and flipping 
+coordinates. 
+\end{example}
+
+Note that general tori can be extremely difficult to classify. For example, 
+when $k=\dQ$, the category of tori over $\dQ$ is anti-equivalent to the 
+category of finitely generated abelian groups with $\Gamma_\dQ$-action. The 
+group $\Gamma_\dQ$ can be recovered from its finite quotients, but it is 
+still very mysterious. 
+
+\begin{example}
+Over $\dR$, if we have an involution $c$ acting on a lattice $\dZ^n$, then 
+with respect to some basis, $c$ wiill have the form 
+\[
+  \begin{pmatrix} 1 \end{pmatrix}^{\oplus a} \oplus\begin{pmatrix} -1 \end{pmatrix}^{\oplus b} \oplus\begin{pmatrix} & 1 \\ 1 \end{pmatrix}^{\oplus c}
+\]
+So any torus over $\dR$ breaks up as a product of copies of $\Gm$, copies of 
+$\weil_{\dC/\dR}\Gm$, and copies of 
+$\ker\left(\weil_{\dC/\dR}\Gm\xrightarrow{\det}\Gm\right)$. 
+\end{example}
+
+Over a general field, any torus is a quotient of products of 
+$\weil_{K/k}\Gm$ for varying $K/k$. 
+
+If $T$ is a diagonalizable group and $\rho:T\to \GL(V)$ a representation of 
+$T$, then we have a direct sum decomposition 
+\[
+  V=\bigoplus_{\chi\in \characters^\ast(T)} V_\chi ,
+\]
+where $V_\chi=\{v\in V:\rho(g)v = \chi(g) v\text{ for all }g\}$. The 
+$\chi$ for which $V_\chi\ne 0$ will be called the \emph{weights} of $V$. To 
+summarize, every representation of a split torus is semisimple, the direct 
+sum of a bunch of characters. 
 
 
 
