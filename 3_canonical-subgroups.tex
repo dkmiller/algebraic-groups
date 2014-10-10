@@ -1,6 +1,6 @@
 % !TEX root = 6490.tex
 
-\section{Canonical filtration}
+\section{Solvable groups, unipotent groups, and tori}
 
 Recall that if $G_{/k}$ is an algebraic group, there is a canonical filtration 
 \[
@@ -900,8 +900,15 @@ An algebraic group $G_{/k}$ has \emph{multiplicative type} if $G_{\bar k}$ is
 diagonalizable. 
 \end{definition}
 
-By [cite source], if $G$ is of multiplicative type, then there exists a finite 
-\emph{separable} extension $K\supset k$ such that $G_K$ is diagonalizable. 
+\begin{hard}
+The general definition is in \cite[IX 1.1]{sga3-iii}. An affine group scheme 
+$G_{/S}$ is said to be of multiplicative type if there is an fpqc cover 
+$\widetilde S\to S$ such that $G_{\widetilde S}$ is diagonalizable. One says 
+$G$ is \emph{isotrivial} if $\widetilde S\to S$ may be taken to be a finite 
+\'etale cover. By \cite[X 5.16]{sga3-ii}, all groups of multiplicative type 
+over a field are isotrivial. So if $G_{/k}$ is of multiplicative type, there 
+exists a finite separable extension $K/k$ such that $G_K$ is diagonalizable. 
+\end{hard}
 
 \begin{definition}
 An algebraic group $G_{/k}$ is a \emph{split torus} if 
@@ -909,60 +916,124 @@ $G\simeq \Gm^n$ for some $n$. The group $G$ is a \emph{torus} if
 $G_{\bar k}$ is a split torus over $k$. 
 \end{definition}
 
-\begin{example}\label{eg:nonsplit-torus}
-The group 
-\[
-  G=\left\{\begin{pmatrix} a & -b \\ b & a \end{pmatrix}\right\}\subset \GL(2) ,
-\]
-is a torus, but is not diagonalizable over the base field $\dR$. This follows 
-from the fact that $\begin{pmatrix} & -1 \\ 1 \end{pmatrix}$ is not 
-diagonalizable over $\dR$. But the group $G_\dC$ is a split torus, because 
-there exists $p\in \GL_2(\dC)$ such that 
-\[
-  p\begin{pmatrix} & -1 \\ 1 \end{pmatrix} p^{-1} = \begin{pmatrix} i \\ & -i \end{pmatrix} .
-\]
-It follows that 
-\[
-  p G p^{-1} = \left\{\begin{pmatrix} a + b i \\ & a-b i \end{pmatrix}\right\}\subset \GL(2)_{/\dC} .
-\]
-If we had started with $G_{/\dQ}$, we would need to base-change to 
-$\dQ(i)$ for $G$ to split. 
+\begin{hard}
+As above, the general definition in \cite[IX 1.3]{sga3-ii} is that $G_{/S}$ is 
+a torus if there is an fpqc cover $\widetilde S\to S$ such that 
+$G_{\widetilde S}\simeq {\Gm^n}_{/\widetilde S}$. As with groups of 
+multiplicative type, if $T_{/k}$ is a torus, then there is a finite 
+separable extension $K/k$ such that $T_K\simeq {\Gm^n}_{/K}$. 
+\end{hard}
+
+\begin{example}[Nonsplit tori]\label{eg:nonsplit-torus}
+Recall that if $K/k$ is a field extension and $G_{/K}$ is an algebraic group, 
+then the \emph{Weil restriction} $\weil_{K/k} G$ is the algebraic group 
+representing the functor $A\mapsto G(A\otimes_k K)$ on $k$-algebras $A$. 
+Consider $G=\weil_{K/k}\Gm$. For any $k$-algebra $A$, we have (by definition) 
+$G(A)=(A\otimes_k K)^\times$. Note that $G(A)$ acts on $K_A$ via 
+multiplication, so there is an embedding 
+$\weil_{K/k}\Gm \monic \GL(K)_{/k}$. If $K/k$ is Galois, there is a canonical 
+isomorphism of $k$-algebras $K\otimes_k K\iso \prod_\Gamma K$, where 
+$\Gamma=\galois(K/k)$. It sends $x\otimes y$ to the tuple 
+$(x\gamma(y))_\gamma$. Now for $A\in \algebras K$, we compute 
+\begin{align*}
+  G(A\otimes_k K) 
+    &= G(A\otimes_K (K\otimes_k K)) \\
+    &= G\left(A\otimes_K \prod_\Gamma K\right) \\
+    &= \prod_\Gamma G(A) .
+\end{align*}
+Thus $(\weil_{K/k} \Gm)_K = \prod_\Gamma{\Gm}_{/K}$, hence $\weil_{K/k}\Gm$ 
+is a torus. But $\weil_{K/k}\Gm$ is not diagonalizable. If it were,
+by \autoref{thm:diag-groups} the 
+representation $\weil_{K/k}\Gm\monic \GL(K)_{/k}$ would factor through the 
+diagonal, whence all coordinates of the image of $(\weil_{K/k}\Gm)(k)=K^\times$ 
+would be in $k$, which is clearly false. 
+\end{example}
+
+\begin{example}\label{eg:hodge-structure}
+A specific case of \autoref{eg:nonsplit-torus} that is of special interest 
+is when the field extension is $\dC/\dR$. One writes $\dS=\weil_{\dC/\dR}\Gm$, 
+and calls a representation $\rho:\dS\to \GL(V)$ a \emph{Hodge structure} on 
+$V$. The natural embedding $\weil_{\dC/\dR}\Gm\monic\GL(\dC)_{/\dR}$ can be 
+made explicit via
+\begin{align*}
+  \dS(A) 
+    &= (A\otimes_\dR\dC)^\times \\
+    &= \{((a,b)\in A\times A:a^2+b^2\in A^\times\} \\
+    &\simeq \left\{\begin{pmatrix} a & -b \\ b & a \end{pmatrix}\right\}\subset \GL_2(A) .
+\end{align*}
+See \S 2 of Deligne's paper \cite{deligne-1971} for more on Hodge structures. 
 \end{example}
 
 Just as we have a nice classification of diagonalizable groups, we'd like to 
 have a classification theorem for tori (or, more generally, groups of 
-multiplicative type). For general groups $G$, we define 
+multiplicative type). For general groups $G_{/k}$, we define 
 \[
-  \characters^\ast(G) = \hom(G_{k^\mathrm{sep}},\Gm) .
+  \characters^\ast(G) = \hom_{\groups_{/k^\separable}}\left(G_{k^\separable},{\Gm}_{/k^\separable}\right) .
 \]
-[interlude: $\characters^\ast(G)(A)=\hom_{\groups_{/A}}(G_{/A},{\Gm}_{/A})$.]
+This is an abelian group, and naturally has an action of 
+$\Gamma_k=\galois(k^\separable/k)$. Indeed, for $\gamma\in \Gamma_k$, let 
+$\gamma:\spectrum(k^\separable)\to \spectrum(k^\separable)$ be the 
+induced map. The pullback $\gamma^\ast G$ is defined on 
+$k^\separable$-algebras $A$ by 
+\[
+  (\gamma^\ast G)(A)=G(A\otimes_\gamma k^\separable). 
+\]
+In other words, $A$ is viewed as a $k^\separable$-algebra via 
+$\gamma$, so that $x\cdot a = \gamma(x) a$. If $\chi\in \characters^\ast(G)$, 
+the character $\gamma\chi$ is defined by the commutative diagram, in which 
+the outer squares are pullbacks: 
+\begin{equation}\tag{$\ast$}\label{eq:galois-char}
+\begin{tikzcd}
+  G_{k^\separable} \ar[d] \ar[r] 
+    & \gamma^\ast G_{k^\separable} \ar[d] \ar[r, "\gamma^\ast \chi"]
+    & \gamma^\ast {\Gm}_{/k^\separable} \ar[r] \ar[d] 
+    & {\Gm}_{/k^\separable} \ar[d] \\
+  k^\separable \ar[r, "\gamma^{-1}"]
+    & k^\separable \ar[r, equal] 
+    & k^\separable \ar[r, "\gamma"] 
+    & k^\separable 
+\end{tikzcd}
+\end{equation}
+Here we have written $k^\separable$ instead of $\spectrum(k^\separable)$ in 
+order to save space. On $k^\separable$-points, this map is 
+$(\gamma\chi)(g) = \gamma(\chi(\gamma^{-1} g))$. 
 
 \begin{example}
-Let $G$ be the group in \autoref{eg:nonsplit-torus}. Then over $\dR$, all 
+Let $K/k$ be a finite Galois extension with $\Gamma=\galois(K/k)$. We have 
+seen in \autoref{eg:nonsplit-torus} that there is a natural isomorphism 
+$X^\ast(\weil_{K/k}\Gm) = \dZ[\Gamma]$ of abelian groups. It is a good 
+exercise to check that this isomorphism respects the $\Gamma$-action, 
+i.e.~that $X^\ast(\weil_{K/k}\Gm)=\dZ[\Gamma]$ as $\Gamma$-modules. 
+\end{example}
+
+\begin{example}
+Let $\dS$ be the group in \autoref{eg:hodge-structure}. Then over $\dR$, all 
 characters are powers of 
 \[
-  \begin{pmatrix} a & -b \\ b & a \end{pmatrix}\mapsto a^2 + b^2 .
+  \det:\begin{pmatrix} a & -b \\ b & a \end{pmatrix}\mapsto a^2 + b^2 .
 \]
-But over $\dC$, there are two characters $\chi_1,\chi_2$, namely those that map 
-the matrix $\begin{pmatrix} a & -b\\ b & a \end{pmatrix}$ to 
-$a+i b$, resp.~$a-b i$. The group $\characters^\ast(G_\dC)$ has some extra 
+But over $\dC$, there are two characters, 
+\begin{align*}
+  z:\begin{pmatrix} a & -b \\ b & a \end{pmatrix} &\mapsto a+b i \\
+  \bar z:\begin{pmatrix} a & -b \\ b & a \end{pmatrix} &\mapsto a - b i .
+\end{align*}
+The group $\characters^\ast(G_\dC)$ has some extra 
 structure, namely an action of the group $\galois(\dC/\dR)=\langle c\rangle$. 
-We have $c(\chi_1) = \chi_2$, $c(\chi_2)=\chi_1$. In general, 
-$c(\chi_1^{n_1} \chi_2^{n_2}) = \chi_1^{n_2}\chi_2^{n_1}$. So under the obvious 
+The generator $c$ interchanges $z$ and $\bar z$. So under the obvious 
 isomorphism $\characters^\ast(G)\simeq \dZ^2$, the action of 
 $\galois(\dC/\dR)$ is $c\cdot(n_1,n_2) = (n_2,n_1)$. Moreover, 
 $\h^0(\dR,\characters^\ast(G)) = \det^\dZ$, and the kernel of $\det$ on $G$ is 
 \[
-  H = \left\{\begin{pmatrix} a & -b \\ b & a \end{pmatrix}:a^2+b^2=1\right\}\subset \GL(2) .
+  \dS^{\det=1} = \left\{\begin{pmatrix} a & -b \\ b & a \end{pmatrix}:a^2+b^2=1\right\}\subset \GL(2)_{/\dR} .
 \]
-The group $H$ fits inside a short exact sequence 
-$1\to H\to G\xrightarrow{\det} \Gm\to 1$, so on the level of characters, we 
+The group $\dS^{\det=1}$ fits inside a short exact sequence 
+$1\to \dS^{\det=1}\to \dS\to \Gm\to 1$, so on the level of characters, we 
 have a short exact sequence of $\dZ[\galois(\dC/\dR)]$-modules 
 \[\
-  0 \to \characters^\ast(\Gm) \to \characters^\ast(G) \to \characters^\ast(H) \to 0.
+  0 \to \characters^\ast(\Gm) \to \characters^\ast(\dS) \to \characters^\ast(\dS^{\det=1}) \to 0.
 \]
 Complex conjugation $c$ acts on the quotient 
-$\characters^\ast(H)$ as multiplication by $-1$. 
+$\characters^\ast(\dS^{\det=1})$ as multiplication by $-1$. 
 \end{example}
 
 \begin{theorem}
@@ -973,38 +1044,55 @@ $\characters^\ast$ induces an exact anti-equivalence of categories
 \]
 \end{theorem}
 \begin{proof}
-Cite SGA.
+This is \cite[X 1.4]{sga3-ii}. 
 \end{proof}
 
-Here, we say that $\Gamma$ acts continuously on a discrete set $X$ if the 
-map $\Gamma\times X\to X$ is continuous. Equivalently, for each $x\in X$, the 
-stabilizer $\stabilizer_\Gamma(x)$ is open. We need to describe the 
-$\Gamma$-action on $\characters^\ast(G)$. If $\gamma\in \Gamma$ and 
-$\chi\in \characters^\ast(G)$, then $\gamma(\chi):G_{k^\mathrm{sep}}\to \Gm$ 
-is given by $(\gamma\chi)(g)=\gamma(\chi(\gamma^{-1} g))$ on 
-$k^\mathrm{sep}$-points. 
+In general, we call the action of a profinite group $\Gamma$ on a discrete 
+set $X$ \emph{continuous} if the map $\Gamma\times X\to X$ is continuous. 
+Equivalently, for each $x\in X$, the stabilizer $\stabilizer_\Gamma(x)$ is 
+open. The action of $\Gamma$ on $\characters^\ast(G)$ is as given in 
+\eqref{eq:galois-char}. 
 
-[Maybe put interlude on $\characters^\ast(G)$ as \'etale sheaf here.]
+\begin{hard}
+In the proof of \autoref{thm:lie-kolchin}, we saw that it is possible to 
+view $\characters^\ast(G)$ as a group scheme. This makes it possible to recover 
+the Galois action on $\characters^\ast(G)$ in a more natural manner. It is 
+a basic fact (see \cite[V 8.1]{sga1}) that the category of finite sets with 
+continuous $\Gamma_k$-action is equivalent to the category of finite \'etale 
+covers of $\spectrum(k)$. Thus the category of sets with continuous 
+$\Gamma_k$-action is equivalent to the category of sheaves on $k_\etale$. 
 
-\begin{example}
-Let $K/k$ be a finite field extension. Then the Weil restriction 
-$\weil_{K/k}\Gm:\algebras k\to \groups$ is defined by 
-$A\mapsto (A\otimes_k K)^\times$. This is an algebraic group (a torus, in 
-fact) over $k$, which satisfies $(\weil_{K/k}\Gm)_K\simeq \Gm^{[K:k]}$. 
-\end{example}
+In light of this, we construct $\characters^\ast(G)$ as a scheme; its 
+restriction to $k_\etale$ recovers the usual definition of 
+$\characters^\ast(G)$. Put 
+\[
+  \characters^\ast(G)(A) = \hom_{\groups_{/A}}\left(G_A,{\Gm}_{/A}\right) .
+\]
+If $G$ is of multiplicative type, then by \cite[XI 4.2]{sga3-ii}, the 
+group functor $\characters^\ast(G)$ is represented by a smooth separated 
+$k$-scheme. The restriction of this scheme to $k_\etale$ recovers the 
+usual definition of $\characters^\ast(G)$. 
+\end{hard}
 
 \begin{example}
 Let $k$ be a field of characteristic $\ne 2$. The Kummer theory tells us that 
 quadratic extensions $K/k$ are all of the form $k(\sqrt d)/k$ for 
-$d\in k^\times/2$. The Weil restriction 
-$\weil_{k(\sqrt d)/k}\Gm$ can be identified with the subgroup 
+$d\in k^\times/2=\h^1(k,\dmu_2)$. Since $2\in k^\times$, we have 
+$\dmu_2 = \dZ/2 = \automorphisms(\Gm)$. Thus $k$-forms of $\Gm$ are 
+classified by $\h^1(k,\dZ/2) = k^\times/2$. We can work this out 
+explicitly. For $c\in \h^1(k,\dmu_2)$, let $k_c/k$ be the corresponding 
+quadratic extension, and let $c^\ast\Gm$ be defined by 
 \[
-  G_d = \left\{\begin{pmatrix} a & b d \\ b & a \end{pmatrix}\right\} \subset \GL(2)_{/k} .
+  c^\ast \Gm = \ker\left( \weil_{k_c/k}\Gm \monic \GL(k_c)_{/k}\xrightarrow{\det} \Gm\right) .
 \]
-The isomorphism type of $G_d$ depends only on the class of $d$ in 
-$k^\times/2$. Moreover, $\characters^\ast(G_d)\simeq \dZ^2$, with the action 
-of $\Gamma_k$ factoring through $\galois(k(\sqrt d)/k)$ and flipping 
-coordinates. 
+The group $c^\ast\Gm$ can be written explicitly as 
+\[
+  \left\{\begin{pmatrix} a & b c \\ b & a \end{pmatrix}:a^2 - c b^2=1\right\} \subset \GL(2)_{/k} .
+\]
+The isomorphism type of $c^\ast\Gm$ depends only on the class of $c$ in 
+$k^\times/2$. Moreover, $\characters^\ast(c^\ast\Gm)\simeq \dZ$, with the 
+action of $\Gamma_k$ factoring through $\galois(k_c/k)$ and being 
+multiplication by $-1$ on the unique generator of $\galois(k_c/k)$. 
 \end{example}
 
 Note that general tori can be extremely difficult to classify. For example, 
@@ -1020,8 +1108,7 @@ with respect to some basis, $c$ wiill have the form
   \begin{pmatrix} 1 \end{pmatrix}^{\oplus a} \oplus\begin{pmatrix} -1 \end{pmatrix}^{\oplus b} \oplus\begin{pmatrix} & 1 \\ 1 \end{pmatrix}^{\oplus c}
 \]
 So any torus over $\dR$ breaks up as a product of copies of $\Gm$, copies of 
-$\weil_{\dC/\dR}\Gm$, and copies of 
-$\ker\left(\weil_{\dC/\dR}\Gm\xrightarrow{\det}\Gm\right)$. 
+$\dS$, and copies of $\dS^{\det=1}$. 
 \end{example}
 
 Over a general field, any torus is a quotient of products of 
@@ -1036,6 +1123,10 @@ where $V_\chi=\{v\in V:\rho(g)v = \chi(g) v\text{ for all }g\}$. The
 $\chi$ for which $V_\chi\ne 0$ will be called the \emph{weights} of $V$. To 
 summarize, every representation of a split torus is semisimple, the direct 
 sum of a bunch of characters. 
+
+For $T$ of multiplicative type, all representations are semisimple. The 
+irreducible representations are given by Galois orbits in 
+$\characters^\ast(T)$. 
 
 
 
