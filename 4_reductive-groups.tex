@@ -199,22 +199,65 @@ In general, one calls the quotient $G/B$ of $G$ by a Borel subgroup $B$ the
 \begin{example}
 If $G=\GL(n)$, then by \autoref{thm:lie-kolchin}, the subgroup $B$ of 
 upper-triangular matrices is a Borel subgroup. We will see that 
-$G/B$ is proper. Indeed, start by defining a functor 
-$\flag(n)$ on $\schemes k$ by 
-\[
-  \flag(n)(X) = \{\sV_\bullet\subset \sO^n:\text{$\sV_\bullet$ is a flag}\} .
-\]
-Here, a \emph{flag} is a sequence 
-$0=\sV_0\subset \cdots \subset \sV_n=\sO^n$ such that each $\sV_r$ is 
-locally free of rank $r$. There is a map $\GL(n)\to \flag(n)$, given by 
-$g\mapsto \sV(g)$, where $\sV(g)_r = g\cdot (\sO^r\oplus 0^{n-r})$. It turns 
-out that this induces an isomorphism $\GL(n)/B\iso \flag(n)$. 
+$G/B$ is proper. Indeed, we will work in much greater generality. Let $S$ be a 
+base scheme and $\sE$ a locally free $\sO_S$-module. If $X_{/S}$ is a scheme, 
+write $\sE_X$ for the pullback of $\sE$ to $X$. Write $\GL(\sE)$ for the 
+functor $X\mapsto \automorphisms_{\sO_X}(\sE_X)$. This is an open subscheme of 
+$\dV(\sE^\vee\otimes \sE)$, so it is representable. 
 
-The flag variety $\flag(n)$ is proper because it is projective! For each 
-$0<r<n$, the rule $\sV_\bullet\mapsto \sV_r$ gives a morphism 
-$\flag(n)\to \grassmannian(r,n)$. The induced map 
-$\flag(n)\to \prod_{0<r<n} \grassmannian(r,n)$ is a closed embedding. 
+Let $n=\rank(\sE)$; for $r<n$, let $\grassmannian(\sE,r)$ be the functor given 
+by 
+\[
+  \grassmannian(\sE,r)(X) = \{\sE_X\epic \sF:\text{$\sF$ is a locally free $\sO_X$-module of rank $r$}\} /\simeq .
+\]
+By \cite[ex.2]{nitsure-2005}, this is representable. note that 
+$\grassmannian(\sE,1) = \dP(\sE)$, so $\grassmannian(\sE,1)$ is projective. 
+More generally, for each $r$ the operation ``take $r$-th wedge power'' gives 
+a closed embedding $\grassmannian(\sE,r) \monic \dP(\bigwedge^r\sE)$, so all 
+the $\grassmannian(\sE,r)$ are projective. Put 
+$\grassmannian(\sE)=\prod_{r<n} \grassmannian(\sE,r)$; this is 
+projective via the Segre embedding \cite[II 4.3.3]{ega2}
+\[
+  \dP(\sE)\times \cdots \times \dP(\textstyle\bigwedge^{n-1}\sE)\monic \dP(\sE\otimes \cdots \otimes \textstyle\bigwedge^{n-1} \sE) .
+\]
+
+Suppose $\sE$ admits a descending filtration $\filtration^\bullet\sE$ such that 
+each quotient $\sE_r=\sE/\filtration^r$ has rank $r$. Define a closed subgroup 
+of $\GL(\sE)$ by 
+\[
+  B(X) = \{g\in \GL(\sE)(X):g\text{ preserves }\filtration^\bullet\} .
+\]
+This is a Borel subgroup of $\GL(\sE)$. We will realize the relative 
+flag variety $G/B$ as a closed subscheme of $\grassmannian(\sE)$. 
+If $X_{/S}$ is a scheme, a \emph{flag (relative to $\sE$)} on $X$ is a diagram 
+$\sE_X=\sV_n\epic \cdots \epic \sV_0=0$ of locally free quotients of $\sE_X$, 
+where each $\sV_r$ has rank $r$. Write $\sV_\bullet$ for such a flag. Define a 
+functor $\flag(\sE)$ by 
+\[
+  \flag(\sE)(X) = \{\text{flags relative to $\sE$ on $X$}\} / \simeq .
+\]
+The rule $\sV_\bullet\mapsto (\sV_r)_r$ gives a closed embedding 
+$\flag(\sE)\monic \grassmannian(\sE)$. See 
+\cite[I \S 2 6.3]{demazure-gabriel-1980} for a proof when $S=\spectrum(\dZ)$ 
+and $\sE=\dZ^n$. 
+
+Our filtration $\filtration^\bullet\sE$ induces a canonical element of 
+$\flag(\sE)(S)$, namely $\{\sE\epic\sE/\filtration^r\}_r$. The action of 
+$\GL(\sE)$ on $\sE$ induces an action of $\GL(\sE)$ on $\flag(\sE)$. An 
+element $g\in \GL(\sE)(X)$ acts on a flag $\sE\epic \sV_\bullet$ by 
+$\sE\xrightarrow{g^{-1}} \sE\epic \sV_\bullet$. Moreover, $B\subset \GL(\sE)$ 
+acts trivially. Assume $S$ is locally noetherian. Then by 
+\cite[V 10.1.1]{sga3-i}, the quotient $\GL(\sE)/B$ exists and comes with 
+an embedding $\GL(\sE)/B\monic \flag(\sE)$. We claim that this map is 
+surjective, hence an isomorphism. Indeed, Zariski-locally, it comes down to 
+checking that $\GL(A^n)/B(A)\to \flag(A^n)$ is surjective, which is a basic 
+fact from linear algebra. Thus $\GL(\sE)/B\iso \flag(\sE)$. 
 \end{example}
+
+We will be mainly interested in when $S=\spectrum(k)$ and 
+$V=k^n$. In this case, we write $\grassmannian(n,r)=\grassmannian(k^n,r)$ 
+and $\flag(n)=\flag(k^n)$. Thus $\GL(n)/B\iso \flag(n)\monic \grassmannian(n)$. 
+More generally, we have the following fact. 
 
 \begin{theorem}
 Let $G_{/k}$ be a linear algebraic group, $B\subset G$ a Borel subgroup. Then 
