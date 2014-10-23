@@ -151,7 +151,7 @@ morphisms}, that are automatically proper. Let $S$ be a base scheme, and
 $\sE$ a quasi-coherent sheaf on $S$. Define a functor $\dP(\sE)$ on 
 $\schemes S$ by 
 \[
-  \dP(\sE)(X) = \{(\sL,\varphi):\text{$\sL$ is invertible and }\varphi:\sE_X\epic \sL\} /\sim .
+  \dP(\sE)(X) = \{(\sL,\varphi):\text{$\sL$ is invertible and }\varphi:\sE_X\epic \sL\} /\simeq .
 \]
 That is, $\dP(\sE)(X)$ is the set of isomorphism classes of pairs 
 $(\sL,\varphi)$, where $\sL$ is a line bundle on $X$ and 
@@ -161,9 +161,9 @@ $f:X\to Y$ is called \emph{projective} if it factors as
 $X\monic \dP(\sE)\epic Y$, where $\sE$ is a coherent $\sO_Y$-module, 
 $X\monic \dP(\sE)$ is a closed immersion and $\dP(\sE)\epic Y$ is the 
 canonical morphism. Equivalently, $X$ is isomorphic to $\proj(\sA)$ for 
-some sheaf $\sA=\sA_\bullet$ of graded $\sO_Y$-modules, which is generated 
-by $\sA_1$ and for which $\sA_1$ is of finite type. By 
-\cite[II 5.5.3]{ega2}, projective morphisms are proper. In particular, 
+some sheaf $\sA=\sA_\bullet$ of graded $\sO_Y$-algebras, which is 
+generated as an $\sO_Y$-algebra by $\sA_1$, and for which $\sA_1$ is coherent. 
+By \cite[II 5.5.3]{ega2}, projective morphisms are proper. In particular, 
 if we work over a base field $k$, all closed subschemes of 
 $\dP(V)$ for a finite-dimensional $k$-vector space $V$ are proper. 
 
@@ -241,11 +241,11 @@ $\flag(\sE)\monic \grassmannian(\sE)$. See
 \cite[I \S 2 6.3]{demazure-gabriel-1980} for a proof when $S=\spectrum(\dZ)$ 
 and $\sE=\dZ^n$. 
 
-Our filtration $\filtration^\bullet\sE$ induces a canonical element of 
-$\flag(\sE)(S)$, namely $\{\sE\epic\sE/\filtration^r\}_r$. The action of 
-$\GL(\sE)$ on $\sE$ induces an action of $\GL(\sE)$ on $\flag(\sE)$. An 
+Our filtration $\filtration^\bullet\sE$ induces an element of $\flag(\sE)(S)$, 
+namely $\{\sE\epic\sE/\filtration^r\}_r$. The action of $\GL(\sE)$ on $\sE$ 
+induces a right action of $\GL(\sE)$ on $\flag(\sE)$, in which an 
 element $g\in \GL(\sE)(X)$ acts on a flag $\sE\epic \sV_\bullet$ by 
-$\sE\xrightarrow{g^{-1}} \sE\epic \sV_\bullet$. Moreover, $B\subset \GL(\sE)$ 
+$\sE\xrightarrow g \sE\epic \sV_\bullet$. Moreover, $B\subset \GL(\sE)$ 
 acts trivially. Assume $S$ is locally noetherian. Then by 
 \cite[V 10.1.1]{sga3-i}, the quotient $\GL(\sE)/B$ exists and comes with 
 an embedding $\GL(\sE)/B\monic \flag(\sE)$. We claim that this map is 
@@ -290,7 +290,7 @@ Let $G_{/k}$ be a linear algebraic group. Then all maximal tori are conjugate.
 \end{theorem}
 \begin{proof}
 If $G$ is solvable, this is \cite[17.40]{milne-iAG}. Essentially, one uses 
-the fact that $G=T\ltimes \urad G$. 
+the fact that $G=T\ltimes \urad G$ for any maximal torus $T$. 
 
 If $G$ is a general group, then different maximal tori $T_1,T_2$ will live in 
 Borel subgroups $B_1,B_2$. By \autoref{thm:borel-conjugate}, the subgroups 
@@ -306,6 +306,163 @@ solvable group. Then $G$ acts on $\dP(V)$ via $\GL(V)$, so
 $V$ contains a $G$-invariant line. 
 \end{example}
 
+
+
+
+
+$\ast\ast\ast\ast\ast\ast$
+
+Let $k$ be an algebraically closed field of characteristic zero. Let $G_{/k}$ 
+be a connected linear algebraic group. Let $T$ be a maximal torus of $G$, 
+$B\supset T$ a maximal connected solvable subgroup of $G$ (i.e.~a Borel 
+subgroup). The subgroups $B$ and $T$ are both unique up to conjugation by 
+some $g\in G(k)$. The quotient $G/B$ is proper (projective, in fact). 
+
+\begin{definition}
+Let $G_{/k}$ be a linear algebraic group. A closed subgroup $P\subset G$ is 
+\emph{parabolic} if $G/P$ is proper. 
+\end{definition}
+
+\begin{theorem}
+A subgroup $P\subset G$ is parabolic if and only if $P$ contains a Borel 
+subgroup of $G$. 
+\end{theorem}
+\begin{proof}
+$\Leftarrow$. Suppose $P$ contains a Borel subgroup $B$. Then the inclusion 
+$B\subset P$ induces a map $G/B\epic G/P$. Since $G/B$ is proper, so is 
+$G/P$ [cite source]. 
+
+$\Rightarrow$. Consider the action of $B$ on the proper variety $G/P$. 
+By \autoref{thm:borel-fixed}, there is a coset $g P$ such that 
+$b g P= g P$ for all $b\in B(k)$. Thus $g^{-1} b g\in P$ for all $b$, so 
+$\adjoint(g^{-1})(B)\subset P$, and thus $P$ contains a Borel subgroup. 
+\end{proof}
+
+As a corollary, the Borel subgroups of $G$ could also be defined as the 
+minimal parabolic subgroups of $G$. 
+
+Let $G_{/S}$ be a group scheme, $H_{/S}$ a subgroup scheme. We define 
+subgroups of $G$: 
+\begin{align*}
+  \normalizer_G(H)(X) &= \{g\in G(X):g H(X)g^{-1}\subset H(X)\} \\
+  \centralizer_G(H)(X) &= \{g\in G(X):g h g^{-1}= h\text{ for all }h\in H(X)\} \\
+  \zentrum(G)(X) &= \{g\in G(X):g h=h g\text{ for all }h\in G(X)\} .
+\end{align*}
+By [cite source], these are all subgroup schemes of $G$. Clearly 
+$H\subset \normalizer_G(H)$ and $\centralizer_G(H)\subset \normalizer_G(H)$. 
+
+[Move this back, mention transporter schemes.]
+
+\begin{theorem}[Rigidity of tori]\label{thm:rigidity-tori}
+Let $T_{/k}$ be a torus, $Y_{/k}$ a connected variety. Consider a morphism 
+$T_Y\to T$ that is a homomorphism in $T$. Then the morphism factors as 
+$T_Y\epic T\xrightarrow\phi T$ for some homomorphism $\phi:T\to T$. 
+\end{theorem}
+\begin{proof}
+Write the map as $(t,y)\mapsto f_y(t)$. 
+We'll use two facts:
+\begin{enumerate}
+\item The points of finite order are Zariski-dense in $T$ [Cite SGA].
+\item For each $n$, the scheme $\prescript{}{n}{T}$ is finite \'etale over $k$. 
+\end{enumerate}
+Fix a point $t\in T(k)$ of order $n$. Define $\varphi:Y\to \prescript{}{n}{T}$ 
+by $y\mapsto f_y(t)$. Since $Y$ is connected, this is constant, hence 
+$f_y|_{\prescript{}{n}{T}}$ does not depend on $y$ for each $n$. By fact 1, we 
+know that $f_y$ does not depend on $y$ for all $y$. 
+
+[Rephrase in terms of hom-scheme $\hom(T,T)$, diagonalizable groups, works 
+over any field, probably any base scheme.]
+\end{proof}
+
+[Define family of homomorphisms, constant family. Move this back to the 
+section on tori.]
+
+\begin{example}
+Let $G=\SL(2)$. Then the map $G\times G\to G$ given by 
+$(g,h)\mapsto g h g^{-1}$ is a perfectly good family of homomorphisms that 
+is not constant. One has $\PSL(2)\monic\automorphisms(\SL_2)$, with image of 
+index two. The other coset is generated by $g\mapsto \transpose{g}^{-1}$. 
+\end{example}
+
+\begin{lemma}
+Let $T\subset G$ be a torus. Then the quotient 
+$\weyl_G(T)=\centralizer_G(T)^\circ=\normalizer_G(T)^\circ$, hence the quotient 
+$\normalizer_G(T)/\centralizer_G(T)$ is finite \'etale. 
+\end{lemma}
+\begin{proof}
+There is an obvious family $\normalizer_G(T)^\circ\times T\to T$ given by 
+$(y,t)\mapsto y t y^{-1}$. By \autoref{thm:rigidity-tori}, this is constant, 
+hence $\normalizer_G(T)^\circ\subset \centralizer_G(T)$. 
+\end{proof}
+
+One calls $\weyl_G(T)$ the \emph{Weyl group} of the pair $(G,T)$. It is finite 
+\'etale over $k$. 
+
+\begin{lemma}
+Let $G_{/k}$ be a connected reductive group. Then $\rad G=\zentrum(G)^\circ$. 
+\end{lemma}
+\begin{proof}
+Note that $\rad G$ is a torus. Since $\rad G$ is normal in $G$, there is a 
+family $G\times \rad G\to \rad G$ given by $(y,t)\mapsto y t y^{-1}$. Again 
+by \autoref{thm:rigidity-tori}, this is trivial, hence 
+$\rad G\subset \zentrum(G)$. The result follows. 
+\end{proof}
+
+\begin{lemma}\label{lem:semisimple-reductive}
+Let $G$ be a connected linear algebraic group that admits a faithful 
+irreducible representation $\rho:G\monic \GL(V)$. Then $G$ is reductive. 
+\end{lemma}
+\begin{proof}
+We may assume that $G\subset \GL(V)$. Let $H=\urad G$; the space $V^H$ is 
+nonzero since $H$ is unipotent. In fact, since $H$ is normal in $G$, 
+$V^H$ is a subrepresentation of $V$. Since $V$ is simple, $V^H=V$. But 
+$G\subset \GL(V)$, so $H=1$. 
+\end{proof}
+
+\begin{corollary}
+The groups $\GL(n)$, $\SL(n)$, $\SO(2n)$ and $\Sp(2n)$ are reductive. 
+\end{corollary}
+\begin{proof}
+Apply \autoref{lem:semisimple-reductive} to the standard representations. For 
+$\SO$ and $\Sp$, use the fact that the group preserves a nondegenerate bilinear 
+form. 
+\end{proof}
+
+
+
+
+
+\subsection{Root data}
+
+Let $G_{/k}$ be a connected reductive group, $\fg=\lie(G)$. Recall that there 
+is a canonical representation $\adjoint:G\to \GL(\fg)$. Let $T\subset G$ be a 
+maximal torus. If $k$ is algebraically closed, $T\simeq \Gm^r$ for some $r$, 
+we put $r=\rank(G)$ and call $r$ the \emph{reductive rank} of $G$. [Refer back 
+for Lie algebra, adjoint representation.]
+
+We are interested in $\adjoint|_T:T\to \GL(\fg)$. Assume $k$ is algebraically 
+closed. Then $T$ is diagonalizable. So there is a decomposition 
+\[
+  \fg = \bigoplus_{\alpha\in\characters^\ast(T)} \fg_\alpha ,
+\]
+where for $\alpha\in \characters^\ast(T)$, the space 
+$\fg_\alpha=\{x\in \fg:t g=\alpha(t) g\text{ for all }t\in T\}$. Let 
+$\roots(G,T) = \{\alpha\in \characters^\ast(T)\smallsetminus 0:\fg_\alpha\ne 0\}$. 
+Then we tautologically have a decomposition 
+\[
+  \fg=\fg_0\oplus \bigoplus_{\alpha\in \roots(G,T)} \fg_\alpha .
+\]
+We call $\roots(G,T)\subset \characters^\ast(G)$ the set of \emph{roots} of 
+$G$. This is a finite set. 
+
+Let $V$ be the span of $\roots(G,T)$ in 
+$\characters^\ast(T)_\dR=\characters^\ast(T)\otimes\dR$. The finite set 
+$\roots(G,T)$ sitting inside the real vector space $V$ is an example of a 
+``root system.'' General root systems break up into irreducibles, and there is 
+a combinatorial classification of irreducible root systems into 
+types 
+$\typeA_n,\typeB_n,\typeC_n,\typeD_n,\typeG_2,\typeF_4,\typeE_6,\typeE_7,\typeE_8$. 
+The root datum $\roots(G,T)\subset V$ will recover $G/\zentrum(G)$. 
 
 
 
