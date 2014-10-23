@@ -171,6 +171,59 @@ $\dP(V)$ for a finite-dimensional $k$-vector space $V$ are proper.
 
 
 
+\subsection{Centralizers, normalizers, and transporter schemes}
+
+Here we define some constructions scheme-theoretically that will be used 
+extensively in the structure theory of reductive groups. Fix a base scheme 
+$S$, and let $G_{/S}$ be a group scheme. If $X,Y\subset G$ are subschemes, 
+the \emph{transporter scheme} $\transporter_G(X,Y)$ and the \emph{strict 
+transporter scheme} $\stricttransporter_G(X,Y)$ are given by their functors 
+of points:
+\begin{align*}
+  \transporter_G(X,Y)(T) 
+    &= \{g\in G(T): \adjoint(g)(X_T)\subset Y_T\} \\
+    &= \{g\in G(T):g X(T') g^{-1}\subset Y(T')\text{ for all }T'\to T\} \\
+  \stricttransporter_G(X,Y)(T) 
+    &= \{g\in G(T):\adjoint(g)(X_T)=Y_T\} .
+\end{align*}
+Similarly, if $u,v:X\to G$ are morphisms, one defines 
+\[
+  \transporter_G(u,v)(T) = \{g\in G(T):\adjoint(g)\circ u_T=v_V\} .
+\]
+This enables us to define, for a subgroup-scheme $H\subset G$, 
+\begin{align*}
+  \centralizer_G(H) &= \transporter_G(H\monic G,H\monic G) && \text{(the \emph{centralizer})}\\
+  \normalizer_G(H) &= \stricttransporter_G(H,H) && \text{(the \emph{normalizer})}.
+\end{align*}
+
+We reproduce the following theorem from SGA. 
+
+\begin{theorem}
+Let $k$ be a field, $G_{/k}$ a group scheme of finite type. 
+\begin{enumerate}
+\item If $X,Y\subset G$ are closed subschemes, then $\transporter_G(X,Y)$ and 
+$\stricttransporter_G(X,Y)$ are represented by closed subschemes of $G$. 
+
+\item If $u,v:X\to G$ are two morphisms of schemes over $k$, then 
+$\transporter_G(u,v)$ is represented by a closed subscheme of $G$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+This is essentially \cite[VI\textsubscript{B} 6.2.5]{sga3-i}. 
+\end{proof}
+
+\begin{corollary}
+Let $k$ be a field, $G_{/k}$ a group scheme of finite type, and $H\subset G$ a 
+closed subgroup scheme. Then $\centralizer_G(H)$ and $\normalizer_G(H)$ are 
+represented by closed subgroup schemes of $G$
+\end{corollary}
+
+Clearly $\centralizer_G(H)\subset \normalizer_G(H)$. 
+
+
+
+
+
 \subsection{Borel subgroups}
 
 For this section, $k$ is an algebraically closed field of characteristic 
@@ -260,10 +313,32 @@ and $\flag(n)=\flag(k^n)$. Thus $\GL(n)/B\iso \flag(n)\monic \grassmannian(n)$.
 More generally, we have the following fact. 
 
 \begin{theorem}
-Let $G_{/k}$ be a linear algebraic group, $B\subset G$ a Borel subgroup. Then 
+Let $G$ be a linear algebraic group, $B\subset G$ a Borel subgroup. Then 
 $G/B$ is a projective variety. 
 \end{theorem}
 
+\begin{definition}
+Let $G$ be a linear algebraic group. A closed subgroup $P\subset G$ is 
+\emph{parabolic} if $G/P$ is proper. 
+\end{definition}
+
+\begin{theorem}
+A subgroup $P\subset G$ is parabolic if and only if $P$ contains a Borel 
+subgroup of $G$. 
+\end{theorem}
+\begin{proof}
+$\Leftarrow$. Suppose $P$ contains a Borel subgroup $B$. Then the inclusion 
+$B\subset P$ induces a map $G/B\epic G/P$. Since $G/B$ is proper, by 
+\cite[II 5.4.3]{ega2}, so is $G/P$. Alternatively, see \cite[XVI 2.5]{sga3-ii} 
+for a proof over a general base. 
+
+$\Rightarrow$. Consider the action of $B$ on the proper variety $G/P$. 
+By \autoref{thm:borel-fixed}, there is a fixed point $g P$. One obtains 
+$\adjoint(g^{-1})(B)\subset P$, so $P$ contains a Borel subgroup. 
+\end{proof}
+
+In light of this result, we could have defined a Borel subgroup to be a minimal 
+parabolic subgroup. 
 
 
 
@@ -304,84 +379,6 @@ Let $\rho:G\to \GL(V)$ be a representation, where $G$ is a connected
 solvable group. Then $G$ acts on $\dP(V)$ via $\GL(V)$, so 
 \autoref{thm:borel-fixed} tells us that $G$ fixes a vector, i.e.~that 
 $V$ contains a $G$-invariant line. 
-\end{example}
-
-
-
-
-
-$\ast\ast\ast\ast\ast\ast$
-
-Let $k$ be an algebraically closed field of characteristic zero. Let $G_{/k}$ 
-be a connected linear algebraic group. Let $T$ be a maximal torus of $G$, 
-$B\supset T$ a maximal connected solvable subgroup of $G$ (i.e.~a Borel 
-subgroup). The subgroups $B$ and $T$ are both unique up to conjugation by 
-some $g\in G(k)$. The quotient $G/B$ is proper (projective, in fact). 
-
-\begin{definition}
-Let $G_{/k}$ be a linear algebraic group. A closed subgroup $P\subset G$ is 
-\emph{parabolic} if $G/P$ is proper. 
-\end{definition}
-
-\begin{theorem}
-A subgroup $P\subset G$ is parabolic if and only if $P$ contains a Borel 
-subgroup of $G$. 
-\end{theorem}
-\begin{proof}
-$\Leftarrow$. Suppose $P$ contains a Borel subgroup $B$. Then the inclusion 
-$B\subset P$ induces a map $G/B\epic G/P$. Since $G/B$ is proper, so is 
-$G/P$ [cite source]. 
-
-$\Rightarrow$. Consider the action of $B$ on the proper variety $G/P$. 
-By \autoref{thm:borel-fixed}, there is a coset $g P$ such that 
-$b g P= g P$ for all $b\in B(k)$. Thus $g^{-1} b g\in P$ for all $b$, so 
-$\adjoint(g^{-1})(B)\subset P$, and thus $P$ contains a Borel subgroup. 
-\end{proof}
-
-As a corollary, the Borel subgroups of $G$ could also be defined as the 
-minimal parabolic subgroups of $G$. 
-
-Let $G_{/S}$ be a group scheme, $H_{/S}$ a subgroup scheme. We define 
-subgroups of $G$: 
-\begin{align*}
-  \normalizer_G(H)(X) &= \{g\in G(X):g H(X)g^{-1}\subset H(X)\} \\
-  \centralizer_G(H)(X) &= \{g\in G(X):g h g^{-1}= h\text{ for all }h\in H(X)\} \\
-  \zentrum(G)(X) &= \{g\in G(X):g h=h g\text{ for all }h\in G(X)\} .
-\end{align*}
-By [cite source], these are all subgroup schemes of $G$. Clearly 
-$H\subset \normalizer_G(H)$ and $\centralizer_G(H)\subset \normalizer_G(H)$. 
-
-[Move this back, mention transporter schemes.]
-
-\begin{theorem}[Rigidity of tori]\label{thm:rigidity-tori}
-Let $T_{/k}$ be a torus, $Y_{/k}$ a connected variety. Consider a morphism 
-$T_Y\to T$ that is a homomorphism in $T$. Then the morphism factors as 
-$T_Y\epic T\xrightarrow\phi T$ for some homomorphism $\phi:T\to T$. 
-\end{theorem}
-\begin{proof}
-Write the map as $(t,y)\mapsto f_y(t)$. 
-We'll use two facts:
-\begin{enumerate}
-\item The points of finite order are Zariski-dense in $T$ [Cite SGA].
-\item For each $n$, the scheme $\prescript{}{n}{T}$ is finite \'etale over $k$. 
-\end{enumerate}
-Fix a point $t\in T(k)$ of order $n$. Define $\varphi:Y\to \prescript{}{n}{T}$ 
-by $y\mapsto f_y(t)$. Since $Y$ is connected, this is constant, hence 
-$f_y|_{\prescript{}{n}{T}}$ does not depend on $y$ for each $n$. By fact 1, we 
-know that $f_y$ does not depend on $y$ for all $y$. 
-
-[Rephrase in terms of hom-scheme $\hom(T,T)$, diagonalizable groups, works 
-over any field, probably any base scheme.]
-\end{proof}
-
-[Define family of homomorphisms, constant family. Move this back to the 
-section on tori.]
-
-\begin{example}
-Let $G=\SL(2)$. Then the map $G\times G\to G$ given by 
-$(g,h)\mapsto g h g^{-1}$ is a perfectly good family of homomorphisms that 
-is not constant. One has $\PSL(2)\monic\automorphisms(\SL_2)$, with image of 
-index two. The other coset is generated by $g\mapsto \transpose{g}^{-1}$. 
 \end{example}
 
 \begin{lemma}
