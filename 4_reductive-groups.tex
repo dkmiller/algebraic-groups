@@ -621,13 +621,77 @@ These all follow from various results in
 follows from the corollary to that proposition. 
 \end{proof}
 
+Let $R\subset V$ be a reduced root system, $W=\weyl(R)$, and 
+$\langle\cdot,\cdot\rangle$ a $W$-invariant inner product on $V$. Fix 
+$\alpha,\beta\in R$ that are linearly independent. Let $\phi$ be the angle 
+between $\alpha$ and $\beta$, determined by 
+$\langle \alpha,\beta\rangle = |\alpha|\cdot |\beta| \cos\phi$. We have 
+$n(\beta,\alpha)=2\frac{|\beta|}{|\alpha|}\cos\phi\in \dZ$. Moreover, 
+$n(\alpha,\beta)n(\beta,\alpha)=4\cos^2\phi\in \{0,1,2,3,4\}$, so the 
+possibilities for $\phi$ are very limited. In fact, we can write them all 
+down:  
+\begin{center}
+\begin{tabular}{c|c|c|c}
+  $n(\alpha,\beta)$ & $n(\beta,\alpha)$ & $\phi$ & $|\beta|/|\alpha|$ \\ \hline 
+  $0$  & $0$  & $\pi/2$  & ? \\
+  $1$  & $1$  & $\pi/3$  & $1$ \\
+  $-1$ & $-1$ & $2\pi/3$ & $1$ \\
+  $1$  & $2$  & $\pi/4$  & $\sqrt 2$ \\
+  $-1$ & $-2$ & $3\pi/4$ & $\sqrt 2$ \\
+  $1$  & $3$  & $\pi/6$  & $\sqrt 3$ \\
+  $-1$ & $-3$ & $5\pi/6$ & $\sqrt 3$
+\end{tabular}
+\end{center}
+
+Even with this finite list, classifying reduced root systems directly is 
+tricky. We will classify them via a type of graph (with extra data) called a 
+\emph{Dynkin diagram}. The following definition is from 
+\cite[VI \S 4.2]{bourbaki-lie-alg-4-6}.
+
+\begin{definition}
+A \emph{Dynkin graph} is a pair $(\Gamma,f)$, where $\Gamma$ is an 
+undirected graph and 
+\[
+  f:\{(\gamma_1,\gamma_2)\in \Gamma\times\Gamma:\text{$\gamma_1$ and $\gamma_2$ are connected by an edge}\}\to \dR 
+\]
+satisfies $f(\gamma_1,\gamma_2)f(\gamma_2,\gamma_1)=1$ whenever the expression 
+is defined. 
+\end{definition}
+
+If $R\subset V$ is a reduced root system, we define a Dynkin graph 
+$(Df),=\dynkin(R)$ as follows. Choose a base $S$ of $R$. The vertices of $D$ 
+are elements of $S$. Given $\alpha\ne\beta\in S$, put 
+$f(\alpha,\beta)=\frac{n(\alpha,\beta)}{n(\beta,\alpha)}$. For any two 
+vertices $\alpha,\beta\in R$, after possibly switching $\alpha$ and 
+$\beta$, we will have $f(\alpha,\beta)\in \dZ$. In $\dynkin(R)$, there are 
+$|f(\alpha,\beta)$ edges between $\alpha$ and $\beta$. From the above table, 
+we see that there are at most $3$ edges. 
+
+By \cite[VI \S 4.2]{bourbaki-lie-alg-4-6}, the Dynkin diagram $\dynkin(R)$ 
+only depends on $R$, in the sense that the choice of another basis yields a 
+Dynkin graph that is canonically isomorphic to the first one. Moreover, 
+$\dynkin(-)$ induces an injection from the set of isomorphism classes of 
+reduced root systems to the set of isomorphism classes of Dynkin graphs. 
+Moreover, $R$ is irreducible if and only if $\dynkin(R)$ is connected, the 
+decomposition of $R$ into irreducibles matches the decomposition of 
+$\dynkin(R)$ into connected components, and 
+$\automorphisms(R)/\weyl(R)\iso \automorphisms(\dynkin R)$. 
 
 
 
 
-\subsection{Examples of root systems}
 
-\begin{example}[type $\typeA_n$]
+\subsection{Classification of root systems}
+
+We begin with what will turn out to be a complete list of examples of reduced 
+root systems, following \cite[VI \S4]{bourbaki-lie-alg-4-6}. For some of the 
+more complicated root systems (e.g.~$\typeE_8$) we only give the associated 
+Dynkin diagram. When drawing Dynkin diagrams, if $f(i,j)>1$, we place an 
+inequality sign $>$ over the arrows from $i$ to $j$. For example, if 
+$f(i,j)=2$, we put $i\Rightarrow j$. 
+
+
+\begin{example}[type $\typeA_n$, $n\geqslant 1$]
 Let $n\geqslant 1$. Let $V=\{x\in \dR^{n+1}:\sum x_i=0\}$, and give $\dR^{n+1}$ 
 the standard basis $e_1,\dots,e_{n+1}$ and standard inner product 
 $\langle\cdot,\cdot\rangle$. The root system $\typeA_n\subset V$ is 
@@ -665,6 +729,8 @@ $R=\{\pm (\alpha,0),\pm (0,\beta)\}$. We draw it as:
 \draw[black,thick,->] (0,0) -- (-1,0) node[above] {\(-\beta\)};
 \end{tikzpicture}
 \end{center}
+The Dynkin diagram of $\typeA_1\times \typeA_1$ is a disjoint union of 
+two points. 
 \end{example}
 
 
@@ -681,7 +747,141 @@ looks like:
 \end{tikzpicture}
 \end{center}
 The roots lie on the unit circle and at multiples of the angle $\pi/3$. 
-[label $\alpha,\beta$: angle $2\pi/3$]
+The Dynkin diagram is 
+$\begin{tikzcd} \bullet \ar[r, dash] & \bullet \end{tikzcd}$. 
+\end{example}
+
+\begin{example}[type $\typeB_n$, $n\geqslant 2$]
+Let $V=\dR^n$ and the roots be $\{\pm e_i\}\cup \{\pm e_i\pm e_j:i<j\}$. The 
+Dynkin diagram of $\typeB_n$ is 
+\[
+\begin{tikzcd}
+  \bullet \ar[r, dash] 
+    & \bullet \ar[r, dash] 
+    & \cdots \ar[r, dash] 
+    & \bullet \ar[r, dash] 
+    & \bullet \ar[r, Rightarrow] 
+    & \bullet 
+\end{tikzcd}
+\qquad\text{($n$ vertices)} .
+\]
+\end{example}
+
+\begin{example}[type $\typeB_2$]
+This root system lives in $\dR^2$, and looks like 
+\begin{center}
+\begin{tikzpicture}[>=latex]
+\draw[blue,dashed] (-1.5,0) -- (1.5,0);
+\draw[blue,dashed] (0,-1.5) -- (0,1.5);
+\foreach \k in {1,...,4} {
+  \draw[black,thick,->] (0,0) --+(\k*90:1);
+}
+\foreach \k in {1,...,4} {
+  \draw[black,thick,->] (0,0) --+(\k*90 + 45:{sqrt(2)});
+}
+\end{tikzpicture}
+\end{center}
+The Dynkin diagram $\dynkin(\typeB_2)$ is 
+$\begin{tikzcd}\bullet \ar[r, Rightarrow] & \bullet \end{tikzcd}$. 
+\end{example}
+
+\begin{example}[type $\typeC_n$, $n\geqslant 2$]
+The ambient vector space is $V=\dR^n$, and the set of roots is 
+$\{\pm 2e_i\}\cup \{\pm e_i\pm e_j:i<j\}$. The Dynkin diagram is 
+\[
+\begin{tikzcd}
+  \bullet \ar[r, dash] 
+    & \bullet \ar[r, dash] 
+    & \cdots \ar[r, dash] 
+    & \bullet \ar[r, dash] 
+    & \bullet \ar[r, Leftarrow] 
+    & \bullet 
+\end{tikzcd}
+\qquad\text{($n$ vertices)} .
+\]
+\end{example}
+
+\begin{example}[type $\typeD_n$, $n\geqslant 4$]
+The ambient vector space is $V=\dR^n$, and the set of roots is 
+$\{e_i\}\cup \{\pm e_i\pm e_j:i<j\}$. The Dynkin diagram is 
+\[
+\begin{tikzcd}
+  & & & & \bullet \\
+  \bullet \ar[r, dash]
+    & \bullet \ar[r, dash] 
+    & \cdots \ar[r, dash]
+    & \bullet \ar[r, dash]
+    & \bullet \ar[r, dash] \ar[u, dash] 
+    & \bullet
+\end{tikzcd}
+\qquad\text{($n$ vertices)} .
+\]
+\end{example}
+
+\begin{example}[type $\typeE_6$]
+The space $V$ is the subspace of $\dR^8$ consisting of vectors $x$ such that 
+$x_6=x_7=-x_8$. The roots are $\{\pm e_i\pm e_j:i<j\leqslant 5\}$, together 
+with all 
+\[
+  \pm \frac 1 2\left(e_8-e_7-e_6 + \sum_{i=1}^5 (-1)^{\nu(i)} e_i\right) ,
+\]
+where $\sum \nu(i)$ is even. The Dynkin diagram is 
+\[\begin{tikzcd}
+  & & \bullet \\
+  \bullet \ar[r, dash] 
+    & \bullet \ar[r, dash]
+    & \bullet \ar[r, dash] \ar[u, dash]
+    & \bullet \ar[r, dash] 
+    & \bullet 
+\end{tikzcd}\]
+\end{example}
+
+\begin{example}[type $\typeE_7$]
+Here $V$ is the hyperplane in $\dR^8$ orthogonal to $e_7+e_8$. The set of 
+roots is $\{\pm e_i\pm e_j:i<j\leqslant 6\}\cup\{\pm (e_7-e_8)\}$, together 
+with all 
+\[
+  \pm \frac 1 2\left(e_7-e_8+\sum_{i=1}^6 (-1)^{\nu(i)} e_i\right) ,
+\]
+where $\sum \nu(i)$ is odd. The Dynkin diagram is 
+\[\begin{tikzcd}
+  & & & \bullet \\
+  \bullet \ar[r, dash] 
+    & \bullet \ar[r, dash]
+    & \bullet \ar[r, dash]
+    & \bullet \ar[r, dash] \ar[u, dash]
+    & \bullet \ar[r, dash] 
+    & \bullet 
+\end{tikzcd}\]
+\end{example}
+
+\begin{example}[type $\typeE_8$]
+The vector space is $\dR^8$, and the set of roots consists of 
+$\{\pm e_i\pm e_j:i<j\}$, together with all 
+$\frac 1 2 \sum_{i=1}^8 (-1)^{\nu(i)} e_i$ for which $\sum \nu(i)$ is even. The 
+Dynkin diagram is 
+\[\begin{tikzcd}
+  & & & & \bullet \\
+  \bullet \ar[r, dash] 
+    & \bullet \ar[r, dash]
+    & \bullet \ar[r, dash]
+    & \bullet \ar[r, dash]
+    & \bullet \ar[r, dash] \ar[u, dash]
+    & \bullet \ar[r, dash] 
+    & \bullet 
+\end{tikzcd}\]
+\end{example}
+
+\begin{example}[type $\typeF_4$]
+The space is $\dR^4$, the set of roots is 
+$\{\pm e_i\}\cup \{\pm e_i\pm e_j:e<i\}$, together with 
+$\frac 1 2(\pm e_1\pm e_2\pm e_3\pm e_4)$. The Dynkin diagram is 
+\[\begin{tikzcd}
+  \bullet \ar[r] 
+    & \bullet \ar[r, Rightarrow] 
+    & \bullet \ar[r] 
+    & \bullet
+\end{tikzcd}\]
 \end{example}
 
 \begin{example}[type $\typeG_2$]
@@ -700,158 +900,58 @@ like:
 \end{tikzpicture}
 \end{center}
 The inner collection of roots is a copy of $\typeA_2$. The outer collection 
-has radius $\sqrt 3$, and is rotated by $\pi/6$. 
+has radius $\sqrt 3$, and is rotated by $\pi/6$. The Dynkin diagram of 
+$\typeG_2$ is $\bullet \Rrightarrow \bullet$. 
 \end{example}
 
-$\ast\ast\ast\ast$
-
-Let $G_{/k}$ be connected semisimple, where $k$ is algebraically closed of 
-characteristic zero. We have the adjoint representation 
-$\adjoint:G\to \GL(\fg)$, whose kernel is the finite group $\zentrum(G)$. Let 
-$T\subset G$ be a maximal torus. We have a direct sum decomposition 
-$\fg=\fg_0\oplus \bigoplus_{\alpha\in \roots(G,T)} \fg_\alpha$, where 
-\[
-  \roots(G,T)=\{\alpha\in \characters^\ast(T)\smallsetminus 0:\fg_\alpha\ne 0\} 
-\]
-is the set of \emph{roots} of $G$. We know that 
-$R=\roots(G,T)\subset \characters^\ast(T)_\dR$ is a reduced root system. 
-
-There is a bijection between the set of isomorphism classes of connected 
-semisimple groups of adjoint type (i.e., with $\zentrum(G)=1$) and 
-reduced root systems, via 
-$G\mapsto (\roots(G,T)\subset \characters^\ast(T)_\dR)$. 
-
-Recall that if $R\subset V$ is a root system, then there exists an inner 
-product $\langle \cdot,\cdot\rangle:V\times V\to \dR$ such that 
-$\langle s_\alpha v,s_\alpha w\rangle=\langle v,w\rangle$ for all 
-$v,w\in V$ and $\alpha\in R$. We require that for all 
-$\alpha,\beta\in R$, $s_\alpha(\beta)-\beta$ is an integer multiple of 
-$\alpha$. One can check that 
-\[
-  s_\alpha(v)=v - \frac{2\langle v,\alpha\rangle}{\langle\alpha,\alpha\rangle}\alpha .
-\]
-So we could require that 
-$n(\beta,\alpha)=\frac{2\langle v,\alpha\rangle}{\langle\alpha,\alpha\rangle}$ 
-be an integer for all $\alpha,\beta$. 
-
-\begin{example}[type $\typeB_2$]
-Draw from Bourbaki. 
-\end{example}
-
-For $\alpha,\beta\in R$, let $\phi$ be the angle between $\alpha,\beta$, 
-that is $\langle \alpha,\beta\rangle = |\alpha|\cdot |\beta| \cos\phi$. 
-One has $n(\beta,\alpha)=2\frac{|\beta|}{|\alpha|}\cos\phi\in \dZ$. This shows 
-that the possibilities for $\cos\phi$ are very limited. Even better, 
-$n(\alpha,\beta)n(\beta,\alpha)=4\cos^2\phi$ is an integer, hence a member of 
-$\{0,1,2,3,4\}$. 
-
-Suppose $\alpha,\beta$ are linearly independent, and that 
-$|\beta|\geqslant |\alpha|$. Then the possibilities are: 
-\begin{center}
-\begin{tabular}{c|c|c|c}
-  $n(\alpha,\beta)$ & $n(\beta,\alpha)$ & $\phi$ & $|\beta|/|\alpha|$ \\ \hline 
-  $0$  & $0$  & $\pi/2$  & ? \\
-  $1$  & $1$  & $\pi/3$  & $1$ \\
-  $-1$ & $-1$ & $2\pi/3$ & $1$ \\
-  $1$  & $2$  & $\pi/4$  & $\sqrt 2$ \\
-  $-1$ & $-2$ & $3\pi/4$ & $\sqrt 2$ \\
-  $1$  & $3$  & $\pi/6$  & $\sqrt 3$ \\
-  $-1$ & $-3$ & $5\pi/6$ & $\sqrt 3$
-\end{tabular}
-\end{center}
-
-We can use a (reduced) root system to define an even more combinatorial 
-object, the \emph{Dynkin diagram}. Let $R\subset V$ be a reduced root system. 
-Choose a base $S\subset R$. Recall $S$ is a basis of $V$, and every root 
-$\alpha\in R$ can be written as $\sum_{\alpha\in S} m_\alpha \alpha$ with 
-either all $m_\alpha\geqslant 0$ or all $m_\alpha\leqslant 0$. 
-We define a graph whose vertices are elements $s\in S$. Two elements 
-$\alpha,\beta\in S$ are connected by $n(\alpha,\beta)n(\beta,\alpha)$ edges. 
-Write $D=\dynkin(R)$ for the Dynkin diagram of $R$. It turns out that $D$ does 
-not depend on the choice of a base $S$. 
-
-\begin{example}[type $\typeA_2$]
-Here, we have $\dynkin(\typeA_2)=\bullet-\bullet$. 
-\end{example}
-
-\begin{example}[type $\typeB_2$]
-Here, $S=\{\alpha,\beta\}$ and $\phi=3\pi/4$. So 
-$\dynkin(\typeB_2)=(\alpha=\beta)$ ``two edges between $\alpha,\beta$.''
-\end{example}
-
-\begin{example}[type $\typeG_2$]
-Here, $\dynkin(\typeG_2)$ is $\bullet\equiv\bullet$, two vertices connected 
-by three lines. 
-\end{example}
-
-\begin{example}[type $\typeA_1\times \typeA_1$]
-The diagram $\dynkin(\typeA_1\times \typeA_1)$ is disconnected -- it just has 
-two points. 
-\end{example}
+It is possible to classify the Dynkin diagrams of irreducible reduced root 
+systems. 
 
 \begin{theorem}
-The possible connected components of Dynkin diagrams of roots systems are: 
-[plot all of these]
+Let $R$ be an irreducible reduced root system, $D=\dynkin(R)$. Then $D$ is a 
+unique one of: 
 \begin{itemize}
   \item $\typeA_n$ ($n\geqslant 1$)
   \item $\typeB_n$ ($n\geqslant 2$)
-  \item $\typeC_n$ 
+  \item $\typeC_n$ ($n\geqslant 3$)
   \item $\typeD_n$ ($n\geqslant 4$)
-  \item $\typeG_2$
+  \item $\typeE_6$, $\typeE_7$, $\typeE_8$
   \item $\typeF_4$
-  \item $\typeE_6$
-  \item $\typeE_7$
-  \item $\typeE_8$
+  \item $\typeG_2$
 \end{itemize}
 \end{theorem}
+\begin{proof}
+This is \cite[VI \S 4.2 th.3]{bourbaki-lie-alg-4-6}. 
+\end{proof}
 
-The operation ``take Dynkin diagram'' is a map from root systems to graphs. 
-The graph $\dynkin(R)$ is connected if and only if $R$ is irreducible. This 
-operation loses data. For example, if $R\subset V$ is a root system, we could 
-define a new root system 
-$R'=\{\frac{2\alpha}{\langle\alpha,\alpha\rangle}:\alpha\in R\}\subset V$. It 
-has the same graph as $R$, but may not be isomorphic, as can be seen by looking 
-at the number of long roots. 
+From the examples in \cite[Ch.23]{milne-iAG}, we see that we can obtain all 
+the infinite families of root systems from algebraic groups:
+\begin{center}
+\begin{tabular}{c|c}
+  group & root system \\ \hline
+  $\SL(n+1)$  & $\typeA_n$ \\
+  $\SO(2n+1)$ & $\typeB_n$ \\
+  $\Sp(2n)$   & $\typeC_n$ \\
+  $\SO(2n)$   & $\typeD_n$ 
+\end{tabular}
+\end{center}
 
-To make the ``real'' Dynkin diagram, retain a bit of extra information. 
-Namely, an arrow on any of the double edges. So in our definition of 
-$\dynkin(R)$, add to it: if $|\alpha|\ne |\beta|$, decorate the edges from 
-$\alpha$ to $\beta$ to say which of $|\alpha|$ and $|\beta|$ is larger. 
-Write $\dynkin(R)$ for this ``true'' Dynkin diagram. 
+Automorphisms of a reductive group will be classified by automorphisms of the 
+corresponding root system. So we will make use of the following table:
+\begin{center}
+\begin{tabular}{c|c}
+  root system                 & outer automorphisms \\ \hline
+  $\typeA_1$                  & $1$ \\
+  $\typeA_n$ ($n\geqslant 2$) & $\dZ/2$  \\
+  $\typeB_n$                  & $1$ \\
+  $\typeC_n$                  & $1$ \\
+  $\typeD_4$                  & $S_3$ \\
+  $\typeD_n$ ($n\geqslant 5$) & $\dZ/2$ \\
+  $\typeE_6$                  & $\dZ/2$ \\
+  $\typeE_7$, $\typeE_8$, $\typeF_4$, $\typeG_2$ & $1$
+\end{tabular}
+\end{center}
 
-The map $\dynkin(-)$ is a bijection between reduced root systems and Dynkin diagrams, 
-where a root system is irreducible iff the Dynkin diagram is connected. 
-
-\begin{example}
-Recall that $\typeA_n$ is 
-$\{e_i-e_j:i\ne j\}\subset V=\{x\in \dR^{n+1}:\sum x_i=0\}$. We can choose as a 
-base the set $\{\alpha_i=e_i-e_{i+1}:1\leqslant i\leqslant n\}$. One can check 
-that $n(\alpha_i,\alpha_{i+1})n(\alpha_{i+1},\alpha_i)=1$ for all $i$. 
-\[
-  \frac{2\langle \alpha_i,\alpha_{i+1}\rangle}{\langle\alpha_{i+1},\alpha_{i+1}\rangle} \frac{2\langle\alpha_{i+1},\alpha_i\rangle}{\langle\alpha_i,\alpha_i\rangle} = 1 .
-\]
-Thus $\dynkin(\typeA_n)$ is $\bullet-\bullet-\cdots-\bullet$. 
-\end{example}
-
-$\Sp(2n)=\typeC_n$
-
-$\SO(2n)=\typeD_n$
-
-$\SO(2n+1)=\typeB_n$
-
-If $R$ is a root system, you can look at $\automorphisms(R)/\weyl(R)$. It 
-turns out that $\automorphisms(R)/\weyl(R)=\automorphisms(\dynkin R)$, and that 
-this is related to automorphisms of the group. 
-
-One has $\automorphisms(\typeA_n)=\dZ/2$ if $n\geqslant 2$
-
-$\automorphisms(\typeB_n)=\automorphisms(\typeC_n)=1$. 
-
-$\automorphisms(\typeD_n)=\dZ/2$ if $n\geqslant 5$, and 
-$\automorphisms(\typeD_4)=S_3$. 
-
-$\automorphisms(\typeG_2,\typeF_4,\typeE_7,\typeE_8)=1$. Also, 
-$\automorphisms(\typeE_6)=\dZ/2$. 
 
 
 
