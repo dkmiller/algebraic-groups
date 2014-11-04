@@ -8,7 +8,7 @@
 
 
 
-\section{Reductive groups}
+\section{Semisimple groups}
 
 Let $k$ be an algebraically closed field of characteristic zero. Let 
 $G_{/k}$ be a reductive algebraic group. That is, $G$ is connected and 
@@ -463,7 +463,7 @@ The root datum $\roots(G,T)\subset V$ will recover $G/\zentrum(G)$.
 
 
 
-\begin{example}
+\begin{example}\label{eg:root-sln}
 We will work out the root datum of $\SL(n+1)$ for $n\geqslant 1$. We choose 
 the maximal torus 
 \begin{align*}
@@ -713,7 +713,17 @@ a root system. It is clearly reduced. The group $\weyl(\typeA_n)$ is generated
 by all linear transformations of the form ``swap $i$th and $j$th coordinates.'' 
 Thus we can identify $\weyl(\typeA_n)$ with the set of permutation matrices 
 in $\GL(V)$. Note that the standard inner product $\langle\cdot,\cdot\rangle$ 
-on $V$ is $W$-invariant. 
+on $V$ is $W$-invariant. The Dynkin diagram of $\typeA_n$ is 
+\[
+\begin{tikzcd}
+  \bullet \ar[r, dash] 
+    & \bullet \ar[r, dash] 
+    & \cdots \ar[r, dash] 
+    & \bullet \ar[r, dash] 
+    & \bullet
+\end{tikzcd}
+\qquad\text{($n$ vertices)} .
+\]
 \end{example}
 
 \begin{example}[type $\typeA_1\times \typeA_1$]
@@ -785,7 +795,7 @@ The Dynkin diagram $\dynkin(\typeB_2)$ is
 $\begin{tikzcd}\bullet \ar[r, Rightarrow] & \bullet \end{tikzcd}$. 
 \end{example}
 
-\begin{example}[type $\typeC_n$, $n\geqslant 2$]
+\begin{example}[type $\typeC_n$, $n\geqslant 2$]\label{eg:typeC}
 The ambient vector space is $V=\dR^n$, and the set of roots is 
 $\{\pm 2e_i\}\cup \{\pm e_i\pm e_j:i<j\}$. The Dynkin diagram is 
 \[
@@ -801,7 +811,7 @@ $\{\pm 2e_i\}\cup \{\pm e_i\pm e_j:i<j\}$. The Dynkin diagram is
 \]
 \end{example}
 
-\begin{example}[type $\typeD_n$, $n\geqslant 4$]
+\begin{example}[type $\typeD_n$, $n\geqslant 4$]\label{eg:typeD}
 The ambient vector space is $V=\dR^n$, and the set of roots is 
 $\{e_i\}\cup \{\pm e_i\pm e_j:i<j\}$. The Dynkin diagram is 
 \[
@@ -953,159 +963,192 @@ corresponding root system. So we will make use of the following table:
 \end{center}
 
 
-$\ast\ast\ast\ast$
 
-\begin{example}
-Let $k$ be an algebraically closed field of characteristic zero. We will 
-work with $G=\Sp(2n)_{/k}$. Recall that 
+
+
+\subsection{Orthogonal and symplectic groups}
+
+In \autoref{eg:root-sln}, we showed that the root system of $\SL(n+1)$ has type 
+$\typeA_n$. Here, we work out the root systems of $\Sp(2n)$ and $\SO(2n)$. Our 
+computations will work over any field $k$ of characteristic zero, so we will 
+tacitly exclude $k$ from the notation. 
+
+
+
+\begin{example}[Orthogonal]\label{eg:orthogonal-Dn}
+Write $1_n$ for the identity $n\times n$ matrix, and let 
+$J=\mat{}{1_n}{1_n}{}$. We define 
+\begin{align*}
+  \Or(2n) &= \{g\in \GL(2n):\transpose g J g=J\} \\
+  \SO(2n) &= \Or(2n)\cap \SL(2n) .
+\end{align*}
+This is not the same as our definition in \autoref{eg:1st-orthogonal}, in which 
+we used the pairing $\langle x,y\rangle = \sum x_i y_i$. The problem is, the 
+definition in that example does not give a split group, 
+i.e.~there is no split maximal torus. The basis  
 \[
-  \Sp(2n)(A) = \{g\in \GL_{2n}(A):\transpose g J g=J\} ,
+  \left\{\left(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\right),\left(\frac{1}{\sqrt{-2}},-\frac{1}{\sqrt{-2}}\right)\right\}
 \]
-where $J=\begin{pmatrix} & I \\ -I \end{pmatrix}$. One has 
+realizes an isomorphism between $\SO(2n)$ and 
+$\{g\in \SL(2n):\transpose g\cdot g=1\}$, but only after base change to the 
+field $\dQ(\sqrt{2},\sqrt{-2})$. 
+
+It is easy to verify that 
+\[
+  \so_{2n} = \left\{\begin{pmatrix} a & b \\ c & -\transpose a \end{pmatrix}:a,b,c\in \matrices_n\text{ and }\transpose b=-b,\transpose c=-c\right\} .
+\]
+For a tuple $\lambda=(\lambda_1,\dots,\lambda_n)\in \Gm^n$, write 
+\[
+  \diagonal^\ast(\lambda)=\diagonal(\lambda_1,\dots,\lambda_n,\lambda_1^{-1},\dots,\lambda_n^{-1}) .
+\]
+Let $T=\{\diagonal^\ast\lambda:\lambda\in \Gm^n\}$; since 
+$\zentrum_{\SO(2n)}(T)=T$, this is a maximal torus. Clearly 
+$\characters^\ast(T)=\bigoplus \dZ \chi_i$, where each character $\chi_i$ is 
+defined by $\chi_i(\diagonal^\ast(\lambda)) = \lambda_i$. 
+
+Let $\ft=\lie(T)$. For any $i,j$, let $e_{i,j}$ be the matrix with a $1$ in the 
+$(i,j)$ entry and $0$ elsewhere. For $t\in T$ and $x\in \so_{2n}$, we compute: 
+\[
+  \adjoint(t)(x) = 
+  \begin{cases}
+    x & \text{if $x\in \ft$} \\ 
+    (\chi_i-\chi_j)(t)\cdot x & \text{if $x = \mat{e_{ii}}{}{}{-e_{i i}}$ and $i\ne j$} \\
+    (\chi_i+\chi_j)(t)\cdot x & \text{if $x=\mat{}{e_{ij}-e_{ji}}{}{}$ and $i<j$} \\
+    (-\chi_i-\chi_j)(t)\cdot x & \text{if $x=\mat{}{}{e_{i j}-e_{j i}}{}$ and $i<j$}
+  \end{cases}
+\]
+Thus the set of roots is 
+$\{\pm \chi_i\pm \chi_j:i\ne j\}\subset \characters^\ast(T)_\dR$. This recovers 
+the root system $\typeD_n = \{\pm e_i\pm e_j:i\ne j\}\subset \dR^n$ of 
+\autoref{eg:typeD}. A basis of $\typeD_n$ is
+$\{e_1-e_2,\dots,e_{n-2}-e_{n-1},e_{n-1}-e_n,e_{n-1}+e_n\}$. 
+\end{example}
+
+
+\begin{example}[Symplectic]
+This time, let $J=\mat{}{1}{-1}{}$. Recall the definitions:
+\begin{align*}
+  \GSp(2n) &= \{g\in \GL(2n):\transpose g J g=J\} \\
+  \Sp(2n) &= \GSp(2n)\cap \SL(2n) .
+\end{align*}
+One can check that 
 \begin{align*}
   \fsp(2n)
     &= \lie(\Sp_{2n}) = \{x\in \gl(2n):\transpose x J + J\transpose x=0\} \\
     &= \left\{\begin{pmatrix} a & b \\ c & -\transpose a \end{pmatrix}:a,b,c\in \matrices_n\text{ and }\transpose b=b\right\} .
 \end{align*}
-The group $\Sp(2n)$ has a maximal torus 
+If we define $\diagonal^\ast$ as in \autoref{eg:orthogonal-Dn}, then the group 
+$\Sp(2n)$ has a maximal torus 
+$T = \{\diagonal^\ast(\lambda):\lambda\in \Gm^n\}$. The group 
+$\characters^\ast(T)$ has basis $\{\chi_1,\dots,\chi_n\}$, where 
+$\chi_i(\diagonal^\ast(\lambda))=\lambda_i$. Put $\ft=\lie(T)$. For 
+$t\in T$, $x\in \fsp_{2n}$, we have 
 \[
-  T = \{\diagonal(\lambda_1,\dots,\lambda_n,\lambda_1^{-1},\dots,\lambda_n^{-1}):\lambda_i\in \Gm\} .
+  \adjoint(t)(x) = 
+  \begin{cases}
+    x & \text{if $x\in \ft$} \\
+    (\chi_i-\chi_j)(t)\cdot x & \text{if $x=\mat{e_{ii}}{}{}{-e_{ii}}$ and $i\ne j$} \\
+    (\chi_i+\chi_j)(t)\dot x & \text{if $x=\mat{}{e_{i j}+e_{j i}}{}{}$ and $i\leqslant j$} \\
+    (-\chi_i-\chi_j)(t)\cdot x& \text{if $x=\mat{}{}{e_{i j}+e_{j i}}{}$ and $i\leqslant j$}
+  \end{cases}
 \]
-We write elements of $T$ as $\diagonal(\bm \lambda,\bm \lambda^{-1})$. Since 
-\[
-  \diagonal(\bm \lambda,\bm \lambda^{-1}) \begin{pmatrix} & I \\ -I \end{pmatrix} \diagonal(\bm\lambda,\bm \lambda^{-1}) = \diagonal(\bm\lambda,\bm\lambda^{-1})\begin{pmatrix} & \bm \lambda^{-1} \\ -\bm\lambda \end{pmatrix} = \begin{pmatrix} & 1 \\\ -1 \end{pmatrix} .
-\]
-To see that $T$ is maximal, note that $\zentrum_{\Sp(2n)}(T)=T$. 
-
-One has $\characters^\ast(T)=\dZ^n$, where a tuple $(e_1,\dots,e_n)$ corresponds 
-to the character 
-$\diagonal(\bm \lambda)\mapsto \lambda_1^{e_1}\dotsm \lambda_n^{e_n}$. Let 
-$\chi_i$ correspond to the tuple $(0,\dots,1,\dots,0)$, with a unique $1$ in 
-the $i$th spot. We want to decompose $\fsp_{2n}$ as a representation of $T$. 
-Let $E_{i j}$ be the $n\times n$ matrix with a $1$ in the $(i,j)$-entry and 
-zero elsewhere. We have 
-\[
-  \fsp_{2n} = \bigoplus_i k\cdot \begin{pmatrix} E_{i i} \\ & -E_{i i}\end{pmatrix} \oplus \bigoplus_{i\ne j} k\cdot \begin{pmatrix} E_{i j} \\ & -E_{j i} \end{pmatrix} \oplus \bigoplus_{i\leqslant j} k\cdot\begin{pmatrix} & E_{i j}+E_{j i} \\ ?\end{pmatrix} \oplus \bigoplus_{i\leqslant j} k\cdot\begin{pmatrix} \\ E_{i j}+E_{j i} \end{pmatrix}.
-\]
-For $t=\diagonal(\bm\lambda,\bm\lambda^{-1})\in T$, we have 
-\begin{align*}
-  \begin{pmatrix} \bm\lambda \\ & \bm\lambda^{-1} \end{pmatrix} \begin{pmatrix} E_{i j} \\ & -E_{j i} \end{pmatrix} \begin{pmatrix} \bm\lambda \\ & \bm\lambda^{-1}\end{pmatrix}^{-1} 
-    &= \begin{pmatrix} \bm\lambda E_{i j}\bm \lambda^{-1} \\ & -\bm\lambda^{-1} E_{j i} \bm \lambda\end{pmatrix} \\ 
-    &= \begin{pmatrix} \lambda_i \lambda_j^{-1} E_{i j} \\ & - \lambda_i\lambda_j^{-1} E_{j i} \end{pmatrix} \\
-    &= (\chi_i-\chi_j)(t)\cdot \begin{pmatrix} E_{i j} \\ & -E_{j i} \end{pmatrix}.
-\end{align*}
-In our massive direct sum decomposition of $\fsp_{2n}$, $T$ acts trivially 
-on the first bit, acts by $\chi_i-\chi_j$ on the second bit, by 
-$\chi_i+\chi_j$ on the third bit, and by $-\chi_i-\chi_j$ on the fourth bit. 
-The set or roots is 
+It follows that the set of roots is
 \[
   \{\pm \chi_i\pm \chi_j:i\ne j\}\cup\{\pm 2\chi_i\}\subset \characters^\ast(T) .
 \]
-Thus 
-\[
-  \typeC_n = \{\pm e_i\pm e_j:i\ne j\}\cup \{\pm 2 e_i\}\subset \dR^n .
-\]
-The base is 
-$\alpha_1=e_1-e_2,\dots,\alpha_{n-1} = e_{n-1}-e_n,\alpha_n=2 e_n$. 
-
-[move back to example including Dynkin diagram]
-
-[Distinguish between $\GSp(2n)$ and $\Sp(2n)$. 
+This recovers the root system
+$\typeC_n = \{\pm e_i\pm e_j:i\ne j\}\cup \{\pm 2 e_i\}\subset \dR^n$ of 
+\autoref{eg:typeC}. A base for $\typeC_n$ is
+$\{e_1-e_2,\dots,e_{n-1}-e_n,2 e_n\}$.
 \end{example}
+
+\begin{hard}
+Both $\SO(2n)$ and $\Sp(2n)$ are special cases of a more general construction 
+that starts with an arbitrary algebra with involution. We follow 
+\cite[VIII.21]{berhuy-2010}. Let $k$ be an arbitrary field of characteristic 
+not $2$. An \emph{algebra with involution} over $k$ is a (possibly 
+non-commutative) $k$-algebra $R$ together with an anti-involution 
+$\sigma:R\to R$. The main examples are $R=\matrices_{2n}(k)$ and 
+$\sigma(x) = \theta \transpose x \theta^{-1}$ for some invertible matrix 
+$\theta$, especially $\theta$ either $\mat{}{1_n}{1_n}{}$ or 
+$\mat{}{1_n}{-1_n}{}$. 
+
+Let $(R,\sigma)$ be an algebra with involution. The group of 
+\emph{similitudes} of $R$ is the functor $\Sim(R)$ from $k$-algebras to 
+groups, defined by 
+\[
+  \Sim(R,\sigma)(A) = \{r\in (R\otimes_k A)^\times:r\sigma(r)\in A^\times\} .
+\]
+Similarly, the group of \emph{isometries} of $R$ is the functor 
+\[
+  \Iso(R,\sigma)(A) =  \{r\in (R\otimes_k A)^\times:r\sigma(r)=1\} .
+\]
+Substituting in $\matrices_n(k)$ with an orthogonal or symplectic involution 
+recovers the special orthogonal and symplectic groups. 
+\end{hard}
+
+
+
+
+
+\subsection{Classification of split semisimple groups}
+
+Let $k$ be a field of characteristic zero. Recall that an algebraic group 
+$G_{/k}$ is said to be \emph{split} if there is a maximal torus $T\subset G$ 
+which is split. We will use our classification of root systems to classify 
+split semisimple groups over $k$. 
+
+\begin{definition}
+A homomorphism $f:G\to H$ of algebraic groups is an \emph{isogeny} if 
+\begin{enumerate}
+  \item $f$ is surjective, and 
+  \item $\ker(f)$ is finite. 
+\end{enumerate}
+\end{definition}
+
+In characteristic $p$, one has to be very careful, as a lot of nice properties 
+of isogenies fail to hold. For example, in characteristic zero $\ker(f)$ is a 
+finite normal subgroup of $G$, hence $G$ acts on $\ker(f)$ by conjugation. If 
+$G$ is connected, this action must be trivial, so $\ker(f)\subset \zentrum(G)$. 
+Thus, in characteristic zero, all isogenies are central. 
+
+\begin{definition}
+Two semisimple groups $G_{/k}$, $H_{/k}$ are \emph{isogenous} if there is a 
+semisimple group $J_{/k}$ with isogenies $J\epic G$, $J\epic H$. 
+\end{definition}
+
+It is not obvious, but ``being isogenous'' is an equivalence relation. 
+
+\begin{theorem}
+Let $k$ be an algebraically closed field of characteristic zero. Then 
+$G\mapsto \roots(G,T)$ induces a bijection between the set of isogeny classes 
+of connected semisimple groups and isomorphism classes of reduced root systems. 
+\end{theorem}
+\begin{proof}
+This follows from \cite[23.14-15]{milne-iAG}. 
+\end{proof}
+
+Unfortunately, we cannot substitute ``isomorphism'' for ``isogeny'' in the 
+statement of this theorem. 
 
 \begin{example}
-Let $J=\begin{pmatrix} & I \\ I \end{pmatrix}$, and let 
-\[
-  \Or(2n) = \{g\in \GL(2n):\transpose g J g=J\} .
-\]
-This differs slightly from our previous [where] definition of the orthogonal 
-group. For $A=2^{-1/2} \begin{pmatrix} I & I \\ - I & I \end{pmatrix}$, 
-one has $\transpose A\cdot A=J\}$, so conjugation by $A$ induces an isomorphism 
-between $\Or(2n)$ and $\{g\in \GL_{2n}:\transpose g\cdot g=1\}$. [This example 
-doesn't work.] One has 
-\[
-  \so_{2n} = \left\{\begin{pmatrix} a & b \\ c & -\transpose a \end{pmatrix}:a,b,c\in \matrices_n\text{ and }\transpose b=-b,\transpose c=-c\right\} .
-\]
-As before, the maximal torus consists of
-$\diagonal(\lambda_1,\dots,\lambda_n,\lambda_1^{-1},\dots,\lambda_n^{-1})$. 
-
-[bad board technique: copy from adjoint decomposition of $\Sp(2n)$. 
-\[
-  \so_{2n} = \bigoplus_i k\cdot \mat{E_{ii}}{}{}{-E_{ii}} \oplus \bigoplus_{i\ne j} k\cdot \mat{E_{i j}}{}{}{-E_{j i}}\oplus \bigoplus_{i<j} k\cdot \mat{}{E_{i j}-E_{j i}}{}{} \oplus \bigoplus_{i<j} \cdot \mat{}{}{E_{i j}-E_{j i}}{} .
-\]
-As before, choose $t=\diagonal(\bm\lambda,\bm\lambda^{-1})\in T$. On the 
-first bit, it acts trivially. On the second bit, it acts by 
-$\chi_i-\chi_j$, on the third bit $\chi_i+\chi_j$, and on the fourth bit
-$-\chi_i-\chi_j$. So our root system is 
-\[
-  \{\pm \chi_i\pm\chi_j:i\ne j\}\subset \characters^\ast(T)\otimes\dR .
-\]
-Thus we get 
-\[
-  \typeD_n = \{\pm e_i\pm e_j:i\ne j\}\subset \dR^n . 
-\]
-Our basis is $e_1-e_2,\dots,e_{n-2}-e_{n-1},e_{n-1}-e_n,e_{n-1}+e_n$. 
-
-[move back to example, include Dynkin diagram.]
+Work in characteristic zero, and let $\PGL(n)=\GL(n)/\zentrum(\GL(n))$. Then 
+$\PGL(n)$ and $\SL(n)$ have the same root systems. Moreover, the sequence 
+$1\to \dmu_n\to \SL(n)\to \PGL(n)\to 1$ is exact. So $\SL(n)$ and $\PGL(n)$ are 
+isogenous but one can check that they are not isomorphic. 
 \end{example}
 
-We are studying connected semisimple groups over an algebraically closed 
-field $k$ of characteristic zero. From each such group, we get a reduced root 
-system. We get a bijection 
-\[
-  \{\text{connected semisimple groups}\}/\text{isogenous} \iso \{\text{reduced root systems}\} /\simeq .
-\]
-Unfortunately, we can't just treat semisimple groups up to isomorphism. In 
-general, $G$ and $G/\zentrum(G)$ will have the same root system. For example, 
-$\SL(2)$ and $\PGL(2)$ have the same root systems, but one is a double cover of 
-the other. [clarification: $PSL$ vs.~$PGL$.]
-
-We can in turn classify reduced root systems via their Dynkin diagrams. 
-
-Recall that a homomorphism $f\colon G_1\to G_2$ of algebraic groups is an 
-\emph{isogeny} if $f$ is surjective with finite kernel. We will have 
-$\ker(f)\subset \zentrum(G_1)$ since $k$ has characteristic zero. Indeed, 
-$G$ acts on $\ker(f)$ via conjugation, and $\ker(f)$ is finite. Thus $G_1$ acts 
-trivially on $\ker(f)$, so $\ker(f)\subset \zentrum(G_1)$. This fails in 
-characteristic $p$: e.g.~$\dmu_p=\zentrum(\SL_p)$. In that setting, you have 
-to talk about \emph{central isogenies}. 
-
-How to define ``$G$ and $H$ are isogenous''? For the moment, $G$ and $H$ are 
-isogenous if they are isogenous to some other group. 
-
-\subsection{Adjoint and simply connected forms}
-
-If $G$ is a reductive group, put $G^\mathrm{ad}=G/\zentrum(G)$. Note that 
-$\zentrum(G^\mathrm{ad})=1$; groups satisfying $\zentrum(G)=1$ are said to be 
-\emph{of adjoint type}. If $G$ is of adjoint type, then there are no nontrivial 
-isogenies $G\epic H$. 
-It turns out that there is an isogeny 
-$G^\mathrm{sc}\epic G$ which is initial in the isogeny class of $G$. Namely, if 
-$H\epic G$ is any isogeny, then there is a unique isogeny $G^\mathrm{sc}\epic H$\ldots. 
-One calls $G^\mathrm{sc}$ the \emph{simply connected} form of $G$. 
-\[
-  G^\mathrm{sc}\epic G\epic G^\mathrm{ad} .
-\]
-We'd like to understand not just semisimple, but reductive groups, not just 
-up to isogeny, but up to isomorphism. 
-
-To do this, we'll need a finer invariant than the root system. Note that in our 
-construction of the root system $\roots(G,T)$, we ``forget'' the lattice 
-$\characters^\ast(T)$. The solution is: ``remember $\characters^\ast(T)$ and 
-$\characters_\ast(T)$.''
-
-Let $R\subset V$ be a root system. What can $X$ be? There are several possibilities. 
-One is $Q=\dZ\cdot R$, known as the \emph{root lattice}. Also one could have the 
-\emph{weight lattice} 
-\[
-  P=\{x\in V:\frac{2\langle x,\alpha\rangle}{\langle\alpha,\alpha\rangle}\in \dZ\text{ for all }\alpha\in R\} .
-\]
-We always have $Q\subset X\subset P$; all three groups are free abelian of the 
-same rank. The quotient $P/Q$ is finite. One writes 
-$\pi_1^\mathrm{al}(G)=P/X$; this is called the \emph{algebraic fundamental group} of 
-$G$. Since $P/Q$ is finite, there are only finitely many 
-possibilities for $X$. If $X=Q$, then $G$ is adjoint, and if $X=P$, then $G$ is 
-simply connected. 
+The way we have defined ``isogenous'' as a relation on semisimple groups, it is 
+not obvious that the relation is transitive. It turns out that the isogeny 
+class of $G$ contains two distinguished groups denoted $G^\mathrm{ad}$ and 
+$G^\mathrm{sc}$. The first, $G^\mathrm{ad}=G/\zentrum(G)$ is obviously 
+isogenous to $G$ via the quotient map $G\epic G^\mathrm{ad}$. By 
+\cite[21.38]{milne-iAG}, there is also an initial isogeny $G^\mathrm{sc}\to G$. 
+One calls $G^\mathrm{ad}$ the \emph{adjoint form} of $G$, and 
+$G^\mathrm{sc}$ the \emph{simply connected form} of $G$. They (tautologically) 
+fit into a sequence $G^\mathrm{sc}\epic G\epic G^\mathrm{ad}$ of isogenies. So 
+we could have said that two semisimple groups $G$ and $H$ are isogenous if and 
+only if $G^\mathrm{sc}\simeq H^\mathrm{sc}$. 
 
 
 
