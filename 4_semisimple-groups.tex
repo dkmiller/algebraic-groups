@@ -1025,7 +1025,7 @@ $\{e_1-e_2,\dots,e_{n-2}-e_{n-1},e_{n-1}-e_n,e_{n-1}+e_n\}$.
 \end{example}
 
 
-\begin{example}[Symplectic]
+\begin{example}[Symplectic]\label{eg:symplectic-root}
 This time, let $J=\mat{}{1}{-1}{}$. Recall the definitions:
 \begin{align*}
   \GSp(2n) &= \{g\in \GL(2n):\transpose g J g=J\} \\
@@ -1149,6 +1149,139 @@ $G^\mathrm{sc}$ the \emph{simply connected form} of $G$. They (tautologically)
 fit into a sequence $G^\mathrm{sc}\epic G\epic G^\mathrm{ad}$ of isogenies. So 
 we could have said that two semisimple groups $G$ and $H$ are isogenous if and 
 only if $G^\mathrm{sc}\simeq H^\mathrm{sc}$. 
+
+If we want to classify connected semisimple groups up to isomorphism, we need 
+a finer invariant than the root system, namely the \emph{root datum}. We'll 
+cover root data in more detail in \autoref{sec:root-data}. For now, all we 
+need is that a root datum can be given by a reduced root system $R\subset V$ 
+together with a group $Q(R)\subset X\subset P(R)$. Recall that if $R\subset V$, 
+we define 
+\begin{align*}
+  Q(R) &= \dZ\cdot R\subset V && \text{(root lattice)}\\
+  P(R) &= \left\{x\in V:\frac{2\langle x,\alpha\rangle}{\langle\alpha,\alpha\rangle}\in \dZ\text{ for all }\alpha\in R\right\} && \text{(weight lattice)} .
+\end{align*}
+The letter $P$ for ``weight lattice'' is possibly inspired by the French word 
+\emph{poid} for ``weight.''
+
+Let $G$ be a semisimple group, $T\subset G$ a maximal torus. Let 
+$R=\roots(G,T)\subset \characters^\ast(T)$. The inclusion 
+$R\subset \characters^\ast(T)_\dR$ is a root system. Put 
+$X=\characters^\ast(T)$; then $Q(R)\subset X\subset P(R)$. The quotient group 
+$P(R)/Q(R)$ is finite, so there are only finitely many possibilities for $X$. 
+
+The group $G$ is simply connected if and only if $X=P(R)$, and adjoint if and 
+only if $X=Q(R)$. We already know that each isogeny class has a unique simply 
+connected simply connected (resp.~adjoint) group. Intermediate quotients 
+$G^\mathrm{sc}\epic G\epic G^\mathrm{ad}$ will correspond to quotients of the 
+group $\pi_1^\mathrm{al}(G^\mathrm{ad})=P(R)/Q(R)$. 
+
+\begin{example}
+Start with $\Sp(2n)$. Let $T$ be as in \autoref{eg:symplectic-root}. Recall 
+that $\characters^\ast(T)$ has basis $\{\chi_1,\dots,\chi_n\}$, where 
+$\chi_i(\diagonal^\ast(\lambda))=\lambda_i$. We showed that the set of roots is 
+\[
+  \{\pm \chi_i\pm \chi_j:i\ne j\}\cup\{\pm 2\chi_i\}\subset \characters^\ast(T) .
+\]
+
+Now let $G=\Sp(2n)/\{\pm 1\}$; this contains a maximal torus $T/\{\pm 1\}$. 
+Note that $\characters^\ast(T/\pm 1)\monic \characters^\ast(T)$; the image 
+consists of those $\alpha\in \characters^\ast(T):\alpha(-1)=1\}$. This is 
+$\dZ\cdot R$, so $\Sp(2n)/\{\pm 1\}=\Sp(2n)^\mathrm{ad}$, as we already knew 
+from $\zentrum(\Sp_{2n})=\dmu_2$. It turns out that $\Sp(2n)$ is simply 
+connected. 
+\end{example}
+
+The following table is a complete list of the possible isomorphism classes of 
+almost simple algebraic groups over an algebraically closed field of 
+characteristic zero. Recall that an algebraic group is \emph{almost simple} if 
+its only normal proper subgroups are finite. 
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+  $R$ 
+    & $P/Q$ 
+    & $G^\mathrm{sc}$ 
+    & $G^\mathrm{ad}$ 
+    & groups in between \\ \hline
+  $\typeA_n$ ($n\geqslant 1$) 
+    & $\dZ/(n+1)$ 
+    & $\SL_{n+1}$ 
+    & $\SL_{n+1}/\dmu_{n+1}$ 
+    & $\SL_{n+1}/\dmu_d$, $d\mid n+1$ \\ 
+  $\typeB_n$ ($n\geqslant 2$) 
+    & $\dZ/2$ 
+    & $\Spin_{2n+1}$ 
+    & $\SO_{2n+1}$ \\
+  $\typeC_n$ ($n\geqslant 3$) 
+    & $\dZ/2$ 
+    & $\Sp_{2n}$ 
+    & $\Sp_{2n}/\dmu_2$ \\
+  $\typeD_n$ ($n$ odd) 
+    & $\dZ/4$ 
+    & $\Spin_{2n}$ 
+    & $\SO_{2n}/\dmu_2$ 
+    & $\SO_{2n}$ \\
+  $\typeD_n$ ($n$ even) 
+    & $\dZ/2\times \dZ/2$ 
+    & $\Spin_{2n}$ 
+    & $\SO_{2n}/\dmu_2$ 
+    & $\SO_{2n}$, $\HSpin_{2n}$ \\
+  $\typeG_2$ 
+    & $1$ 
+    & $\typeG_2$ 
+    & $\typeG_2$ \\
+  $\typeF_4$ 
+    & $1$ 
+    & $\typeF_4$ 
+    & $\typeF_4$ \\
+  $\typeE_6$ 
+    & $\dZ/3$ 
+    & $(\typeE_6)^\mathrm{sc}$ 
+    & $(\typeE_6)^\mathrm{ad}$  \\
+  $\typeE_7$ 
+    & $\dZ/2$ 
+    & $(\typeE_7)^\mathrm{sc}$ 
+    & $(\typeE_7)^\mathrm{ad}$ \\
+  $\typeE_8$ 
+    & $1$ 
+    & $\typeE_8$ 
+    & $\typeE_8$
+\end{tabular}
+\end{center}
+
+Let $G$ be a simply connected semisimple group over $k$. Then 
+$G\simeq \prod G_i$, where each $G_i$ is simply connected and almost 
+simple. Each of the $G_i$ will be one of: 
+\[
+  \SL(n+1), \Spin(n), \Sp(2n), \typeG_2,\typeF_4,(\typeE_6)^\mathrm{sc},(\typeE_7)^\mathrm{sc},\typeE_8 .
+\]
+Here, we call an algebraic group $G$ \emph{almost simple} if all closed 
+normal subgroups $N$ are either trivial (in the sense that $N=1$ or $N=G$) or 
+finite. 
+Similarly, if $G$ is an adjoint group, then $G\simeq \prod G_i$ in which 
+each $G_i$ is a simple adjoint group. 
+
+\begin{example}
+The group $G=\SL(2)\times \SL(2)$ has an (obvious) decomposition into almost 
+simple factors. We have $\zentrum(G)=\dmu_2\times \dmu_2$. So the quotients of 
+$G$ are: 
+\[
+  G, G/(\dmu_2\times 1), G/(1\times \dmu_2), G/\Delta(\dmu_2),G/(\dmu_2\times \dmu_2) .
+\]
+The group $\SL(2)\times (\SL(2)/\dmu_2)$ is neither adjoint nor simply 
+connected. Here $\Delta(\dmu_2)=\{(x,x):x\in \dmu_2\}$. The group 
+$G/\Delta(\dmu_2)$ does not have a product factorization. It is (obviously) a 
+quotient of $\SL(2)\times \SL(2)$, but is not directly isomorphic to any 
+$H_1\times H_2$ for positive-dimensional $H_i$. 
+\end{example}
+
+\begin{example}
+Let $A$ be a finite abelian group. We can write 
+$A=\dZ/d_1\oplus \cdots \oplus \dZ/d_n$. Then 
+$G_A=\SL(d_1)\times \cdots \times \SL(d_n)$ has $\zentrum(G_A)\simeq A$. So all 
+finite abelian groups arise as centers of semisimple algebraic groups. 
+\end{example}
+
 
 
 

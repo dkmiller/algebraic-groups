@@ -1,0 +1,72 @@
+% !TEX root = 6490.tex
+
+\section{Reductive groups}
+
+Let $k$ be an algebraically closed field of characteristic zero. Let 
+$G_{/k}$ be a reductive group, i.e.~$\urad G=1$. A good example is $\GL(n)$. 
+We could like to determine $G$ up to isomorphism via some combinatorial data. 
+Let $T\subset G$ be a maximal torus. Better, let $G_{/k}$ be a split reductive 
+group and $k$ arbitrary of characteristic zero. Let $X=\characters^\ast(T)$. 
+We have the adjoint representation $\adjoint:G\to \GL(\fg)$. Just as before, we 
+can write 
+\[
+  \fg = \fg_0\oplus \bigoplus_{\alpha\in R} \fg_\alpha ,
+\]
+where $\fg_\alpha=\{x\in \fg:t x=\alpha(t) x\text{ for all }t\}$ and 
+$R=\{\alpha\in X\smallsetminus 0:\fg_\alpha\ne 0\}$. 
+
+Note that $R\subset X_\dR$ need not be a root system, since $R$ may only span a 
+proper subspace of $X_\dR$. For example, if $G$ is itself a torus, then 
+$R=\varnothing$. However, $R\subset V\subset X_\dR$, where $V=\dR\cdot R$, is a 
+root system, and it determines the semisimple group $G/\rad G$ up to isogeny. 
+The datum ``$R\subset X$'' is not in general enough to determine $G$. 
+
+Let $\characters_\ast(T)=\hom(\Gm,T)$. There is a perfect pairing (composition) 
+$\characters^\ast(T)\times \characters_\ast(T)\to \dZ=\hom(\Gm,\Gm)$. Here 
+$\langle \alpha,\beta\rangle$ is the integer $n$ such that 
+$\alpha\circ\beta$ is $(-)^n$. From $G$ we'll construct a root datum, which 
+will be an ordered quadruple 
+$(\characters^\ast(T),\roots(G,T),\characters_\ast(T),\check\roots(G,T))$. 
+Before doing this, we'll define root data in general. 
+
+
+
+
+
+\subsection{Root data}\label{sec:root-data}
+
+The following definitions are from \cite[XXI]{sga3-iii}. A \emph{dual pair} 
+is an ordered pair $(X,\check X)$, where $X$ and $\check X$ are finitely 
+generated free abelian groups, together with a pairing 
+$\langle\cdot,\cdot\rangle:X\times \check X\to \dZ$ that induces an isomorphism 
+$\check X\simeq X^\vee=\hom(X,\dZ)$. Let $(X,\check X)$ be a dual pair, and 
+suppose we have two elements $\alpha\in X$, $\check\alpha\in \check X$. Define 
+the \emph{reflections} $s_\alpha$ and $s_{\check\alpha}$ by 
+\begin{align*}
+  s_\alpha(x) &= x-\langle x,\check\alpha\rangle\alpha \\
+  s_{\check\alpha}(x) &= x-\langle\alpha,x\rangle\check\alpha .
+\end{align*}
+
+\begin{definition}
+A \emph{root datum} consists of an ordered quadruple $(X,R,\check X,\check R)$ , 
+such that 
+\begin{itemize}
+  \item $(X,\check X)$ is a dual pair. 
+  \item $R\subset X$ and $\check R\subset \check X$ are finite sets, 
+  \item There is a specified mapping $\alpha\mapsto \check\alpha$ from $R$ to 
+    $\check R$. 
+\end{itemize}
+These data are required to satisfy the following conditions:
+\begin{enumerate}
+  \item For each $\alpha\in R$, $\langle\alpha,\check\alpha\rangle=2$. 
+  \item For each $\alpha\in R$, $s_\alpha(R)\subset R$ and 
+    $s_{\check\alpha}\subset \check R$. 
+\end{enumerate}
+\end{definition}
+
+It turns out that $\alpha\mapsto \check\alpha$ is a bijection, and that 
+$R$ and $\check R$ are closed under negation. 
+
+
+
+
