@@ -87,6 +87,32 @@ Let $\sR=(X,R,\check X,\check R)$ be a root datum. We say $\sR$ is
 $R$ are $\pm \alpha$. 
 \end{definition}
 
+Just as with root systems, there is a notion of a base for root data. If 
+$N\subset \dQ$ and $S\subset X$, we write $N\cdot S$ for the subset of 
+$X_\dQ$ generated as a monoid by $\{n s:(n,s)\in N\times S\}$. We 
+call a root $\alpha\in R$ \emph{indivisible} if there does not exist any 
+$\beta\in R$ for which $\alpha= n \beta$ for some $n>1$, 
+i.e.~$\dQ^+\cdot\alpha\cap R=\{\alpha\}$.
+
+\begin{definition}
+Let $\sR=(X,R,\check X,\check R)$ be a root system. A subset $\Delta\subset R$ 
+is a \emph{base} if it satisfies any of the following conditions (reproduced 
+from \cite[XXI 3.1.5]{sga3-iii}):
+\begin{enumerate}
+  \item All $\alpha\in \Delta$ are indivisible, and 
+    $R\subset \dQ^+\cdot\Delta\cup \dQ^-\cdot\Delta$. 
+  \item The set $\Delta$ is linearly independent, and 
+    $R\subset \dN\cdot \Delta\cup \dZ^-\cdot\Delta$. 
+  \item Each $\alpha\in R$ can be written uniquely as 
+    $\sum_{\beta\in R} m_\beta \beta$, where all $m_\beta\in \dZ$ and have the 
+    same sign. 
+\end{enumerate}
+\end{definition}
+
+If $\Delta\subset R$ is a base, write $R^+=\dN\cdot \Delta$ for the set of 
+\emph{positive roots} and $R^-=\dZ^-\cdot\Delta$ for the set of \emph{negative 
+roots}. One has $R=R^+\sqcup R^-$, and $R^-=-R^+$. 
+
 Write $\rootdata$ for the category of root data. There is a contravariant 
 functor $\check\cdot:\rootdata\to \rootdata$ which sends a root datum 
 $\sR=(X,R,\check X,\check R)$ to $\check\sR=(\check X,\check R,X,R)$. This is 
@@ -98,8 +124,8 @@ root datum is $\sR(G,T)^\vee$.
 We'll write $\rootdata^\mathrm{red}$ for the category of reduced root data. 
 
 \begin{example}
-Let $R\subset V$ be a root system. As in [?], we have lattices 
-$Q(R)\subset V(R)\subset V$. Choose a $W$-invariant inner product 
+Let $R\subset V$ be a root system. As in \autoref{sec:semisimple-classify}, we 
+have lattices $Q(R)\subset V(R)\subset V$. Choose a $W$-invariant inner product 
 $\langle\cdot,\cdot\rangle$ on $V$. Given $Q\subset X\subset P$, we can 
 define a root datum as follows:
 \begin{align*}
@@ -108,14 +134,17 @@ define a root datum as follows:
   \check X &= \{v\in V:\langle \alpha,v\rangle\in \dZ\text{ for all }\alpha\in R\} \\
   \check R &= \left\{\frac{2\alpha}{\langle \alpha,\alpha\rangle}:\alpha\in R\right\} .
 \end{align*}
-By [?], this is a root datum. 
+It is easy to check that this satisfies the required properties. 
 \end{example}
 
+For a classification of ``reduced simply connected root systems,'' see 
+\cite[XXI 7.4.6]{sga3-iii}. 
 
 
 
 
-\subsection{Root datum of a reductive group}
+
+\subsection{Classification of reductive groups}
 
 Let $k$ be a field of characteristic zero, $G_{/k}$ a (connected) split 
 reductive group. Let $T\subset G$ be a split maximal torus. The \emph{rank} of 
@@ -219,26 +248,79 @@ the group $G_\alpha/T_\alpha$ is semisimple, and has one-dimensional maximal
 torus. Its Dynkin diagram has type $\typeA_1$, so $G_\alpha/T_\alpha$ is either 
 $\SL(2)$ or $\PGL(2)$. 
 
-[define ``category of split reductive groups up to inner automorphism.'']
-Let $\mathsf{RedGp}_k^\mathrm{spl,inn}$ be the category whose objects are split 
-reductive groups $G_{/k}$, and for which $\hom(G,H)$ is the set of 
-equivalence classes of morphisms $f:G\to H$, two morphisms being equivalent if 
-they differ by an inner automorphism. 
+\begin{definition}
+Let $k$ be a field, $G_{/k}$ a split reductive group. A \emph{pinning} of $G$ 
+consists of the following data:
+\begin{enumerate}
+  \item A maximal torus $T\subset G$. 
+  \item An isomorphism $T\iso \diag(M)$ for some free abelian group $M$. 
+  \item A base $\Delta\subset \roots(G,T)$. 
+  \item For each $\alpha\in \Delta$, a non-zero element 
+    $X_\alpha\in \fg_\alpha$. 
+\end{enumerate}
+\end{definition}
 
-\begin{theorem}
+If $G_1,G_2$ are pinned reductive groups, a morphism $f:G_1\to G_2$ is said to 
+be \emph{compatible with the pinnings} if $f(T_1)=f(T_2)$, $f$ induces a 
+bijection (written $f_\ast$) $R_1\iso R_2$, and such that 
+\[
+  f(u_\alpha(X_{1,\alpha})) = u_{f_\ast\alpha}(X_{2,f_\ast\alpha}) .
+\]
+
+Let $\reductivegroups_{/k}^\mathrm{pinn}$ be the category of split reductive 
+groups over $k$ with pinnings. We can define a pinning of a root system 
+$\sR=(X,R,\check X,\check R)$ to be the choice of a base $\Delta\subset R$. Let 
+$\rootdata^\mathrm{red,pinn}$ be the category of pinned reduced root data. The 
+following combines the ``existence and uniqueness theorems'' in the 
+classification of reductive groups. 
+
+\begin{theorem}\label{thm:reductive-classification}
 The operation $G\mapsto \sR(G,T)$ induces an equivalence of categories 
 \[
-  \mathsf{RedGp}_k^\mathrm{spl,inn}\iso \rootdata^\mathrm{red} .
+  \reductivegroups_{/k}^\mathrm{pinn}\iso \rootdata^\mathrm{red,pinn} .
 \]
 \end{theorem}
+\begin{proof}
+See \cite[XXIII 4.1]{sga3-iii} for a proof that $\sR$ is fully faithful, 
+\cite[XXV 2]{sga3-iii} for a proof of essential surjectivity. 
+\end{proof}
 
-[define pinning\ldots]
 
 
 
 
+\subsection{Chevalley-Demazure group schemes}
 
-\subsection{Some explicit constructions}
+In \autoref{thm:reductive-classification}, we classified split reductive 
+groups over an arbitrary field. It turns out that the classification works over 
+an arbitrary (non-empty) base scheme. More precisely, let $S$ be a scheme, 
+$G_{/S}$ a smooth affine group scheme of finite type. We say $G$ is 
+\emph{reductive} if each geometric fiber $G_{\bar s}$ is reductive. A 
+\emph{maximal torus} in $G$ is a subgroup scheme $T\subset G$ of multiplicative 
+type such that for all $s\in S$, the geometric fiber 
+$T_{\bar s}\subset G_{\bar s}$ is a maximal torus. We say $G$ is \emph{split} 
+if there exists an abelian group $M$ with an embedding 
+$\diag(M)_{/S}\monic G$ whose image is a maximal torus. Just as before, there 
+is a decomposition $\fg=\ft\oplus \bigoplus \fg_\alpha$, except now $\fg$ (and 
+the $\fg_\alpha$) is a locally free sheaf on $S$. Given the obvious notion of 
+``pinned reductive group over $S$,'' the classification result in 
+\autoref{thm:reductive-classification} actually gives an equivalence of 
+categories 
+\[
+  \reductivegroups_{/S}^\mathrm{pinn} \iso \rootdata^\mathrm{red,pinn} .
+\]
+In particular, for each reduced root datum $\sR$, there is a reductive group 
+scheme $G_{\sR/\dZ}$ with root datum $\sR$, such that for any scheme $S$, the 
+unique (up to isomorphism) reductive group scheme with root datum $\sR$ is the 
+base-change $G_{\sR/S} = (G_{\sR/\dZ})_S$. In particular, if $k$ is a field, 
+the unique split reductive $k$-group with root datum $\sR$ is 
+$G_{\sR/k}$. One calls $G_{\sR/\dZ}$ the \emph{Chevalley-Demazure group scheme 
+of type $\sR$}. 
+
+We will outline a construction of $G_{\sR/\dZ}$ if $\sR$ is the adjoint 
+form or a root system of type $\typeA_n$, $\typeD_n$, or $\typeE_n$. (These 
+are the so-called \emph{simply-laced} root systems, given this name because 
+their Dynkin diagrams have no multiple edges.)
 
 Let $G_{/k}$ be a split reductive group, $T\subset G$ a maximal torus. For 
 $\fg=\lie(G)$, $\ft=\lie(T)$, we have a canonical decomposition 
@@ -300,15 +382,6 @@ We claim that $[\cdot,\cdot]$ as defined above extends to a Lie bracket on
 $\fg$. 
 
 [wait for full construction of $G$]
-
-
-
-
-
-\subsection{Chevalley groups}
-
-[Kostant forms\ldots find some sources for Chevalley-Demazure groups over 
-$\spectrum(\dZ)$.]
 
 
 
