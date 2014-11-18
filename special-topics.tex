@@ -1,0 +1,61 @@
+% !TEX root = 6490.tex
+
+\section{Special topics}
+
+
+
+
+
+\subsection[Borel-Weil theorem]{Borel-Weil theorem\footnote{Balazs Elek}}
+
+Let $G=\GL_n(\dC)$, with the standard Borel and torus $(B,T)$. Let $V$ be an 
+irreducible representation of $G$. So we have a homomorphism $G\to \GL(V)$, 
+and thus an action of $B$ on $\dP(V)$. Since $B$ is solvable and $\dP(V)$ is 
+projective (hence proper), there is a fixed point $[v]$. In other words, 
+$b\cdot[v]=[v]$, which just means $b\cdot v=\lambda(v) v$ for all $b\in B$. 
+In other words, there is a character $\lambda:B\to \Gm$ such that 
+$\lambda$ is a suprepresentation of $V$. Since 
+$\characters^\ast(B)=\characters^\ast(T)$, we will say that some 
+$\lambda\in \characters^\ast(T)$ appears in $V$. The $\lambda$ so appearing 
+is called the \emph{highest weight} of $V$. 
+
+Fact. Irreducible representations of $G$ are in bijection with the 
+dominant weights of $G$. 
+
+Note that irreducible representations of $T$ are all just characters. If 
+$\chi\in \characters^\ast(G)$, write $\dC_\chi$ for $\dC$ with $T$-action 
+by $\chi$. Suppose we started with a dominant weight $\lambda$. Define 
+\[
+  L_\lambda = (G\times \dC_\lambda)/((g,v)\sim (g b,b^{-1}\cdot v) .
+\]
+This is a bundle on the flag manifold $G/B$. The fibers are lines. So 
+$L_\lambda$ is a line bundle on the flag manifold. We extend the 
+representation $\lambda:T\to \Gm$ to $B$ via $\lambda(t b)=\lambda(t)$. 
+[Levi decomposition\ldots do for general parabolic?] 
+
+Theorem. (Borel-Weil). For $\lambda$ anti-dominant, 
+$\h^0(G/B,L_\lambda)$ is the irreducible $G$-representation with highest 
+weight $w_0(\lambda)$. Here $w_0$ is the order-reversing permutation. 
+
+Bruhat decomposition: 
+\[
+  \GL_n = \bigcup_{w\in S_n} B w B .
+\]
+[Generally, $G(k)=\bigcup_{w\in W} B\dot w B$.]
+
+You prove the Borel-Weil theorem using the Bruhat decomposition. Think about 
+$s\in \h^0(U,L_\lambda)$, where $U\subset G/B$ is open. One has 
+$s(g B/B)=(g B/B,\tilde s(g))$, where $\tilde s\in \sO(p^{-1}(U))$ is such 
+that $\tilde s(g\cdot b) = \lambda(b) \tilde s(g)$. There is a unique open 
+cell $B \dot w_0 B$. You can use $B \dot w_0 B\subset G/B$ as the open set 
+and compute\ldots arrive at $\tilde s$ is determined by its value at 
+$w_0$. 
+\[
+  t\cdot \tilde s(w_0)=\tilde s(t^{-1} w_0) = \tilde s(w_0 w_0^{-1} t w_0) = \lambda(w_0^{-1} t w_0) \tilde s(w_0) = (w_0\cdot \lambda)(t)\tilde s(w_0) .
+\]
+
+
+
+
+\subsection{Tannakian categories}
+
