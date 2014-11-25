@@ -524,256 +524,344 @@ $\SL(2)\times \SL(2)\epic \SO(4)$.
 
 
 
-\subsection[Constructing the exceptional groups]
-{Constructing the exceptional groups\footnote{Gautam Gopal}}
+\subsection[Constructing some exceptional groups]
+{Constructing some exceptional groups\footnote{Gautam Gopal}}
 
-Use \cite{springer-veldkamp-2000} as a reference. 
-
-Let $k=\bar k$ be a field of characteristic zero. ($\ne 2,3$). 
-
-Let $V$ be a vector space. Let $B:V\times V\to k$ be a symmetric bilinear form. 
-We get a quadratic form $Q:V\to k$ defined by $v\mapsto B(v,v)$. THis is a bijection: 
-if we started with $Q$ we could define 
+We roughly follow \cite{springer-veldkamp-2000}. Let $k$ be a field of 
+characteristic not $2$ or $3$. Recall that if $V$ is a $k$-vector space and 
+$\langle\cdot,\cdot\rangle:V\times V\to k$ is a symmetric bilinear form, we can 
+define a quadratic form $q:V\to k$ by $q(v)=\langle v,v\rangle$. This 
+correspondence is bijective; we can go backwards via the familiar identity 
 \[
-  B(v,w) = \frac 1 2 (Q(v+w)-Q(v)-Q(w)) .
+  \langle u,v\rangle = \frac 1 2 (q(u+v)-q(u)-q(v)) .
 \]
 
-Definition. $C$ is a \emph{composition algebra} if $C$ is a not-necessarily 
-associative algebra with identity element $e$, together with a non-degenerate 
-quadratic form $Q$ that is multiplicative ($Q(xy)=Q(x)Q(y)$). 
+\begin{definition}
+A \emph{composition algebra} is a pair $(C,q)$, where $C$ is a unital, 
+not-necessarily associative $k$-algebra and $q$ is a multiplicative 
+non-degenerate quadratic on $C$.
+\end{definition}
 
-Any composition algebra comes with a canonical involution. This is a map 
-$C\to C$ written $x\mapsto \bar x$, defined by 
-$\bar x=\langle x,e\rangle-x$. 
+In other words, we require $q(x y)=q(x)q(y)$ for all $x,y\in C$. Since by 
+\cite[1.2.4]{springer-veldkamp-2000}, $q$ is determined by the multiplicative 
+strucure of $C$, we will just refer to ``a composition algebra $C$.'' Write $e$ 
+for the unit of $C$. Every composition algebra comes with a natural involution 
+$x\mapsto \bar x$, defined by $\bar x=\langle x,e\rangle-x$. 
 
-Theorem. Let $C$ be a composition algebra. Then $\dim(C)\in \{1,2,4,8\}$. 
+\begin{theorem}
+Let $C$ be a composition algebra. Then $\dim(C)\in \{1,2,4,8\}$. 
+\end{theorem}
+\begin{proof}
+This is \cite[1.6.2]{springer-veldkamp-2000}. 
+\end{proof}
 
-[This is true over any field with characteristic $\ne 2,3$.]
-
-An $8$-dimensional composition algebra is called an \emph{octonian 
-algebra}. 
-
-Theorem. 
-Let $C$ be an octonian algebra. Then $\automorphisms(C)$ is a connected 
-algebraic group of type $\typeG_2$. [automorphisms here are 
-norm-preserving $k$-algebra maps.]
-
-For $\gamma_1,\gamma_2,\gamma_3\in k^\times$, let 
+We call an $8$-dimensional composition algebra an \emph{octobian algebra}. 
+If $C$ is an octonian $k$-algebra, we define an algebraic group 
+$\automorphisms(C)$ by putting 
 \[
-  \Gamma = \begin{pmatrix} \gamma^1 \\ & \gamma_2 \\ & & \gamma_3 \end{pmatrix} .
+  \automorphisms(C)(A) = \{g\in \GL(C\otimes A):g\text{ is a morphism of normed $A$-algebras}\} ,
 \]
-Let $H_3(C,\Gamma)$ be the set 
+for all (commutative, unital) $k$-algebras $A$. There is an obvious embedding 
+$\automorphisms(C)\monic \Or(C,q)$. 
+
+\begin{theorem}
+Let $C$ be an octonian $k$-algebra. Then $\automorphisms(C)$ is a connected 
+algebraic group of type $\typeG_2$. 
+\end{theorem}
+\begin{proof}
+We mean that after base-change to an algebraic closure of $k$, 
+$\automorphisms(C)$ becomes isomorphic to $\typeG_2$. This is 
+\cite[2.3.5]{springer-veldkamp-2000}.
+\end{proof}
+
+If $C$ is a composition algebra and 
+$\gamma=(\gamma_1,\gamma_2,\gamma_3)\in (k^\times)^3$, we define a new algebra 
+$H_{C,\gamma}$ to be as a set the collection of matrices 
 \[
-  \left\{\begin{pmatrix} z_1 & c_3 & \gamma_1^{-1} \gamma_2 \bar c_2 \\ \gamma_2^{-1} \gamma_1 \bar c_2 & z_2 & c_1 \\ c_2 & \gamma_3^{-1} \gamma_2 \bar c_1 & z_3 \end{pmatrix}:z_i\in k\text{ and }c_i\in C\right\} .
+  \begin{pmatrix} 
+    z_1 & c_3 & \gamma_1^{-1} \gamma_3 \bar c_2 \\ 
+    \gamma_2^{-1} \gamma_1 \bar c_3 & z_2 & c_1 \\ 
+    c_2 & \gamma_3^{-1} \gamma_2 \bar c_1 & z_3 \end{pmatrix} \qquad c_i\in k^\times\text{ and }z_i\in k .
 \]
-One can check that 
+Give $H_{C,\gamma}$ the product $x y = \frac 1 2 (x\cdot y+y\cdot x)$ and 
+quadratic form $q(x)=\frac 1 2 \trace(x^2)$. 
+
+\begin{definition}
+An \emph{Albert algebra} is a commutative, non-unital, associative $k$-algebra 
+$A$ such that $A\otimes \bar k$ is isomorphic to a $\bar k$-algebra of the form 
+$H_{C,\gamma}$ for some octobian algebra $C$ and $\gamma\in \bar k^\times$. 
+\end{definition}
+
+If $A$ is an Albert algebra, we can define an algebraic group 
+$\automorphisms(A)$ just as above. 
+
+\begin{theorem}
+If $A$ is an Albert algebra, then $\automorphisms(A)$ is a connected simple 
+algebraic group of type $\typeF_4$. 
+\end{theorem}
+\begin{proof}
+Put $G=\automorphisms(A)$. 
+Call an element $u\in A$ \emph{idempotent} if $u2=u$. It turns out that if $u$ 
+is idempotent, then either $u\in \{0,e\}$, or $q(u)\in \{1/2,1\}$. Call the 
+idempotents with $q(u)=1/2$ \emph{primitive}. Let $V\subset A$ be the set of 
+primitive idempotents; this is naturally a variety over $k$. It turns out that 
+$V$ is $16$-dimensional closed and irreducible and has a transitive $G$-action. 
+For some $v\in V$, the group $G_v=\stabilizer_G(v)$ is the spin group of a 
+nine-dimensional quadratic form, so $\dim(G_v)=36$. It follows 
+that $\dim(G)=16+36=52$. Since $G_v$ and $V$ are irreducible, $G$ is connected. 
+From the action of $G$ on $e^\bot\subset A$, we see that $G$ is semisimple 
+algebraic. The only $52$-dimensional semisimple algebraic group over an 
+algebraically closed field is $\typeF_4$. For a more careful proof, see 
+\cite[7.2.1]{springer-veldkamp-2000}. 
+\end{proof}
+
+It turns out that any group of type $\typeF_4$ can be obtained as 
+$\automorphisms(A)$ for some Albert algebra $A$. Consider the cubic form 
 \[
-  H_3(C,\Gamma) = \{X\in M_3(C):X=\gamma^{-1} \transpose{\bar X} \Gamma\} .
+  \det(x) = z_1 z_2 z_3-\gamma_3^{-1} \gamma_2 z_1 q(c_1) - \gamma_2^{-1} \gamma_3 z_2 q(c_2) - \gamma_2^{-1} \gamma_1 z_3 q(c_3)+\langle c_1 c_2,\bar c_3\rangle .
 \]
-Put $A=H_3(C,\Gamma)$; this is called a reduced Albert algebra. 
-Put $Q(X)=\frac 1 2 \trace(X^2)$. 
+Let $\GL(A,\det)$ be the subgroup of $\GL(A)$ consisting of those linear 
+maps which preserve $\det$. 
 
-Def. $A$ is an \emph{Albert algebra} if $A\otimes_k L\simeq H_3(C,\Gamma)$ for some 
-extension $L/k$. 
+\begin{theorem}
+Let $A$ be an Albert algebra. Then $\GL(A,\det)$ is a connected simple 
+algebraic group of type $\typeE_6$. 
+\end{theorem}
+\begin{proof}
+This is \cite[7.3.2]{springer-veldkamp-2000}. 
+\end{proof}
 
-There is a cubic form 
+Unlike the case with groups of type $\typeF_4$, not all groups of type 
+$\typeE_6$ can be obtained this way. 
+
+
+
+
+
+\subsection[Spin groups]{Spin groups\footnote{Benjamin ?}}
+
+The motivation for spin groups is as follows. Recall that up to isogeny, the 
+simple algebraic groups are $\SL(n)$, $\Sp(2n)$, $\SO(n)$, or one of the 
+exceptional groups. Recall that each isogeny class has two distinguished 
+elements, the simply connected and adjoint. For $\SO(n)$, we should expect 
+there to be a simply connected group $\Spin(n)=(\typeD_n)^\mathrm{sc}$, which 
+is a double cover of $\SO(n)$. 
+
+Work over a field $k$ of characteristic not $2$. Let $V$ be a $k$-vector space, 
+$q$ a quadratic form on $V$. The \emph{Clifford algebra} $\clifford(V,q)$ is 
+the quotient of the tensor algebra $T(V)$ by the ideal generated by 
+$\{v\otimes v-q(v):v\in V\}$. There is an obvious injection 
+$V\monic \clifford(V,q)$, and $k$-linear maps $f:V\to A$ into associative 
+$k$-algebras lift to $\tilde f:\clifford(V,q)\to A$ if and only if 
+$f(v) f(v)=q(v)$ for all $v\in V$. This univeral property clearly 
+characterizes $\clifford(V,q)$. For brevity, write 
+$\clifford(V)=\clifford(V,q)$. 
+
+\begin{example}
+Let $V=\dR^4$, $q$ be the indefinite form of signature $(3,1)$, 
+i.e.~$q(v)=-v_1^2+v_2^2+v3^2+v_4^2$. We write $\clifford_{(1,3)}(\dR)$ for 
+the Clifford algebra $\clifford(V,q)$; it has presentation 
 \[
-  \det(x) = z_1 z_2 z_3-\gamma_3^{-1} \gamma_2 z_1 Q(c_1) - \gamma_2^{-1} \gamma_3 z_2 Q(c_2) - \gamma_2^{-1} \gamma_1 z_3 Q(c_3)+\langle c_1 c_2,\bar c_3\rangle .
+  \clifford_{(1,3)}(\dR) = \dR\langle e_1,e_2,e_3,e_4\rangle / (e_1^2=-1, e_2^2=e_3^2=e_4^2=1) .
 \]
-This can be used in defining $\typeE_6$. 
+This is used in the Dirac equation, which unifies special relativity and 
+quantum mechanics. 
+\end{example}
 
-Def. $u\in A$ is called idempotent if $u^2=u$. 
+There is a clear action $\Or(V,q)\to \automorphisms \clifford(V)$. In 
+particular, the involution $\alpha(v)=-v$ induces an involution (also denoted 
+$\alpha$) of $\clifford(V)$. This induces a grading 
+$\clifford(V)=\clifford^0(V)\oplus \clifford^1(V)$, where 
+\begin{align*}
+  \clifford^0(V) &= \{x\in\clifford(V):\alpha(x)=x\} \\
+  \clifford^1(V) &= \{x\in \clifford(V):\alpha(x)=-x\} .
+\end{align*}
 
-Lemma. If $u$ is an idempotent, then $Q(u)=1/2$ or $Q(u)=1$ if $u\ne 0,e$. 
+We define some algebraic groups via their functors of points: 
+\begin{align*}
+  \Pin(V,q)(A) &= \{g\in \clifford(V,q)_A:q(g)\in \dmu_2(A)\} \\
+  \Spin(V,q) &= \Pin(V,q)\cap \clifford^0(V) .
+\end{align*}
+There is a ``twisted adjoint map'' $\tilde\adjoint:\Pin(V,q)\to \Or(V,q)$, 
+given by $\tilde\adjoint(g)(v) = \alpha(g) v g^{-1}$. 
 
-If $u$ is an idempotent such that $Q(u)=1/2$, we call $u$ a primitive 
-idempotent. 
-
-Thm. If $A$ is an Albert algebra, then $G=\automorphisms(A)$ is a connected 
-simple algebraic group of type $\typeF_4$. 
-
-Idea of proof. 
-Let $V$ be the set of primitive idempotents. $V$ is a closed irreducible variety 
-on which $G$ acts transitively. 
-
-$\dim(V)=16$. Pick $u\in V$, then $G_u=\stabilizer_G(u)$ is a spin group of 
-a nine-dimensional quadratic form. THus 
-$\dim(G_u)=36$. Thus 
-$\dim(G)=16+36=52$. So at least $G$ has the right dimension. Since 
-$G_u$ and $V$ are irreducible, $G$ is connected. The only possible 
-semisimple group with dimension $52$ is $\typeF_4$. 
-
-Let $W=e^\bot$ inside our Albert algebra $A$. Then $G$ acts on $W$. 
-From this action, we get that $G$ is semisimple algebraic. 
-
-[It turns out that any group of type $\typeF_4$ is obtained in this way.] 
-In other words, $\h^1(k,\typeF_4)$ is the set of isomorphism classes of Albert 
-algebras over $k$?
-
-Similarly, $\h^1(k,\typeG_2)$ is the set of isomorphism classes of 
-octonian algebras. 
-
-$\typeE_6$. Let $H$ be the algebraic group of linear transformations of $A$ that 
-[$A$ an Albert algebra] leave the cubic form $\det$ fixed on $A$. Then 
-$H$ is of type $\typeE_6$. But this is not necessarily the only way that 
-$\typeE_6$ is obtained.
-
-
-
-
-
-\subsection{Spin groups}
-
-The motivation for spin groups is as follows. Up to isogeny, the semisimple 
-groups are $\SL(n)$, $\Sp(n)$, $\SO(n)$, and the exceptional groups. One has 
-$\pi_1(\SO_{2n+1}) = \dZ/2$. [Dirac belt trick -- spin in physics]. So there should 
-(in odd dimensions) a group $\Spin(n)$ such that 
-$\Spin(n)/\dmu_2 \iso PSO(n)$. 
-
-Let $k$ be a field, $V$ a vector space with quadratic form $q$. 
-The \emph{Clifford algebra} $Cl(V,q)$ is the quotient of the tensor algebra $T(V)$ 
-by the ideal generated by $v\otimes v+q(v)$ for $v\in V$. A linear map 
-$f:V\to A$ satisfying $f(v) f(v)=-q(v)$ extends uniquely to a homomorphism 
-$\tilde f:Cl(V,q)\to A$ of algebras [phrase better]. 
-
-Let $\alpha:Cl(V)\to Cl(V)$ be induced by $\alpha(v)=-v$ for $v\in V$. Then 
-$\alpha$ is an involution of $Cl(V)$, and induces a decomposition 
-$Cl(V)=Cl^0\oplus CL^1$. 
-
-Example: $Cl_{(1,3)}(\dR)$. Unify special relativity and quantum mechanics. 
-
-[def. of adjoint map in clifford algebra.]
-
-Think of $Cl(V,q)^\times$ as an algebraic group. 
-
-Def. $\Pin(V,q) = \{g\in Cl(V,q):q(g)\in\dmu_2\}$ and 
-$\Spin(V,q) = \Pin(V,q)\cap Cl^0$. 
-
-The twisted adjoint map $\tilde\adjoint(v) = \alpha(\varphi) v \varphi^{-1}$ is a map 
-$\tilde P(V,q)\to \GL(V)$. [$P(V,q)\subset Cl(V,q)^\times$ is defined by 
-$\{q(g)\ne 0\}$. In fact, 
-$\tilde\adjoint:\tilde P(V,q)\to O(V,q)$. 
-
-Thm. Any $g\in O(V,q)$ can be written $g=r_{v_1}\dotsm r_{v_n}$, where 
-$r_{v_i} = \omega-\frac{2 q(v_i,\omega)}{q(v_i)} v$. 
-
-This gives us an exact sequence 
+\begin{theorem}
+There is a natural exact sequence 
 \[
-  1\to F\to \Spin(n)\xrightarrow{\tilde\adjoint} \SO(n)\to 1 .
+  1 \to \dmu_2 \to \Spin(V,q) \to \SO(V,q) \to 1 .
 \]
-The group $F=\dZ/2$ if $\sqrt{-1}\in k$, and $\dZ/4$ otherwise. 
+\end{theorem}
+\begin{proof}
+This is \cite[IV.10.21]{berhuy-2010}. 
+\end{proof}
 
-[characteristic not $2$.]
 
-[Spinors: the spin group acts on the space of spinors.]
 
-Maximal torus in $\Spin(3)\to SO(3)$. (2-1 cover.) So any maximal torus maps 
-to a maximal torus, and the preimage of a maximal torus is a maximal torus. 
-Take the matrices 
+
+
+\subsection[Differential Galois theory]
+{Differential Galois theory\footnote{Ian Pendleton}}
+
+A good source for differential Galois theory is \cite{vanderput-singer-2003}. 
+Recall that if $A$ is a ring, a \emph{derivation} on $A$ is an additive map 
+$\partial:A\to A$ satisfying the \emph{Liebniz rule}: 
+$\partial(a b)=a\partial(b)+\partial(a)b$. We write $\derivations(A)$ for the 
+group of derivations $A\to A$. 
+
+\begin{definition}
+A \emph{differential ring} is a pair $(R,\Delta)$, where 
+$\Delta\subset \derivations(R)$ is such that 
+$\partial_1\partial_2 = \partial_2\partial_1$ for all 
+$\partial_1,\partial_2\in \Delta$. 
+\end{definition}
+
+If $\Delta=\{\partial\}$, we write $r'=\partial r$ for $r\in R$. The ring 
+$C=\{c\in R:\partial c=0\text{ for all }\partial\in\Delta\}$ is called the 
+\emph{ring of constants}. If $R$ is a field, we call $(R,\Delta)$ a 
+\emph{differential field}. 
+
+\begin{example}
+Let $R=C^\infty(\dR^n)$ and 
+$\Delta=\{\frac{\partial}{\partial x_i}:1\leqslant i\leqslant n\}$. Then 
+$(R,\Delta)$ is a differential ring with $\dR$ as ring of constants. 
+\end{example}
+
+\begin{example}
+Let $k$ be a field, $R=k(x_1,\dots,x_n)$, and 
+$\Delta=\{\frac{\partial}{\partial x_i}:1\leqslant i\leqslant n\}$. Then 
+$(R,\Delta)$ is a differential field with field of constants $k$. 
+\end{example}
+
+We are interested in solving \emph{matrix differential equations}, that is, 
+equations of the form $y'=A y$ for $A\in \matrices_n(k)$. A solution would be a 
+tuple $y=(y_1,\dots,y_n)\in k^n$ such that $(y_1',\dots,y_n') = A y$. To a 
+matrix differential equation we will associate two objects: a Picard-Vessiot ring 
+$R$, and a linear algebraic group $\dgalois(R/k)$. 
+
+\begin{definition}
+Let $(k,\partial)$ be a differential field, $(R,\partial)$ a differential 
+$k$-algebra (so $\partial_R|_k=\partial_k$). Let $A\in \matrices_n(k)$. A 
+\emph{fundamental solution matrix} to the equation $y'=A y$ is an element 
+$Z\in \GL_n(R)$ such that $Z'=A Z$. 
+\end{definition}
+
+It is easy to construct a (universal) fundamental solution matrix for the 
+equation $y'=A y$. Let $S=\sO(\GL_n)=k[y_{i j},\det(y_{i j})^{-1}]$, and 
+define a differential $\partial:S\to S$ by $\partial(y_{i j}) = (A y)_{i j}$. 
+It is easy to see that $S$ represents the functor that sends a differential 
+$k$-algebra $R$ to the set of fundamental solution matrices in $R$. 
+
+If $(R,\Delta)$ is a differential ring, a \emph{differential ideal} is an 
+ideal $\fa\subset R$ such that $\partial(\fa)\subset \fa$ for all 
+$\partial\in \Delta$. If $\fa$ is a differential ideal, then $R/\fa$ naturally 
+has the structure of a differential ring. Call a differential ring 
+\emph{simple} if it has no nontrivial differential ideals. Note that simple 
+differential rings need not be fields, 
+e.g.~$(k[t],\frac{\partial}{\partial t})$. 
+
+\begin{definition}
+Let $A\in \matrices_n(k)$. A \emph{Picard-Vessiot ring} for the equation 
+$y'=A y$ is pair $(R,Z)$, where $R$ is a simple differential $k$-algebra which 
+has a fundamental solution matrix $Z$ for $y'=A y$, such that $R$ is generated 
+as a $k$-algebra by the entries of $Z$ and $\frac{1}{\det Z}$. 
+\end{definition}
+
+It is easy to prove that Picard-Vessiot rings exist. Let $S$ be the 
+differential ring constructed above. For any maximal differential ideal 
+$\fm\subset S$, the quotient $R=S/\fm$ is a Picard-Vessiot ring. By 
+\cite[1.20]{vanderput-singer-2003}, Picard-Vessiot rings (for a given 
+equation $y'=A y$) are unique. 
+
+\begin{definition}
+Let $(k,\partial)$ be a differential field, $A\in \matrices_n(k)$. The 
+\emph{differential Galois group} of the equation $y'= A y$ is 
+$\dgalois(R/k)=\automorphisms_{(k,\partial})(R)$ for any Picard-Vessiot ring 
+$R$ (for the equation $y'=A y$).  
+\end{definition}
+
+\begin{lemma}
+The group $\dgalois(R/k)$ is linear algebraic. 
+\end{lemma}
+\begin{proof}
+See \cite[1.26]{vanderput-singer-2003}. 
+\end{proof}
+
+\begin{example}
+If $k=\dC(x)$ and we consider the equation $y'=\frac{\alpha}{x} y$ for 
+$\alpha=\frac n m\in \dQ$, then the Picard-Vessiot ring is 
+$R=\dC(x^{n/m})$ and $\dgalois(R/k)=\dZ/m$. 
+\end{example}
+
+It is shown in \cite{tretkoff-tretkoff-1979} that over $\dC$, all linear 
+algebraic groups arise as differential Galois groups. The ``modern'' approach 
+to differential Galois theory uses $\mathscr{D}$-modules and Tannakian 
+categories. 
+
+
+
+
+
+\subsection[Universal enveloping algebras and the Poincar\'e-Birkhoff-Witt theorem]
+{Universal enveloping algebras and the Poincar\'e-Birkhoff-Witt theorem\footnote{Daoji Huang}}
+
+Let $k$ be a field, $\mathsf{Lie}$ be the category of Lie algebras over $k$, 
+and $\mathsf{Ass}$ be the category of unital associative $k$-algebras. There 
+is an easy functor $\cL:\mathsf{Ass}\to \mathsf{Lie}$, that sends a $k$-algebra 
+$A$ to the Lie algebra $\cL A$ whose underlying vector space is $A$, with 
+bracket 
 \[
-  \exp\begin{pmatrix}& & -\theta \\ \\ \theta \end{pmatrix} = \begin{pmatrix} \cos\theta & & -\sin\theta \\ & 1 \\ \sin\theta & & \cos\theta \end{pmatrix} .
+  [a,b] = a\cdot b-b\cdot a .
 \]
-So the kernel is $2\pi i\dZ$ in upper-left. 
+This has a left adjoint, denoted $\cU$. That is, for each Lie algebra $\fg$, 
+there is an associative algebra $\cU\fg$ with a $k$-linear map 
+$i:\fg\to \cU\fg$ satisfying $i[x,y]=[i(x),i(y)]$, such that for any 
+algebra $A$ and linear map $f:\fg\to A$ satisfying $f[x,y]=[f(x),f(y)]$, there 
+is a unique extension $\tilde f:\cU\fg\to A$ such that $f=\tilde f\circ i$. 
 
+We can construct the universal enveloping algebra $\cU\fg$ directly. Let 
+$\cT\fg=\bigoplus_{n\geqslant 0} \fg^{\otimes n}$ be the tensor algebra of 
+$\fg$. It is easy to see that $\cU\fg$ is the quotient of $\cT\fg$ by the 
+relations $\{x\otimes y-y\otimes x - [x,y]:x,y\in \fg\}$. 
 
+There is an obvious filtration on $\cT\fg$, for which 
+$\cT_m\fg=\bigoplus_{m\geqslant n} \fg^{\otimes m}$. It induces a filtration on 
+$\cU\fg$. The Poincar\'e-Birkhoff-Witt theorem is an explicit description of 
+the graded ring $\graded\cU(\fg)$. 
 
-
-
-\subsection{Differential Galois theory}
-
-The goal is: take a differential field $k$ and a matrix differential equation 
-$Y'=A Y$ for $A\in \GL_n(k)$. We will associate two objects: the Picard-Vessiot 
-ring $R$, and a linear algebraic group $DGal(R/k)$. 
-
-Def. A differential ring $(R,\Delta)$ is a ring $R$ with a set 
-$\Delta=\{\partial_1,\dots,\partial_n$ of derivations $\partial_i:R\to R$. So 
-
-$\partial_i(a+b)=\partial_i(a)+\partial_i(b)$
-
-$\partial_i(a b) = \partial_i(a)b+a \partial_i(b)$
-
-$\partial_i \partial_j = \partial_j \partial_i$ for all $i,j$. 
-
-If $\Delta=\{\partial\}$, write $r'=\partial r$. If $R$ is a field, we say 
-``differential field.'' 
-
-Def. The ring $C_R=\{c\in R:\delta(c)=0 for all \partial\in \Delta\}$ is the 
-\emph{ring of constants}. 
-
-Eg. The ring $R=C^\infty(\dR^m)$, and $\Delta=\{\frac{\partial}{\partial x_1},\dots,\frac{\partial}{\partial x_m}\}$; here $C_R=\dR$. 
-
-Eg. $\dC(x_1,\dots,x_n)$ with $\Delta=\{\frac{\partial}{\partial x_1},\dots,\frac{\partial}{\partial x_m}\}$; this is a differential field. 
-
-[Matrix-linear differential equation: obvious definition.]
-
-Def. Let $(k,\partial)$ be a differential field, $R\supset k$ a differential ring 
-(extending the derivation). 
-$Z\in \GL_n(R)$ such that $Z'=A Z$ is called a fundamental solution matrix to 
-$Y'=A Y$. 
-
-Let $S=k[x_{i j},\frac{1}{\det(y_{i j})}]$. Let $M$ be any maximal differential 
-ideal containing $Y'-A Y$, where $Y=(y_{i j})$. (First define differentation 
-by $Y'=A Y$.) Quotients by maximal differential ideals may not be fields. Let 
-$R=S/M$. This is a P-V ring. 
-
-Def. A P-V ring is a ring such that 
-
-(1) the only differential ideals are $0$ and $R$
-
-(2) There exists a fundamental solution matrix $Z\in \GL_n(R)$ for 
-$Y'=A Y$. 
-
-(3) $R$ is generated as a $k$-algebra by the entries of $Z$, and 
-$\frac{1}{\det Z}$. 
-
-Def. Let $(k,\partial)$ be a differential field, $R$ a P.V. ring over $K$ for 
-$Y'=A Y$. Then $DGal(R/k)=\{\sigma\in \automorphisms_k(R)$ such that 
-$\sigma(\partial r) = \partial\sigma(r)\}$. 
-
-Prop. $DGal(R/k)$ is a linear algebraic group. 
-
-[Galois theory\ldots Tannakian categories] 
-
-Eg. If $k=\dC(x)$ and $y'=\frac{\alpha}{x} y$ for $\alpha=n/m\in \dQ$, then 
-$R=\dC(x)[x^{n/m}]$ and $DGal(R/k)=\dZ/m$. [Over $\dC$; all linear algebraic 
-groups appear in this way.]
-
-
-
-
-
-\subsection{Universal enveloping algebras and the Poincar\'e-Birkhoff-Witt theorem}
-
-Let $\fg$ be a Lie algebra over a field $k$. The \emph{universal enveloping 
-algebra} $U\fg$ is a unital associative algebra together with a $k$-linear map 
-$i:\fg\to U\fg$, for which $i[x,y]=[i(x),i(y)]$, and such that for any other 
-$(U,j)$, there exists a unique algebra homomorphism $U\fg\to U'$ such that 
-$j=\varphi i$. [adjoint functors]
-
-Explicit construction. Let $\cT\fg = \bigoplus_{n\geqslant 0} \fg^{\otimes n}$ be 
-the tensor algebra of $\fg$. Let $\cU \fg$ be the quotient of $\cT g$ by the 
-two-sided ideal generated by $x\otimes y-y\otimes x-[x,y]$. Exercise: check this 
-works. There is an obvious filtration 
-$\filtration^n \cT\fg = \bigoplus_{m\leqslant n} \fg^{\otimes m}$. Let 
-$\pi:\cT\fg\to \cU\fg$ be the projection; the filtration on $\cT\fg$ induces 
-one on $\cU\fg$ via $\pi$. One has $\cU_m\cU_n\subset \cU_{m+n}$. 
-
-This induces a product on $\graded^\bullet(\cU \fg)$; this is an associative 
-algebra. 
-
-There is a natural map $\varphi:\cT\fg\to \graded(\cU\fg)$ that sends 
-$\varphi_m:\fg^{\otimes m}$ to $\graded^m(\cU\fg)$. It is a surjection. 
-
-Prop. $\varphi$ factors through the ideal $(x\otimes y-y\otimes x)\subset \cT(\fg)$. 
-
-As a result, we get a map $\cS\fg\to \graded\cU(\fg)$, where $\cS(\fg)$ is 
-symmetric algebra. (Use computation: 
+Define a map $\varphi:\cT\fg\to \graded(\cU\fg)$ by the obvious surjections 
 \[
-  U_2\ni \pi(x\otimes y-y\otimes x) = \pi[x,y]\in U_1
+  \cT^m\fg = \fg^{\otimes m} \to \cU^m\fg \epic \graded^m\cU(\fg) .
 \]
+This is a homomorphism of graded $k$-algebras. Moreover, since, for 
+$x\in \cU_2\fg$, we have 
+\[
+  U_2\ni x \otimes y - y\otimes x = [x,y]\in U_1 ,
+\]
+it follows that the map $\varphi$ factors through the symmetric algebra 
+$\cS\fg$. 
 
-Thm. (PBW). The natural map $\cS^\bullet(\fg)\to \graded\cU(\fg)$ is an 
-isomorphism. 
+\begin{theorem}[Poincar\'e-Birkhoff-Witt]
+Let $\fg$ be a Lie algebra over $k$. The map 
+$\varphi:\cS(\fg)\to \graded\cU(\fg)$ is an isomorphism of graded $k$-agebras. 
+\end{theorem}
+\begin{proof}
+This is \cite[I \S 2.7 th.1]{bourbaki-lie-alg-1-3}. 
+\end{proof}
+
+More concretely, suppose $\fg$ has a basis $x_1,\dots,x_n$ of $\fg$. The 
+PBW theorem tells us that every element of $\cU\fg$ can be written uniquely as 
+a sum 
+\[
+  \sum_{\bm i} \lambda_{\bm i} x^{e_{\bm i}} ,
+\]
+where $\bm i$ ranges over all tuples $(i_1,\dots,i_r)$ for which  
+$1\leqslant i_1< \cdots < i_r\leqslant n$. Here we write 
+\[
+  x^{e_{\bm i}} = x_{i_1}^{e_1} \dotsm x_{i_r}^{e_r} .
+\]
+The PBW theorem is used in many places -- one application is a simpler (though 
+less transparent) construction of free Lie algebras than the one in 
+\cite[II \S 2]{bourbaki-lie-alg-1-3}. 
 
 
 
