@@ -1,0 +1,620 @@
+% !TEX root = 6490.tex
+
+\section{Special topics}
+
+
+
+
+
+\subsection[Borel-Weil theorem]{Borel-Weil theorem\footnote{Balazs Elek}}
+
+Let $k$ be a field of characteristic zero, $G_{/k}$ an algebraic group. We 
+write $\modules(G)$ for the category whose objects are (not necessarily 
+finite-dimensional) vector spaces $V$ together with $\rho:G\to \GL(V)$. Here, 
+$\GL(V)$ is the fppf sheaf (not representable unless $V$ is finite-dimensional) 
+$S\mapsto \GL(V_{\sO(S)})$. The action action of $G$ on itself by 
+multiplication induces an action of $G$ on the ($k$-vector spaces) $\sO(G)$, 
+which is not finite-dimensional unless $G$ is finite. By 
+\cite[I 3.9]{jantzen-2003}, the category $\modules(G)$ has enough injectives; 
+this enables us to define derived functors in the usual way. 
+
+Let $H\subset G$ be an algebraic subgroup. There is an obvious functor 
+$\restrict_H^G:\modules(G)\to \modules(H)$ which sends $(V,\rho:G\to \GL(V))$ 
+to $(V,\rho|_H)$. It has a right adjoint, the \emph{induction functor}, 
+determined by 
+\[
+  \hom_G(V,\induce_H^G U) = \hom_H(\restrict_H^G V,U) .
+\]
+We are especially interested in this when $U$ is finite-dimensional, in which 
+case we have 
+\[
+  \induce_H^G U = \{f:G\to \dV(U):f(g h) = h^{-1} f(g)\text{ for all }g\in G\} .
+\]
+Since the induction functor is a right adjoint, it is left-exact, so it 
+makes sense to talk about its derived functors $\eR^\bullet\induce_H^G$. It 
+turns out that these can be computed as the sheaf cohomology of certain 
+locally free sheaves on the quotient $G/H$. Let $\pi:G\epic G/H$ be the 
+quotient map; for a representation $V$ of $H$, define an $\sO_{G/H}$-module 
+$\sL(V)$ by 
+\[
+  \sL(V)(U) = (V\otimes \sO(\pi^{-1} U))^G .
+\]
+By \cite[I 5.9]{jantzen-2003}, the functor $\sL(-)$ is exact, and sends 
+finite-dimensional representations of $H$ to coherent $\sO_{G/H}$-modules. 
+Moreover, by \cite[I 5.12]{jantzen-2003} there is a canonical isomorphism 
+\begin{equation*}\tag{$\ast$}\label{eq:induce-cohomology}
+  \eR^\bullet\induce_H^G V = \h^\bullet(G/H,\sL(V)) .
+\]
+
+In general, both the vector spaces in \eqref{eq:induce-cohomology} will not be 
+finite-dimensional. However, if $G/H$ is proper, then finiteness theorems 
+for proper pushforward \cite[3.2.1]{ega3-i} tell us that 
+$\h^\bullet(G/H,\sF)$ is finite-dimensional whenever $\sF$ is coherent. So 
+we can use $\eR^i \induce_H^G$ to produce finite-dimensional representations of 
+$G$ from finite-dimensional representations of $H$. 
+
+\emph{Note}: for the remainder of this section, ``representation'' means 
+\emph{finite-dimensional} representation, while ``module'' means possibly 
+infinite-dimensional representation. 
+
+Let $G_{/k}$ be a split reductive group, $B\subset G$ a Borel subgroup and 
+$T\subset B$ a maximal torus. Let $N=\urad B$; one has $B\simeq T\rtimes N$. 
+In particular, we can extend $\chi\in \characters^\ast(T)$ to a one-dimensional 
+representation of $B$ by putting $\chi(t n) = \chi(t)$ for $t\in T$, $n\in N$. 
+
+\begin{theorem}
+Every irreducible representation of $G$ is a quotient of $\induce_B^G\chi$ for 
+a unique $\chi\in\characters^\ast(T)$. 
+\end{theorem}
+\begin{proof}
+Let $V$ be an irreducible representation of $G$. The group $B$ acts on the 
+projective variety $\dP(V)$; by \ref{thm:borel-fixed} there is a fixed point 
+$v$, i.e.~$\restrict_B^G V$ contains a one-dimensional subrepresentation. 
+This corresponds to a $B$-equivariant map $\chi\monic \restrict_B^G V$ for some 
+$\chi\in \characters^\ast(T)$. By the definition of induction functors, we get 
+a nonzero map $\induce_B^G \chi \to V$. Since $V$ is simple, it must be 
+surjective. Uniqueness of $\chi$ is a bit trickier. 
+\end{proof}
+
+One calls $\chi$ the \emph{highest weight} of $V$. A natural question is: for 
+which $\chi$ is $\induce_B^G\chi$ irreducible? By \cite[II 2.3]{jantzen-2003}, 
+$\induce_B^G\chi$ (if nonzero) contains a unique simple subrepresentation, 
+which we denote by $L(\chi)$. 
+
+Recall that our choice of Borel $B\subset T$ induces a base 
+$S\subset \roots(G,T)\subset \characters^\ast(T)$. We put an ordering on 
+$\characters^\ast(T)$ by saying that $\lambda \leqslant \mu$ if 
+$\mu-\lambda\in \dN\cdot S$. It is known that there exists 
+$w_0\in W=\weyl(G,T)$ such that $w_0(R^+)=R^-$. Finally, the set of 
+\emph{dominant weights} is: 
+\[
+  \characters^\ast(T)_+ = \{\chi\in \characters^\ast(T):\langle \chi,\check\alpha\rangle \geqslant 0\text{ for all }\alpha\in R^+\} .
+\]
+We can now classify irreducible representations of $G$. 
+
+\begin{theorem}
+Any irreducible representation of $G$ is of the form $L(\chi)$ for a unique 
+$\chi\in \characters^\ast(T)_+$. 
+\end{theorem}
+\begin{proof}
+This is \cite[II 2.7]{jantzen-2003}. 
+\end{proof}
+
+The Borel-Weil theorem completely describes $\eR^\bullet\induce_B^G(\chi)$ for 
+dominant $\chi$. First we need some definitions. If $w\in W$, the \emph{length} 
+of $w$, denoted $l(w)$, is the minimal $n$ such that $w$ can be written as a 
+product $s_1\dotsm s_n$ of simple reflections. Let $S$ be a set of simple roots, 
+$\rho=\frac 1 2 \sum_{\alpha\in R^+} \alpha$. The ``dot action'' of $W$ on 
+character is: 
+\[
+  w\bullet \chi = w(\chi+\rho)-\rho .
+\]
+Define 
+\[
+  C = \{\chi\in \characters^\ast(T):\langle \chi+\rho,\check\alpha\rangle\text{ for all }\alpha\in R^+\} .
+\]
+It turns out that all $\chi\in \characters^\ast(T)$ are of the form 
+$w\bullet \chi_1$ for some $\chi_1\in C$. Thus the following theorem describes 
+$\eR^\bullet\induce_B^G\chi$ for all $\chi$. 
+
+\begin{theorem}[Borel-Weil]
+Let $\chi\in C$. If $c\notin \characters^\ast(T)_+$, then 
+$\eR^\bullet\induce_B^G(w\bullet\chi)=0$ for all $w\in W$. If 
+$\chi\in \characters^\ast(T)_+$, then for all $w\in W$, 
+\[
+  \eR^i\induce_B^G(w\bullet\chi) = \begin{cases} L(\chi)& i=l(w) \\ 0 & \text{otherwise} \end{cases}
+\]
+\end{theorem}
+\begin{proof}
+This is \cite[II 5.5]{jantzen-2003}. 
+\end{proof}
+
+Putting $w=1$, we see that $\induce_B^G(\chi) = L(\chi)$. 
+
+
+
+
+
+\subsection{Tannakian categories}
+
+Throughout, $k$ is an arbitrary field of characteristic zero. We will work over 
+$k$, so all maps are tacitly assumed to be $k$-linear and all tensor product 
+will be over $k$. Consider the following categories. 
+
+For $G_{/k}$ an algebraic group, the category $\rep(G)$ has as objects pairs 
+$(V,\rho)$, where $V$ is a finite-dimensional $k$-vector space and 
+$\rho:G\to \GL(V)$ is a homomorphism of $k$-groups. A morphism 
+$(V_1,\rho_1)\to (V_2,\rho_2)$ in $\rep(G)$ is a $k$-linear map 
+$f:V_1\to V_2$ such that for all $k$-algebras $A$ and $g\in G(A)$, one has 
+$f \rho_1(g) = \rho_2(g)  f$, i.e.~the following diagram commutes:
+\[
+\begin{tikzcd}
+  V_1\otimes A \ar[r, "f"] \ar[d, "\rho_1(g)"] 
+    & V_2\otimes A \ar[d, "\rho_2(g)"] \\
+  V_1\otimes A \ar[r, "f"]
+    & V_2\otimes A .
+\end{tikzcd}
+\]
+
+\begin{example}[Representations of a Hopf algebra]
+Let $H$ be a co-commutative Hopf algebra. The category $\rep(H)$ has as objects 
+$H$-modules that are finite-dimensional over $k$, and morphisms are 
+$k$-linear maps. The algebra $H$ acts on a tensor product $U\otimes V$ via 
+its comultiplication $\Delta:H\to H\otimes H$. 
+\end{example}
+
+\begin{example}[Representations of a Lie algebra]
+Let $\fg$ be a Lie algebra over $k$. The category $\rep(\fg)$ has as objects 
+$\fg$-representations that are finite-dimensional as a $k$-vector space. There 
+is a canonical isomorphism $\rep(\fg)=\rep(\cU \fg)$, where $\cU \fg$ is the 
+universal enveloping algebra of $\fg$. 
+\end{example}
+
+\begin{example}[Continuous representations of a compact Lie group]
+Let $K$ be a compact Lie group. The category $\rep_\dC(K)$ has as objects 
+pairs $(V,\rho)$, where $V$ is a finite-dimensional complex vector space and 
+$\rho:K\to \GL(V)$ is a continuous (hence smooth, by Cartan's theorem) 
+homomorphism. Morphisms $(V_1,\rho_1)\to (V_2,\rho_2)$ are $K$-equivariant 
+$\dC$-linear maps $V_1\to V_2$. 
+\end{example}
+
+\begin{example}[Graded vector spaces]
+Consider the category whose objects are finite-dimensional $k$-vector spaces 
+$V$ together with a direct sum decomposition $V=\bigoplus_{n\in \dZ} V_n$. 
+Morphisms $U\to V$ are $k$-linear maps $f:U\to V$ such that 
+$f(U_n)\subset V_n$. 
+\end{example}
+
+\begin{example}[Hodge structures]
+Let $V$ be a finite-dimensional $\dR$-vector space. A \emph{Hodge structure} 
+on $V$ is a direct sum decomposition $V_\dC=\bigoplus V_{p,q}$ such that 
+$\overline{V_{p,q}}=V_{q,p}$. If $U,V$ are vector spaces with Hodge structures, 
+a morphism $U\to V$ is a $\dR$-linear map $f:U\to V$ such that 
+$f(U_{p,q})\subset V_{p,q}$. Write $\mathsf{Hdg}$ for the category of vector spaces 
+with Hodge structure. 
+\end{example}
+
+Let $\mathsf{Vect}(k)$ be the category of finite-dimensional $k$-vector spaces. For 
+$\cC$ any of the categories above, there is a faithful functor 
+$\omega:\cC\to \mathsf{Vect}(k)$. In our examples, it is just the forgetful functor. 
+The main theorem will be that for $\pi=\automorphisms(\omega)$, the functor $\omega$ 
+induces an equivalence of categories $\cC\iso \rep(\pi)$. We proceed to make 
+sense of the undefined terms in this theorem. 
+
+
+Our definitions follow \cite{deligne-milne-1982}. As before, $k$ is an 
+arbitrary field of characteristic zero. 
+
+\begin{definition}
+A \emph{$k$-linear category} is an abelian category $\cC$ such that each 
+$V_1,V_2$, the group $\hom(V_1,V_2)$ has the structure of a $k$-vector space 
+in such a way that the composition map 
+$\hom(V_2,V_3)\otimes \hom(V_1,V_2)\to \hom(V_1,V_3)$ is $k$-linear. For us, 
+a \emph{rigid $k$-linear tensor category} is a $k$-linear category $\cC$ 
+together with the following data:
+\begin{enumerate}
+\item An exact faithful functor $\omega:\cC\to \mathsf{Vect}(k)$. 
+\item A bi-additive functor $\otimes:\cC\times \cC\to \cC$. 
+\item Natural isomorphisms 
+$\omega(V_1\otimes V_2)\iso \omega(V_1)\otimes \omega(V_2)$. 
+\item Isomorphisms $V_1\otimes V_2\iso V_2\otimes V_1$ for all $V_i\in \cC$. 
+\item Isomorphisms $(V_1\otimes V_2)\otimes V_3\iso V_1\otimes (V_2\otimes V_3)$
+\end{enumerate}
+These data are required to satisfy the following conditions:
+\begin{enumerate}
+\item There exists an object $1\in \cC$ such that $\omega(1)$ is 
+one-dimensional and such that the natural map $k\to \hom(1,1)$ is an 
+isomorphism. 
+\item If $\omega(V)$ is one-dimensional, there exists $V^{-1}\in \cC$ such 
+that $V\otimes V^{-1}\simeq 1$. 
+\item Under $\omega$, the isomorphisms 3 and 4 are the obvious ones. 
+\end{enumerate}
+\end{definition}
+
+By \cite[Pr.~1.20]{deligne-milne-1982}, this is equivalent to the standard 
+(more abstract) definition. Note that all our examples 
+are rigid $k$-linear tensor categories. One calls the 
+functor $\omega$ a \emph{fiber functor}. 
+
+Let $(\cC,\otimes)$ be a rigid $k$-linear tensor category. In this setting, 
+define a functor $\automorphisms(\omega)$ from $k$-algebras to groups by setting: 
+\begin{align*}
+  \automorphisms^\otimes(\omega)(A) 
+    &= \automorphisms^\otimes\left(\omega:\cC\otimes A\to \rep(A)\right) \\
+    &= \left\{(g_V)\in \prod_{V\in \cC} \GL(\omega(V)\otimes A):\begin{array}{c}g_{V_1\otimes V_2} = g_{V_1}\otimes g_{V_2}\text{, and } \\ f g_{V_1} = g_{V_1} f\text{ for all }f,V_1,V_2\end{array} \right\} .
+\end{align*}
+In other words, an element of $\automorphisms(\omega)(A)$ consists of a collection 
+$(g_V)$ of $A$-linear automorphisms 
+$g_V:\omega(V)\otimes A\iso \omega(V)\otimes A$, where $V$ ranges over objects 
+in $\cC$. This collection must satisfy: 
+\begin{enumerate}
+  \item $g_1 = 1_{\omega(1)}$
+  \item $g_{V_1\otimes V_2} = g_{V_1}\otimes g_{V_2}$ for all $V_1,V_2\in \cC$, and 
+  \item whenever $f:V_1\to V_2$ is a morphism in $\cC$, the following diagram 
+    commutes: 
+    \[
+    \begin{tikzcd}
+      \omega(V_1)_A \ar[r, "f"] \ar[d, "g_{V_1}"] 
+        & \omega(V_2)_A \ar[d, "g_{V_2}"] \\
+      \omega(V_1)_A \ar[r, "f"] 
+        & \omega(V_2)_A .
+    \end{tikzcd}
+    \]
+\end{enumerate}
+
+Typically one only considers affine group schemes $G_{/k}$ that are 
+\emph{algebraic}, i.e.~whose coordinate ring $\sO(G)$ is a finitely generated 
+$k$-algebra, or equivalently that admit a finite-dimensional faithful 
+representation. Let $G_{/k}$ be an arbitrary affine group scheme, $V$ an 
+arbitrary representation of $G$ over $k$. By 
+\cite[Cor.~2.4]{deligne-milne-1982}, one has $V=\varinjlim V_i$, where $V_i$ 
+ranges over the finite-dimensional subrepresentations of $V$. Applying this to 
+the regular representation $G\to \GL(\sO(G))$, we see that 
+$\sO(G)=\varinjlim\sO(G_i)$, where $G_i$ ranges over the algebraic quotients of 
+$G$. That is, an arbitrary affine group scheme $G_{/k}$ can be written as a 
+filtered projective limit $G=\varprojlim G_i$, where each $G_i$ is an affine 
+algebraic group over $k$. So we will speak of pro-algebraic groups instead of 
+arbitrary affine group schemes. 
+
+If $V$ is a finite-dimensional $k$-vector space and $G=\varprojlim G_i$ is a 
+pro-algebraic $k$-group, representations $G\to \GL(V)$ factor through some 
+algebraic quotient $G_i$. That is, 
+$\hom(G,\GL(V))=\varinjlim \hom(G_i,\GL(V))$. As a basic example of this, 
+let $\Gamma$ be a profinite group, i.e.~a projective limit of finite groups. If 
+we think of $\Gamma$ as a pro-algebraic group, then algebraic representations 
+$\Gamma\to \GL(V)$ are exactly those representations that are continuous when 
+$V$ is given the discrete topology. 
+
+First, suppose $\cC=\rep(G)$ for a pro-algebraic group $G$, and that 
+$\omega:\rep(G)\to \mathsf{Vect}(k)$ is the forgetful functor. Then the Tannakian 
+fundamental group $\automorphisms^\otimes(\omega)$ carries no new information 
+\cite[Pr.~2.8]{deligne-milne-1982}: 
+
+\begin{theorem}\label{thm:reconst}
+Let $G_{/k}$ be a pro-algebraic group, $\omega:\rep(G)\to \mathsf{Vect}(k)$ the 
+forgetful functor. Then $G\iso \automorphisms^\otimes(G)$. 
+\end{theorem}
+
+The main theorem is the following, taken essentially verbatum from 
+\cite[Th.~2.11]{deligne-milne-1982}. 
+
+\begin{theorem}\label{thm:main}
+Let $(\cC,\otimes,\omega)$ be a rigid $k$-linear tensor category. Then 
+$\pi=\automorphisms^\otimes(\omega)$ is represented by a pro-algebraic group, and 
+$\omega:\cC\to \rep(\pi)$ is an equivalence of categories. 
+\end{theorem}
+
+Often, the group $\pi_1(\cC)$ is ``too large'' to handle directly. For 
+example, if $\cC$ contains infinitely many simple objects, probably 
+$\pi_1(\cC)$ will be infinite-dimensional. For $V\in \cC$, let 
+$\cC(V)$ be the Tannakian subcategory of $\cC$ generated by $V$. One 
+puts $\pi_1(\cC/V)=\pi_1(\cC(V))$. It turns out that 
+$\pi_1(\cC/V)\subset \GL(\omega V)$, so $\pi_1(\cC/V)$ is finite-dimensional. 
+One has $\pi_1(\cC)=\varprojlim \pi_1(\cC/V)$. 
+
+\begin{example}[Pro-algebraic groups]
+If $G_{/k}$ is a pro-algebraic group, then \autoref{thm:reconst} tells us that if 
+$\omega:\rep(G)\to \mathsf{Vect}(k)$ is the forgetful functor, then 
+$G=\automorphisms^\otimes(G)$. That is, $G=\pi_1(\rep G)$. 
+\end{example}
+
+\begin{example}[Hopf algebras]
+Suppose $H$ is a co-commutative Hopf algebra over $k$. Then 
+$\pi_1(\rep H)=\spectrum(H^\circ)$, where $H^\circ$ is the \emph{reduced dual} 
+defined in \cite{cartier-2007}. Namely, for any $k$-algebra $A$, $A^\circ$ is 
+the set of $k$-linear maps $\lambda:A\to k$ such that $\lambda(\fa)=0$ for some 
+two-sided ideal $\fa\subset A$ of finite codimension. The key fact here is that 
+$(A\otimes B)^\circ=A^\circ\otimes B^\circ$, so that we can use multiplication 
+$m:H\otimes H\to H$ to define comultiplication 
+$m^\ast:H^\circ\to (H\otimes H)^\circ=H^\circ\otimes H^\circ$. 
+From \cite[II \S 6 1.1]{demazure-gabriel-1980}, if $G$ is a linear algebraic 
+group over an algebraically closed field $k$ of characteristic zero, we get an 
+isomorphism $\sO(G)^\circ= k[G(k)]\otimes \cU(\fg)$. Here $k[G(k)]$ is the 
+usual group algebra of the abstract group $G(k)$, and $\cU(\fg)$ is the 
+universal enveloping algebra of $\fg=\lie(G)$, both with their standard Hopf 
+structures. 
+\end{example}
+
+[Note: one often calls $\sO(G)^\circ$ the ``space of distributions on $G$.'' 
+If instead $G$ is a real Lie group, then one often writes $\sH(G)$ for the 
+space of distributions on $G$. Let $K\subset G$ be a maximal compact subgroup, 
+$M(K)$ the space of finite measures on $K$. Then convolution 
+$D\otimes \mu\mapsto D\ast\mu$ induces an isomorphism 
+$\cU(\fg)\otimes M(K)\iso \sH(G)$. In the algebraic setting, 
+$k[G(k)]$ is the appropriate replacement for $M(K)$.]
+
+\begin{example}[Lie algebras]
+Let $\fg$ be a semisimple Lie algebra over $k$. Then by \cite{milne-2007}, 
+$G=\pi_1(\rep\fg)$ is the unique connected, simply connected algebraic group 
+with $\lie(G)=\fg$. If $\fg$ is not semisimple, e.g.~$\fg=k$, then things get a 
+lot nastier. See the above example. 
+\end{example}
+
+\begin{example}[Compact Lie groups]
+By definition, the \emph{complexification} of a real Lie group $K$ is a complex 
+Lie group $K_\dC$ such that all morphisms $K\to \GL(V)$ factor uniquely through 
+$K_\dC\to\GL(V)$. It turns out that $K_\dC$ is a complex algebraic group, and 
+so $\pi_1(\rep K)=K_\dC$. 
+\end{example}
+
+\begin{example}[Graded vector spaces]
+To give a grading $V=\bigoplus_{n\in \dZ} V_n$ on a vector space is equivalent 
+to giving an action of the split rank-one torus $\Gm$. On each $V_n$, $\Gm$ 
+acts via the character $g\mapsto g^n$. Thus 
+$\pi_1(\text{graded vector spaces})=\Gm$. 
+\end{example}
+
+\begin{example}[Hodge structures]
+Let $\dS=\weil_{\dC/\dR}\Gm$; this is defined by $\dS(A)=(A\otimes\dC)^\times$ 
+for $\dR$-algebras $A$. One can check that the category $\mathsf{Hdg}$ of Hodge 
+structures is equivalent to $\rep_\dR(\dS)$. Thus $\pi_1(\mathsf{Hdg})=\dS$. 
+\end{example}
+
+
+
+
+
+\subsection[Automorphisms of semisimple Lie algebras]{Automorphisms of semisimple Lie algebras\footnote{Sasha Patotski}}
+
+Let $k$ be a field of characteristic zero, $\fg$ a split semisimple Lie algebra 
+over $k$. We want to describe the group $\automorphisms(\fg)$. It turns out 
+$\automorphisms(\fg)=\automorphisms(G^\mathrm{sc})$, where $G^\mathrm{sc}$ is 
+the unique simply connected semisimple group with Lie algebra $\fg$. We can give 
+$\automorphisms(\fg)$ the structure of a linear algebraic group by putting 
+\[
+  \automorphisms(\fg)(A) = \automorphisms(\fg_A) .
+\]
+Clearly $\automorphisms(\fg)\subset \GL(\fg)$. Let $\ft\subset \fg$ be a maximal 
+abelian subalgebra. Let $R\subset \ft^\vee$ be the set of roots, 
+$S\subset R$ a base of $\Delta$. We can define some subgroups of 
+$\automorphisms(\fg)$:
+\begin{align*}
+  \automorphisms(\fg,\ft) 
+    &= \{\theta\in \automorphisms(\fg):\theta(\ft)= \ft\} \\
+  \automorphisms(\fg,\ft,S) 
+    &= \{\theta\in \automorphisms(\fg,\ft):\transpose\theta(S)= S\} .
+\end{align*}
+
+\begin{lemma}
+If $\theta\in \automorphisms(\fg,\ft)$, then $\transpose\theta(R)=R$. 
+\end{lemma}
+\begin{proof}
+The definition of $R$ is invariant under automorphisms of $\ft$. 
+\end{proof}
+
+Let $\automorphisms(R)$ be the set of automorphisms of the Dynkin diagram 
+associated to $R$. 
+
+\begin{lemma}
+The natural map
+$\varepsilon:\automorphisms(\fg,\ft,S)\to \automorphisms(R)$ is surjective. 
+\end{lemma}
+\begin{proof}
+Choose, for each $\alpha\in R$, a non-zero element $x_\alpha\in \fg_\alpha$. 
+The existence theorem \cite[VIII \S 4.4 th.2]{bourbaki-lie-alg-7-9} tells us 
+that to each automorphism $\varphi$ of the Dynkin diagram of $R$, there exists 
+a unique $\tilde\varphi\in \automorphisms(\fg,\ft,S,\{x_\alpha\})$ inducing 
+$\varphi$. Thus $\varepsilon:\automorphisms(\ft,\ft,S)\to \automorphisms(R)$ 
+splits. 
+\end{proof}
+
+We want to describe the kernel of $\varepsilon$. Since $\fg$ is semisimple, 
+the adjoint map $\fg\to \derivations(\fg)=\lie(\automorphisms\fg)$ is an 
+embedding, and thus $\ft\iso \adjoint(\ft)$. Let $T\subset \inner(\fg)$ be the 
+subgroup with Lie algebra $\adjoint(\ft)$. 
+
+\begin{lemma}
+$\ker(\varepsilon) = T$. 
+\end{lemma}
+\begin{proof}
+Clearly $T\subset \ker(\varepsilon)$. Let $\theta\in \ker(\varepsilon)$. For 
+any $\alpha\in R$, we have $\theta x_\alpha\in \fg_\beta$ for some $\beta$. 
+For $t\in\ft$, we compute: 
+\begin{align*}
+  [t,\theta x_\alpha] 
+    &= [\theta t,\theta x_\alpha] \\
+    &= \theta[t,x_\alpha] \\
+    &= \alpha(t)\theta x_\alpha ,
+\end{align*}
+so $\alpha=\beta$. Moreover, $\theta$ acts on $\fg$ exactly like an element of 
+$\ft$, so $\theta\in T$. 
+\end{proof}
+
+\begin{lemma}
+$\automorphisms(\fg)=\automorphisms(\fg,\ft,S)\cdot \inner(\fg)$. 
+\end{lemma}
+\begin{proof}
+Use the well-known facts that all Cartan subalgebras of $\fg$ are conjugate, 
+and that moreover the Weyl group acts transitively on sets of simple roots. 
+\end{proof}
+
+We have arrived at the main result. 
+
+\begin{theorem}
+$\automorphisms(\fg)=\inner(\fg)\rtimes \automorphisms(R)$. In 
+particular, $\mathrm{Out}(\fg) = \automorphisms(R)$. 
+\end{theorem}
+
+This allows us to recover the table of automorphisms in 
+\autoref{sec:root-classify}. 
+
+
+
+
+
+\subsection[Exceptional isomorphisms]{Exceptional isomorphisms\footnote{Theodore Hui}}
+
+Terence Tao's blog post at 
+\url{http://terrytao.wordpress.com/2011/03/11/}
+is an excellent reference for this section. From 
+\autoref{thm:classify-semisimple}, we know that the set of isogeny classes of 
+split semisimple algebraic groups is the same as the set of isomorphism classes 
+of Dynkin diagrams. In \autoref{thm:classify-root}, we classified the Dynkin 
+diagrams. In this classification, we just included, e.g.~$\typeD_n$ for 
+$n\geqslant 4$. If we include all the $\typeD_n$ etc., the classification is 
+no longer unique -- we have to account for the ``exceptional isomorphisms'' 
+\begin{align*}
+  \typeA_1 &\simeq \typeB_1\simeq \typeC_1\simeq \typeD_2\simeq \typeE_1 \\
+  \typeB_2 &\simeq \typeC_2 \\
+  \typeD_3 &\simeq \typeA_3 \\
+  \typeD_2 &\simeq \typeA_1\times \typeA_1 .
+\end{align*}
+
+The Dynkin diagram for $\typeD_2$ and $\typeA_1\times \typeA_1$ is disconnected 
+-- it is a disjoint union of two points. We'll explicitly construct the induced 
+isogenies between algebraic groups of different types. 
+
+\begin{example}[$\typeA_1\simeq\typeC_1$]
+Since $\Sp(2)=\SL(2)$, there is nothing to prove.  
+\end{example}
+
+\begin{example}[$\typeA_1\simeq\typeB_1$]
+Define a pairing on $\Sl_2$ by $\langle x,y\rangle = \trace(x y)$ (the 
+\emph{Killing form}). One easily verifies that the adjoint action of 
+$\SL(2)$ on $\Sl_2$ preserves this form. Moreover, a general theorem of linear 
+algebra tells us that any non-degenerate bilinear symmetric pairing on a 
+three-dimensional vector space is isomorphic to the orthogonal pairing. It 
+follows that $\automorphisms(\Sl_2,\langle\cdot,\cdot\rangle)\simeq \Or(3)$, 
+at least over an algebraically closed field. Since $\SL(2)$ is connected, 
+$\adjoint(\SL(2))\supset \SO(3)$. A dimension count tells us that 
+$\SL(2)/\dmu_2\simeq \SO(3)$. Again, this only works over an algebraically 
+closed field. 
+\end{example}
+
+
+\begin{example}[$\typeD_2\simeq \typeA_1\times \typeA_1$]
+We need to show that $\SO(4)$ and $\SL(2)\times \SL(2)$ are isogenous. 
+Let $\mathrm{std}:\SL(2)\monic \GL(2)$ be the standard representation, and 
+consider the representation $\mathrm{std}\boxtimes\mathrm{std}$ of 
+$\SL(2)\times \SL(2)$. There is an obvious bilinear form form: 
+\[
+  \langle u_1\otimes u_2,v_1\otimes v_2\rangle = \omega(u_1,v_1)\omega(u_2,v_2) ,
+\]
+where $\omega$ is the determinant pairing 
+$k^2\times k^2\to \bigwedge^2 k^2\simeq k$ given by $(x,y)\mapsto x\wedge y$. 
+The group $\SL(2)\times \SL(2)$ acts on $\mathrm{std}\boxtimes\mathrm{std}$ by 
+$(g,h)(v\otimes w) = (g v)\otimes (g w)$. Thus we have a representation 
+$\SL(2)\times \SL(2)\to \GL(4)$. The image preserves 
+$\langle\cdot,\cdot\rangle$, hence (by linear algebra) lies inside $\Or(4)$, 
+By connectedness and a dimension count, we see that this is an isogeny 
+$\SL(2)\times \SL(2)\epic \SO(4)$. 
+\end{example}
+
+
+
+
+
+\subsection[Constructing the exceptional groups]
+{Constructing the exceptional groups\footnote{Gautam Gopal}}
+
+Use \cite{springer-veldkamp-2000} as a reference. 
+
+Let $k=\bar k$ be a field of characteristic zero. ($\ne 2,3$). 
+
+Let $V$ be a vector space. Let $B:V\times V\to k$ be a symmetric bilinear form. 
+We get a quadratic form $Q:V\to k$ defined by $v\mapsto B(v,v)$. THis is a bijection: 
+if we started with $Q$ we could define 
+\[
+  B(v,w) = \frac 1 2 (Q(v+w)-Q(v)-Q(w)) .
+\]
+
+Definition. $C$ is a \emph{composition algebra} if $C$ is a not-necessarily 
+associative algebra with identity element $e$, together with a non-degenerate 
+quadratic form $Q$ that is multiplicative ($Q(xy)=Q(x)Q(y)$). 
+
+Any composition algebra comes with a canonical involution. This is a map 
+$C\to C$ written $x\mapsto \bar x$, defined by 
+$\bar x=\langle x,e\rangle-x$. 
+
+Theorem. Let $C$ be a composition algebra. Then $\dim(C)\in \{1,2,4,8\}$. 
+
+[This is true over any field with characteristic $\ne 2,3$.]
+
+An $8$-dimensional composition algebra is called an \emph{octonian 
+algebra}. 
+
+Theorem. 
+Let $C$ be an octonian algebra. Then $\automorphisms(C)$ is a connected 
+algebraic group of type $\typeG_2$. [automorphisms here are 
+norm-preserving $k$-algebra maps.]
+
+For $\gamma_1,\gamma_2,\gamma_3\in k^\times$, let 
+\[
+  \Gamma = \begin{pmatrix} \gamma^1 \\ & \gamma_2 \\ & & \gamma_3 \end{pmatrix} .
+\]
+Let $H_3(C,\Gamma)$ be the set 
+\[
+  \left\{\begin{pmatrix} z_1 & c_3 & \gamma_1^{-1} \gamma_2 \bar c_2 \\ \gamma_2^{-1} \gamma_1 \bar c_2 & z_2 & c_1 \\ c_2 & \gamma_3^{-1} \gamma_2 \bar c_1 & z_3 \end{pmatrix}:z_i\in k\text{ and }c_i\in C\right\} .
+\]
+One can check that 
+\[
+  H_3(C,\Gamma) = \{X\in M_3(C):X=\gamma^{-1} \transpose{\bar X} \Gamma\} .
+\]
+Put $A=H_3(C,\Gamma)$; this is called a reduced Albert algebra. 
+Put $Q(X)=\frac 1 2 \trace(X^2)$. 
+
+Def. $A$ is an \emph{Albert algebra} if $A\otimes_k L\simeq H_3(C,\Gamma)$ for some 
+extension $L/k$. 
+
+There is a cubic form 
+\[
+  \det(x) = z_1 z_2 z_3-\gamma_3^{-1} \gamma_2 z_1 Q(c_1) - \gamma_2^{-1} \gamma_3 z_2 Q(c_2) - \gamma_2^{-1} \gamma_1 z_3 Q(c_3)+\langle c_1 c_2,\bar c_3\rangle .
+\]
+This can be used in defining $\typeE_6$. 
+
+Def. $u\in A$ is called idempotent if $u^2=u$. 
+
+Lemma. If $u$ is an idempotent, then $Q(u)=1/2$ or $Q(u)=1$ if $u\ne 0,e$. 
+
+If $u$ is an idempotent such that $Q(u)=1/2$, we call $u$ a primitive 
+idempotent. 
+
+Thm. If $A$ is an Albert algebra, then $G=\automorphisms(A)$ is a connected 
+simple algebraic group of type $\typeF_4$. 
+
+Idea of proof. 
+Let $V$ be the set of primitive idempotents. $V$ is a closed irreducible variety 
+on which $G$ acts transitively. 
+
+$\dim(V)=16$. Pick $u\in V$, then $G_u=\stabilizer_G(u)$ is a spin group of 
+a nine-dimensional quadratic form. THus 
+$\dim(G_u)=36$. Thus 
+$\dim(G)=16+36=52$. So at least $G$ has the right dimension. Since 
+$G_u$ and $V$ are irreducible, $G$ is connected. The only possible 
+semisimple group with dimension $52$ is $\typeF_4$. 
+
+Let $W=e^\bot$ inside our Albert algebra $A$. Then $G$ acts on $W$. 
+From this action, we get that $G$ is semisimple algebraic. 
+
+[It turns out that any group of type $\typeF_4$ is obtained in this way.] 
+In other words, $\h^1(k,\typeF_4)$ is the set of isomorphism classes of Albert 
+algebras over $k$?
+
+Similarly, $\h^1(k,\typeG_2)$ is the set of isomorphism classes of 
+octonian algebras. 
+
+$\typeE_6$. Let $H$ be the algebraic group of linear transformations of $A$ that 
+[$A$ an Albert algebra] leave the cubic form $\det$ fixed on $A$. Then 
+$H$ is of type $\typeE_6$. But this is not necessarily the only way that 
+$\typeE_6$ is obtained.
+
