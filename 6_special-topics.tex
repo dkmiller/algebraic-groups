@@ -852,7 +852,7 @@ More concretely, suppose $\fg$ has a basis $x_1,\dots,x_n$ of $\fg$. The
 PBW theorem tells us that every element of $\cU\fg$ can be written uniquely as 
 a sum 
 \[
-  \sum_{\bm i} \lambda_{\bm i} x_{\bm i}^{e_{\bm i}} ,
+  \sum_{\bm i} \lambda_{\bm i} x^{e_{\bm i}} ,
 \]
 where $\bm i$ ranges over all tuples $(i_1,\dots,i_r)$ for which  
 $1\leqslant i_1< \cdots < i_r\leqslant n$. Here we write 
@@ -869,14 +869,23 @@ less transparent) construction of free Lie algebras than the one in
 
 \subsection[Forms of algebraic groups]{Forms of algebraic groups\footnote{Tao Ran Chen}}
 
-We start by defining non-abelian $\h^1$. Let $G$ be a group, $A$ another 
-(possibly non-abelian) on which $G$ acts by automorphisms. We define a set 
-$Z^1(G,A)$ to consist of functions $f:G\to A$ such that 
-$f(\sigma\tau) = f(\sigma)^\tau\cdot f(\tau)$ for all $\sigma,\tau\in G$. Two 
-cocyclces $f,f'$ are equivalent if there exists $b\in A$ such that 
-$f'(\sigma) = b^\sigma f(\sigma) b^{-1}$ for all $\sigma$. [action by 
-exponents on the right.] Let $\h^1(G,A)=Z^1(G,A)/\sim$ be the set of 
-equivalence classes of $1$-cocycles. 
+We start by defining non-abelian cohomology, following 
+\cite[II.3]{berhuy-2010}. Let $\Gamma$ be a profinite group, $A$ a (possibly 
+nonabelian) discrete group on which $G$ acts continuously by automorphisms. The 
+pointed set of \emph{$1$-cocycles}, denoted $Z^1(\Gamma,A)$, consists of 
+functions $c:\Gamma\to A$, written $\sigma\mapsto c_\sigma$, such that 
+\[
+  c_{\sigma\tau} = c_\sigma \sigma\cdot c_\tau 
+\]
+for all $\sigma,\tau\in \Gamma$. The distinguished $1$-cocycle is 
+$\sigma\mapsto 1$. We put an equivalence relation on $Z^1(\Gamma,A)$, namely 
+$c\sim c'$ if there exists $a\in A$ such that 
+\[
+  c'_\sigma = a c_\sigma \sigma a^{-1} 
+\]
+for all $\sigma\in \Gamma$. Write $\h^1(\Gamma,A)=Z^1(\Gamma,A)/\sim$ be the 
+set of equivalence classes of $1$-cocycles. 
+
 
 Now let $k$ be a field, $K/k$ an extension, $G_{/k}$ an algebraic group. An 
 \emph{$K/k$-form of $G$} is an algebraic group $G'_{/k}$ such that 
@@ -950,6 +959,87 @@ algebras over the field.]
 
 
 
+
+
+
+\subsection{Ryan, Arithmetic subgroups}
+
+Def. If $G$ is a (abstract) group, $H_1,H_2\subset G$ subgroups, then $H_1$ is 
+\emph{commensurable} with $H_2$ if $H_1\cap H_2$ has finite index in both 
+$H_1$ and $H_2$. 
+
+As an exercise, check that commensurability is an equivalence relation on the 
+set of subgroups of $G$. 
+
+Let $G\subset \GL(n)_\dQ$ be an algebraic subgroup. Let $L=\dZ e_1+\cdots + \dZ e_n$ 
+be the standard lattice in $\dQ^n$. Define $G(\dQ)_L=\{g\in G(\dQ):g L=L\}$. 
+
+Def. A subgroup $\Gamma\subset G(\dR)$ is \emph{arithmetic} if it's commensurable 
+with $G(\dQ)_L$. 
+
+Exercise. Let $G+\GL(n)$; then $G(\dQ)_L=\GL_n(\dZ)$. 
+
+In general, $G(\dQ)_L=G(\dQ)\cap \GL_n(\dZ)$. 
+
+Example. $\SL_n(\dQ)_L=\SL_n(\dZ)$. 
+
+Arithmetic subgroups are an important class of discrete groups. Indeed, 
+in general, any $\Gamma$ arithmetic in $G(\dR)$ will be a union of finitely 
+many discrete cosets [use $\SL_n(\dZ)\subset \SL_n(\dZ)$ discrete because 
+$\SL_n(\dZ)=\SL_n(\dR)\cap \matrices_n(\dZ)$ in $\matrices_n(\dZ)$] of 
+$G(\dQ)_L\cap \Gamma$, so $\Gamma$ is itself discrete in $G(\dR)$. 
+
+If $G$ is locally compact, $\Gamma\subset G$ discrete, there exists a 
+left-invariant Borel measure $\mu'$ on $G$ [Haar measure: unique up to scalar]; 
+this induces a measure $\mu$ on $\Gamma\backslash G$. 
+
+Def. If $\mu(\Gamma\backslash G)<\infty$, we say that $\Gamma$ is of 
+\emph{finite covolume} in $G$. 
+
+Example. $G=\dR^n$, $\Gamma=\dZ^n$, $\mu'$ the Lebesgue measure; the induced 
+measure on $\dR^n/\dZ^n=(S^1)^n$ is essentially the Lebesgue measure on 
+$[0,1)^n$, so $\mu(\dR^n/\dZ^n)=1$. 
+
+Redefine arithmetic subgroup: let $H$ be an almost-simple algebraic group over 
+$\dR$ with a fixed embedding $H\monic \GL(n)_\dR$. A subgroup 
+$\Gamma\subset H(\dR)$ is \emph{arithmetic} if there exists an algebraic group 
+$G_{/\dQ}$, a surjective map $\rho:G_\dR\epic H$ such that $\ker\rho(\dR)$ is 
+compact, and an arithmetic subgroup $\Gamma'\subset G(\dR)$ such that 
+$\rho(\Gamma')$ is commensurable with $\Gamma$. 
+
+Since $\Gamma'$ is discrete in $G(\dR)$, 
+$\ker\rho|_{\Gamma'} = \Gamma'\cap \ker\rho(\dR)$, a discrete subspace of a 
+compact space, hence finite. 
+
+Def. $\SO(1,n)=\{g\in \SL_{n+1}(\dR):q_1(g x)=q_1(x)\forall x\in \dR^{n+1}\}$, 
+where 
+\[
+  q_1(x) = x_1^2 + \cdots + x_n^2 - x_{n+1}^2 .
+\]
+Also, $\SU(1,n)=\{g\in \SL_{n+1}(\dC):q_2(g z)=q_2(z)\}$, where 
+\[
+  q_2(z) = z_1 \bar z_1 + \cdots + z_n \bar z_n - z_{n+1} \bar z_{n+1} .
+\]
+
+Theorem. Let $\Gamma$ be a discrete subgroup with finite covolume in $H(\dR)$, 
+where $H$ is a non-compact almost-simple real algebraic group. Then
+$\Gamma$ is arithmetic unless $H$ is isogenous to $\SO(1,n)$ or 
+$\SU(1,n)$. 
+
+Since $\SL_2(\dR)$ is isogenous to $\SO(1,2)$, the theorem doesn't apply to 
+$\SL_2(\dR)$ -- moreover it's false. 
+
+There are countably many arithmetic subgroups of $\SL_2(\dR)$, but every 
+compact Riemann surface of genus $g\geqslant 2$ is the quotient of 
+$\mathfrak H$ by a discrete subgroup of $\PSL_2(\dR)$. Since there are 
+continuous families of such surfaces [$M_2$], there are more discrete, 
+finite covolume subgroups of $\SL_2(\dR)$ than arithmetic subgroups. 
+
+
+
+
+
+
 \subsection{Finite simple groups of Lie type}
 
 Let $G_{/k}$ be a split reductive group, 
@@ -1010,6 +1100,105 @@ datum as we started out with.
 
 [next time for construction of some finite simple groups.]
 
+List:
+\begin{itemize}
+  \item cyclic: $\dZ/p$
+  \item alternating: $A_n$ ($n>4$)
+  \item Chevalley groups:
+  \begin{itemize}
+    \item $\typeA_n(q)$, $\typeB_n(q)$, $n>1$
+    \item $\typeC_n(q)$, $n>2$
+    \item $\typeD_n(q)$, $n>3$
+    \item $\typeE_6(q)$, $\typeE_7(q)$, $\typeE_8(q)$
+    \item $\typeF_4(q)$, $\typeG_2(q)$
+  \end{itemize}
+  \item Steinberg groups:
+  \begin{itemize}
+    \item $\prescript{2}{}{A_n(q^2)}$, $n>1$
+    \item $\prescript{2}{}{D_n(q^2)}$, $n>3$
+    \item $\prescript{2}{}{E_6(q^2)}$, $\prescript{3}{}{D_4(q^3)}$
+  \end{itemize}
+  \item Suzuki groups: $\prescript{2}{}{B_2(2^{2n+1})}$, $n\geqslant 1$
+  \item Ree groups: $\prescript{2}{}{F_4(2^{2n+1})}$, $n\geqslant 1$ and 
+    $\prescript{2}{}{G_2(3^{2n+1})}$, $n\geqslant 1$. 
+  \item Tits group: $\prescript{2}{}{F_4(2)^1}$. 
+  \item And $26$ sporadic groups. 
+\end{itemize}
+
+Here $q$ is a prime power. All of these groups are simple, except 
+$\typeA_1(2)$, $\typeA_1(3)$, $\typeB_2(2)$, $\typeG_2(2)$, and 
+$\prescript{3}{}{A_2(2^2)}$. 
+
+Let $k$ be a field (eventually $k=\dF_q$). There is a bijection between 
+isomorphism classes of connected split reductive groups over $k$, and 
+reduced root data. An algebraic group $G_{/k}$ is \emph{split} if there is 
+a maximal torus $T\subset G$ such that $T\simeq \Gm^n$ (over $k$). The 
+base-change $T_{\bar k}\subset G_{\bar k}$ will be a maximal torus. 
+
+Last time, given an irreducible reduced root system $R\subset V$, there 
+is an adjoint and split algebraic groups over $k$ of type $R$. 
+Such groups are simple. 
+
+Example. If $R=\typeA_n$, the corresponding group adjoint group is 
+$\PGL(n+1)$. 
+
+Start with the group $G_{/\dF_q}$. [adjoint form] There's a multiplicative 
+isogeny $G^\mathrm{sc}\epic G^\mathrm{ad}$. [i.e. the kernel is a multiplicative 
+group: this doesn't always hold for isogenies in characteristic $p$]
+
+For $\SL(2)$, we have $\SL(2)\epic \PGL(2)$. 
+
+Put $R(q) = \image(G^\mathrm{sc}(\dF_q)\to G^\mathrm{ad}(\dF_q))$. In most 
+cases, this is also the commutator subgroup of $G^\mathrm{ad}(\dF_q)$. 
+
+Example. $\typeA_1(q)=\image(\SL_2(\dF_q)\to \PGL_2(\dF_q))=\SL_2(\dF_q)/\{\pm 1\}$; 
+so $\typeA_1(2^f) = \SL_2(\dF_{2^f})$. So we've defined all the Chevalley groups. 
+
+Example. $\typeD_n(q)$ is computed via $\SO(2n)$. The group $\SO(2n)$ is 
+neither simply connected nor adjoint. It fits into a diagram 
+$\Spin(2n)\epic \SO(2n)\epic \SO(2n)/\dmu_2$. So 
+$\typeD_n(q)=\image(\Spin_{2n}(\dF_q)\to \SO_{2n}(\dF_q)/\{\pm 1\})$; so 
+$\typeD_n(q)$ is an index two subgroup of $\SO_{2n}(\dF_q)/\pm 1$. 
+
+There are also unitary groups. Recall that $\SL(n+1)$ has Dynkin diagram 
+$\bullet-\bullet-\cdots-\bullet$, which has an outer automorphism (flip 
+accross $y$-axis). It sends $g\mapsto \transpose g^{-1}$. So 
+$\SU(n)=\{g\in \SL_n(\dC):\bar g=\transpose g^{-1}\}$. One typically puts 
+$g^{-1}=g^\ast$, where $g^\ast=\overline{\transpose g}$. 
+
+There is a quadratic extension $\dF_{q^2}/\dF_q$; it has Galois group 
+generated by some $\sigma$. Put 
+$\SU_{n+1}(q^2) = \{g\in \SL_{n+1}(\dF_{q^2}):\sigma(g) = \transpose g^{-1}\}$. 
+Finally, $\prescript{2}{}{\typeA_n(q^2)} = \SU_{n+1}(q^2)/\zentrum$. 
+
+One defines the other Steinberg groups similarly: they are obtained from
+$\{g\in G(\dF_q):\sigma(g) = f(g)\}$, where $f$ is an outer automorphism of 
+order $2$. For $\prescript{3}{}{\typeD_4}(q)$, choose a generator 
+$\sigma\in \galois(\dF_{q^3}/\dF_q)$; let $f$ be an outer automorphism of 
+$\typeD_4$ of order $3$. One does essentially the same thing with $f$ and 
+$\sigma$ as before. 
+
+[add historical remarks]
+
+Suzuki groups. A group $G$ can have a \emph{special isogeny} in characteristic 
+$2$ or $3$. Vaguely, in characteristic $p$, replace ``$>$'' from edges of 
+the Dynkin diagram with $p$ edges. In characteristic $2$, the Dynkin diagram 
+for $\typeB_2=\typeC_2$ are both $\bullet=\bullet$. It has an automorphism 
+(flip). The group $G$ has an isogeny $f:G\to G$ such that $f^2:G\to G$ is 
+the Frobenius isogeny (induced by $x\mapsto x^{2^{2n+1}}$). Let 
+$\sigma:G\to G$ be the isogeny induced by some sort of Frobenius. 
+
+Put 
+$\prescript{2}{}{\typeB_2}(2^{2n+1})=\{g\in G(\dF_{2^{2n+1}}):f\circ \sigma(g)=g\}$. 
+
+Also in characteristic $2$, the ``Dynkin diagram'' for $\typeF_4$ is 
+$\bullet-\bullet=\bullet-\bullet$. 
+
+In characteristic $3$, $\typeG_3$ is [dot three lines dot], so the same thing 
+works. 
+
+Note: $\#\typeE_8(2) \approx 3.3\cdot 10^{74}$. In contrast, the Monster 
+group has cardinality $\approx 8.1\cdot 10^{53}$. 
 
 
 
