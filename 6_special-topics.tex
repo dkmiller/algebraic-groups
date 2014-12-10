@@ -870,171 +870,262 @@ less transparent) construction of free Lie algebras than the one in
 \subsection[Forms of algebraic groups]{Forms of algebraic groups\footnote{Tao Ran Chen}}
 
 We start by defining non-abelian cohomology, following 
-\cite[II.3]{berhuy-2010}. Let $\Gamma$ be a profinite group, $A$ a (possibly 
+\cite[II.3]{berhuy-2010}. Let $\Gamma$ be a profinite group, $G$ a (possibly 
 nonabelian) discrete group on which $G$ acts continuously by automorphisms. The 
-pointed set of \emph{$1$-cocycles}, denoted $Z^1(\Gamma,A)$, consists of 
-functions $c:\Gamma\to A$, written $\sigma\mapsto c_\sigma$, such that 
+pointed set of \emph{$1$-cocycles}, denoted $Z^1(\Gamma,G)$, consists of 
+functions $c:\Gamma\to G$, written $\sigma\mapsto c_\sigma$, such that 
 \[
-  c_{\sigma\tau} = c_\sigma \sigma\cdot c_\tau 
+  c_{\sigma\tau} = c_\sigma \sigma(c_\tau)  
 \]
 for all $\sigma,\tau\in \Gamma$. The distinguished $1$-cocycle is 
-$\sigma\mapsto 1$. We put an equivalence relation on $Z^1(\Gamma,A)$, namely 
-$c\sim c'$ if there exists $a\in A$ such that 
+$\sigma\mapsto 1$. We put an equivalence relation on $Z^1(\Gamma,G)$, namely 
+$c\sim c'$ if there exists $g\in G$ such that 
 \[
-  c'_\sigma = a c_\sigma \sigma a^{-1} 
+  c'_\sigma = g c_\sigma \sigma(g^{-1}) 
 \]
-for all $\sigma\in \Gamma$. Write $\h^1(\Gamma,A)=Z^1(\Gamma,A)/\sim$ be the 
+for all $\sigma\in \Gamma$. Write $\h^1(\Gamma,G)=Z^1(\Gamma,G)/\sim$ be the 
 set of equivalence classes of $1$-cocycles. 
 
+Let $X$ be a $\Gamma$-set with (equivariant) $G$-action, such that the map 
+$G\times X\to X\times X$ given by $(g,x)\mapsto (g x,x)$ is a bijection. (Such 
+$X$ are called \emph{$G$-torsors} in the category of $\Gamma$-sets.) Choose 
+$x_0\in X$ and define $c:\Gamma\to G$ by 
+$\sigma(x_0) = c_\sigma^{-1}\cdot x_0$. One can check that $c_\sigma$ is a 
+$1$-cocycle that only depends on the isomorphism class of $X$ as a 
+$\Gamma$-equivariant $G$-set. The ``right perspective'' here is that $G$ is a 
+group object in the category of $\Gamma$-sets, and that $\h^1(\Gamma,G)$ 
+classifies $G$-torsors in that category. More generally, let $G$ be a group 
+object in an arbitrary topos $\cT$. A \emph{$G$-torsor} is a $G$-object 
+$X\in\cT$ such that $X\to 1$ is an isomorphism, and such that the obvious 
+morphism $G\times X\to X\times X$ is an isomorphism. As in 
+\cite[\S 8.3]{johnstone-1977}, one can \emph{define} $\h^1(\cT,G)$ to be the 
+(pointed) set of isomorphism classes of $G$-torsors in $\cT$. If 
+$N\subset G$ is a normal subgroup in $\cT$, there is a ``short long exact 
+sequence'' of pointed sets:
+\begin{equation*}
+\begin{tikzcd}
+  1 \ar[r] 
+    & \h^0(\cT,N) \ar[r] 
+    & \h^0(\cT,G) \ar[r] \ar[draw=none]{d}[name=X, anchor=center]{}
+    & \h^0(\cT,G/N) \ar[rounded corners,
+      to path={ -- ([xshift=2ex]\tikztostart.east)
+        |- (X.center) \tikztonodes
+        -| ([xshift=-2ex]\tikztotarget.west)
+        -- (\tikztotarget)}]{dll}[at end]{} \\
+  & \h^1(\cT,N) \ar[r] 
+    & \h^1(\cT,G) \ar[r] 
+    & \h^1(\cT,G/N) .
+\end{tikzcd}
+\end{equation*}
 
-Now let $k$ be a field, $K/k$ an extension, $G_{/k}$ an algebraic group. An 
-\emph{$K/k$-form of $G$} is an algebraic group $G'_{/k}$ such that 
-$G_K\simeq G'_K$. Two $K/k$-forms $G',G''$ are equivalent if 
-$G'\simeq G''$ over $k$. Let $E(K/k,G)$ be the set of equivalence classes of 
-such forms. 
+Our main example is: $\Gamma=\galois(\bar k/k)$ for $k$ a field, in which 
+case the category of $\Gamma$-sets is equivalent to $\sheaves(k_\etale)$. We 
+will write $\h^1(k,G)$ instead of $\h^1(k_\etale,G)$ for 
+$G\in \sheaves(k_\etale)$. Suppose $X$ is an ``object we want to classify.'' 
+Let $G=\automorphisms X$ (internal automorphisms object in the category 
+$\sheaves(k_\etale)$). If $X'$ is another object and 
+$\varphi:X'_{k^\mathrm{sep}}\to X_{k^\mathrm{sep}}$ is an isomorphism, we can 
+define a cocycle $c:\Gamma=\galois(k^\mathrm{sep}/k)\to G(k^\mathrm{sep})$ by 
+$c_\sigma = \sigma(\varphi)\circ \varphi^{-1}$. This gives a map 
+$\{k$-forms of $X\}\to \h^1(k,G)$, which will generally be injective. We are 
+interested in the case where $X$ is an algebraic group over $k$. 
 
-Example. If $k=\dR$, $K=\dC$, we could let 
-\begin{align*}
-  G &= \{\mat{x}{y}{-y}{x} : x^2+y^2=1\} \\
-  G' &= \{\mat{x}{}{}{y} : x y=1\} .
-\end{align*}
-These are not isomorphic over $\dR$, but they are isomorphic over $\dC$ via 
+Let $k$ be a field, $G_{/k}$ an algebraic group. A \emph{$k$-form of $G$} is 
+an algebraic group $G'_{/k}$ such that 
+$G'_{k^\mathrm{sep}} \simeq G_{k^\mathrm{sep}}$. Two $k$-forms $G',G''$ are 
+equivalent if $G'\simeq G''$ over $k$. 
+
+\begin{example}
+Let $K/k$ be a finite Galois extension, $G_{/k}$ an algebraic group. We defined 
+in \autoref{eg:nonsplit-torus} the \emph{Weil restriction} of an algebraic 
+group; here we apply it to $G_K$. That is, we write $\weil_{K/k} G$ for the 
+algebraic group over $k$ defined by 
 \[
-  \varphi\mat{x}{y}{-y}{x} = \mat{x+i y}{}{}{x-i y} .
+  (\weil_{K/k} G)(A) = G(A\otimes_k K) ,
 \]
+for any $k$-algebra $A$. By \cite[\S 7.6]{bosch-lutkebohmert-raynaud-1990}, 
+$\weil_{K/k} G$ is actually an algebraic group. Since 
+$K\otimes_k K\simeq \prod_\Gamma K$, where $\Gamma=\galois(K/k)$, we have 
+$(\weil_{K/k} G)_K\simeq \prod_\Gamma G_K$, i.e.~$\weil_{K/k} G$ is a 
+$k$-form of $\prod_K \Gamma$. Interesting $k$-forms of $G$ can often be 
+obtained by taking appropriate subgroups of $\weil_{K/k} G$. 
+\end{example}
 
-Example. Once again, $k=\dR$ and $K=\dC$. Let $G=\SL(2)_{/\dR}$. What are the 
-$\dC/\dR$-forms of $G$? They are: 
+\begin{example}
+Apply the previous general construction to the extension $\dC/\dR$. 
+The group $\dS=\weil_{\dC/\dR}\Gm$ comes with a \emph{norm map} 
+$\norm:\dS\to \Gm$, coming from the ``usual norm'' 
+$\norm:\dC\to \dR$. Then $\dS^{\norm=1}$ is a $\dR$-form of $\Gm$. 
+\end{example}
 
-$\SL(2)_{/\dR}$
-
-$\SL(\mathbf H/\dR)$. Recall that $\mathbf H$ is the unique division algebra 
-over $\dR$, it comes with a norm map $N:\mathbf H\to \dR$. Put 
-$\SL(\dH/\dR)=\{x\in \dH:\norm(x)=1\}$. Formally, 
-$\SL(\dH/\dC)=\{x\in \dH_\dC:\norm(x)=1\}$. One has 
-$\dH_\dC\simeq \matrices_2(\dC)$ via 
+\begin{example}
+Let $k$ be a field. A \emph{central simple algebra} over $k$ is a (possibly 
+non-commutative) $k$-algebra $R$ that is simple and has $\zentrum(R)=k$. 
+The obvious examples are $\matrices_n(k)$, but there are others, for example 
+any division algebra $D$ with $\zentrum(D)=k$. If $R$ is any central simple 
+algebra, then $R_{k^\mathrm{sep}}\simeq \matrices_n(k^\mathrm{sep})$ for some 
+$n$. There is a norm map $\norm:R\to k$, which we can use to define a group 
+$\SL(R)$ by 
 \[
-  \varphi(a+b i+c j+d k) = \mat{a+b\sqrt{-1}}{c+d\sqrt{-1}}{-c+d\sqrt{-1}}{a-b\sqrt{-1}} .
+  \SL(R)(A) = \ker\left((R\otimes_k A)^\times \xrightarrow{\norm} A^\times\right) ,
 \]
-This induces $\SL(\dH/\dC)\simeq \SL(2)_{/\dC}$. It turns out that these 
-are the only $\dC/\dR$-forms of $\SL(2)$, but this is far from obvious. 
+for all $k$-algebras $A$. Since $R$ splits over $k^\mathrm{sep}$, we have 
+$\SL(R)_{k^\mathrm{sep}}\simeq \SL(n)_{k^\mathrm{sep}}$. 
+\end{example}
 
-We'd like to describe $E(K/k,G)$ using Galois cohomology. Assume $K/k$ is 
-Galois with group $\galois(K/k)=\Gamma$. Then $\Gamma$ acts on the set of 
-isomorphisms $G'_K\to G_K$ in the obvious way [write this out]. In 
-particular, $\Gamma$ acts on $\automorphisms_K(G)$. Let 
-$\varphi:G'\iso G$ over $K$. Define a map 
-$c:\Gamma\to \automorphisms_K(G)$ by 
-$\sigma\mapsto c_\sigma = \varphi^\sigma\circ \varphi^{-1}$. It turns out that 
-$c\in Z^1(\Gamma,\automorphisms_K(G))$. To see this, note that 
+When $k=\dR$, it is well-known that there is only one division algebra, 
+the quaternions $\dH$. So the only obvious forms of $\SL(2)_\dR$ are 
+$\SL(2)$ and $\SL(\dH)$. It turns out that these are the only ones, but this 
+is far from obvious. 
+
+It turns out that the set of $k$-forms of an algebraic group $G$ can be 
+described using Galois cohomology. Write $\automorphisms(G)$ for the 
+functor on $k$-schemes defined by 
 \[
-  c_{\sigma\tau} = \varphi^{\sigma\tau}\circ\varphi^{-1} = (\varphi^{\sigma\tau}\circ\varphi^{-1})^\tau \circ(\varphi^\tau\circ \varphi^{-1}) = c_\sigma^\tau c_\tau .
+  \automorphisms(G)(S) = \automorphisms_S(G_S) .
 \]
-The class of $c$ in $\h^1(\Gamma,\automorphisms_K G)$ does not depend on the 
-particular choice of $\varphi$. Indeed, suppose we have a commutative diagram of 
-automorphisms: 
-\[\begin{tikzcd}
-  G' \ar[r, "\phi"] 
-    & G \ar[d, "f"] \\
-  & G
-\end{tikzcd}\]
-We compute 
-\[
-  \phi^\sigma\circ \phi^{-1} = (f\phi)^\sigma\circ(f\varphi)^{-1} = f^\sigma\circ(\varphi^\sigma\circ\varphi^{-1})\circ f^{-1} \sim \varphi^\sigma \circ \varphi^{-1} .
-\]
-[Here $\varphi$ and $\phi$ are different: this is very bad!]
+This is a sheaf for the canonical topology. In particular, we can take 
+$\h^1(k,\automorphisms G)=\h^1(\galois(\bar k/k),\automorphisms_{k^\mathrm{sep}}(G))$. 
+Let $G'$ be a $k$-form of $G$. Choose an isomorphism 
+$\phi:G'_{k^\mathrm{sep}}\iso G_{k^\mathrm{sep}}$, and define 
+$c:\galois(k^\mathrm{sep}/k)\to \automorphisms_{k^\mathrm{sep}}(G)$ by 
+$c_\sigma = \sigma(\phi)\circ \phi^{-1}$. It turns out that the class of 
+$c$ in $\h^1(k,\automorphisms G)$ does not depend on the choice of 
+$\phi$. In fact, we have the following result. 
 
-We have defined a map $E(K/k,G)\to \h^1(\Gamma,\automorphisms_K G)$. It is a 
-theorem that this map is a bijection. 
+\begin{theorem}
+Let $k$ be a field, $G_{/k}$ an algebraic group. Then the correspondence 
+defined above induces a natural bijection between the set of equivalence 
+classes of $k$-forms of $G$ and the pointed set $\h^1(k,\automorphisms G)$. 
+\end{theorem}
+\begin{proof}
+This is Lemma 7.1.1 in \cite{conrad-rgs}. 
+\end{proof}
 
-Returning to our example $\SL(2)$, we see that 
-$E(\dC/\dR,\SL_2)=\h^1(\dZ/2,\PSL_2)$, which classifies quaternion algebras 
-over $\dR$. There are two such algebras, namely $\matrices_2$ and $\dH$. This 
-yields our example above. 
-
-[work out for any field: forms of $\SL_2$ are in bijection with quaternion 
-algebras over the field.] 
-
-
-
-
+\begin{example}
+As above, let $k=\dR$, $G=\SL(2)$. Then $\automorphisms G=\PSL_2$ and 
+$\galois(\dC/\dR)=\dZ/2$. So the set of $\dR$-forms of $\SL(2)$ is in 
+bijection with $\h^1(\dR,\PSL_2)\simeq \h^2(\dR,\dmu_2)[2]$, which classifies 
+quaternion algebras over $\dR$. It is well-known that there are only two 
+such algebras, namely $\matrices_2(\dR)$ and $\dH$. So our list above is 
+complete. 
+\end{example}
 
 
 
 
-\subsection{Ryan, Arithmetic subgroups}
 
-Def. If $G$ is a (abstract) group, $H_1,H_2\subset G$ subgroups, then $H_1$ is 
-\emph{commensurable} with $H_2$ if $H_1\cap H_2$ has finite index in both 
-$H_1$ and $H_2$. 
+\subsection[Arithmetic subgroups]{Arithmetic subgroups\footnote{Ryan McDermott}}
+
+In what follows, we focus on arithmetic subgroups of real Lie groups. Margulis 
+proved his arithmeticity and hyperrigidity theorems in much greater generality, 
+e.g.~for groups like 
+$\GL_n(\dZ[\frac 1 p])\subset \GL_n(\dR)\times \GL_n(\dQ_p)$. 
+
+\begin{definition}
+Let $G$ be an abstract group, $H_1,H_2$ subgroups of $G$. We say $H_1$ and 
+$H_2$ are \emph{commensurable} if $H_1\cap H_2$ has finite index in both $H_1$ 
+and $H_2$. 
+\end{definition}
 
 As an exercise, check that commensurability is an equivalence relation on the 
 set of subgroups of $G$. 
 
-Let $G\subset \GL(n)_\dQ$ be an algebraic subgroup. Let $L=\dZ e_1+\cdots + \dZ e_n$ 
-be the standard lattice in $\dQ^n$. Define $G(\dQ)_L=\{g\in G(\dQ):g L=L\}$. 
+\begin{definition}
+Let $G_{/\dQ}$ be an algebraic group. A subgroup $\Gamma\subset G(\dR)$ is 
+\emph{arithmetic} if for some (hence any) embedding $G\monic \GL(n)_\dQ$, the 
+group $G(\dQ)\cap \GL_n(\dZ)$ is commensurable with $\Gamma$. 
+\end{definition}
 
-Def. A subgroup $\Gamma\subset G(\dR)$ is \emph{arithmetic} if it's commensurable 
-with $G(\dQ)_L$. 
+Clearly $\SL_n(\dZ)$ is an arithmetic subgroup of $\SL_n(\dR)$. 
 
-Exercise. Let $G+\GL(n)$; then $G(\dQ)_L=\GL_n(\dZ)$. 
+\begin{lemma}
+Let $G_{/\dQ}$ be an algebraic group. If $\Gamma\subset G(\dR)$ is arithmetic, 
+then $\Gamma$ is discrete in the induced (analytic) topology. 
+\end{lemma}
+\begin{proof}
+The group $\Gamma$ is a finite union of cosets of a subgroup of 
+$G(\dQ)\cap \GL_n(\dZ)$, so it suffices to prove that 
+$\GL_n(\dZ)$ is a discrete subgroup of $\GL_n(\dR)$. But 
+$\GL_n(\dZ)\subset \matrices_n(\dZ)\subset \matrices_n(\dR)$, and clearly 
+$\matrices_n(\dZ)$ is a discrete subgroup of $\matrices_n(\dR)$. 
+\end{proof}
 
-In general, $G(\dQ)_L=G(\dQ)\cap \GL_n(\dZ)$. 
+It is well-known (see for example 
+\cite[VII \S1.2 th.1]{bourbaki-integration-7-9}) that any locally compact group 
+$G$ admits a unique (up to scalar) left-invariant Borel measure, called the 
+\emph{Haar measure} on $G$. We say $G$ is \emph{unimodular} if this measure is 
+also right-invariant. Left-invariant and right-invariant Haar measures are 
+related via a continuous homomorphism $\Delta:G\to \dR^+$, known as the 
+\emph{modulus} \cite[VII \S1.3]{bourbaki-integration-7-9}. If $G$ is a 
+Lie group, one has $\Delta(g)=(\det\adjoint g)^{-1}$ by 
+\cite[III \S 3.16]{bourbaki-lie-alg-1-3}, so in particular $G$ is unimodular. 
+If $G$ is a general unimodular group and $\Gamma\subset G$ is discrete, then 
+by \cite[VII \S 2.6 cor.2]{bourbaki-integration-7-9}, there is a unique 
+(up to scalar) $G$-invariant measure on the quotient space 
+$\Gamma\backslash G$. 
 
-Example. $\SL_n(\dQ)_L=\SL_n(\dZ)$. 
+\begin{definition}
+Let $G$ be a unimodular locally compact group, $\Gamma\subset G$ a discrete 
+subgroup. Then $\Gamma$ is a \emph{lattice} if 
+$\volume(\Gamma\backslash G)<\infty$. 
+\end{definition}
 
-Arithmetic subgroups are an important class of discrete groups. Indeed, 
-in general, any $\Gamma$ arithmetic in $G(\dR)$ will be a union of finitely 
-many discrete cosets [use $\SL_n(\dZ)\subset \SL_n(\dZ)$ discrete because 
-$\SL_n(\dZ)=\SL_n(\dR)\cap \matrices_n(\dZ)$ in $\matrices_n(\dZ)$] of 
-$G(\dQ)_L\cap \Gamma$, so $\Gamma$ is itself discrete in $G(\dR)$. 
+\begin{definition}
+If $G=V$ is a real vector space and $\Gamma=\Lambda\subset V$ is a discrete 
+abelian subgroup with $\rank(\Lambda)=\dim(V)$, then 
+$V/\Lambda\simeq (S^1)^n$ for some $n$. This is compact, hence it has finite 
+volume. 
+\end{definition}
 
-If $G$ is locally compact, $\Gamma\subset G$ discrete, there exists a 
-left-invariant Borel measure $\mu'$ on $G$ [Haar measure: unique up to scalar]; 
-this induces a measure $\mu$ on $\Gamma\backslash G$. 
+We can give a more general version of the definition of arithmetic subgroups. 
 
-Def. If $\mu(\Gamma\backslash G)<\infty$, we say that $\Gamma$ is of 
-\emph{finite covolume} in $G$. 
-
-Example. $G=\dR^n$, $\Gamma=\dZ^n$, $\mu'$ the Lebesgue measure; the induced 
-measure on $\dR^n/\dZ^n=(S^1)^n$ is essentially the Lebesgue measure on 
-$[0,1)^n$, so $\mu(\dR^n/\dZ^n)=1$. 
-
-Redefine arithmetic subgroup: let $H$ be an almost-simple algebraic group over 
-$\dR$ with a fixed embedding $H\monic \GL(n)_\dR$. A subgroup 
+\begin{definition}
+Let $H_{/\dR}$ be an almost-simple algebraic group. A subgroup 
 $\Gamma\subset H(\dR)$ is \emph{arithmetic} if there exists an algebraic group 
-$G_{/\dQ}$, a surjective map $\rho:G_\dR\epic H$ such that $\ker\rho(\dR)$ is 
-compact, and an arithmetic subgroup $\Gamma'\subset G(\dR)$ such that 
-$\rho(\Gamma')$ is commensurable with $\Gamma$. 
+$G_{/\dQ}$, a surjection $\phi:G_\dR\epic H$ with compact kernel, and an 
+arithmetic subgroup (in the old sense) $\Gamma'\subset G(\dR)$ such that 
+$\phi(\Gamma)$ is commensurable with $\Gamma$. 
+\end{definition}
 
-Since $\Gamma'$ is discrete in $G(\dR)$, 
-$\ker\rho|_{\Gamma'} = \Gamma'\cap \ker\rho(\dR)$, a discrete subspace of a 
-compact space, hence finite. 
+As before, arithmetic subgroups are discrete. Moreover, $\Gamma'$ is discrete 
+in $G(\dR)$, so $\Gamma'\cap \ker\phi(R)$ is finite. In other words, all 
+arithmetic subgroups (in the new sense) are finite quotients of arithmetic 
+subgroups (in the old sense). Even this new definition is a special case of 
+the much more general one in \cite[IX \S 1]{margulis-1991}. 
 
-Def. $\SO(1,n)=\{g\in \SL_{n+1}(\dR):q_1(g x)=q_1(x)\forall x\in \dR^{n+1}\}$, 
-where 
-\[
-  q_1(x) = x_1^2 + \cdots + x_n^2 - x_{n+1}^2 .
-\]
-Also, $\SU(1,n)=\{g\in \SL_{n+1}(\dC):q_2(g z)=q_2(z)\}$, where 
-\[
-  q_2(z) = z_1 \bar z_1 + \cdots + z_n \bar z_n - z_{n+1} \bar z_{n+1} .
-\]
+Define two quadratic forms, one on $\dR^{n+1}$ and the other on 
+$\dC^{n+1}$: 
+\begin{align*}
+  q_1(x) &= x_1^2 + \cdots + x_n^2 - x_{n+1}^2 \\
+  q_2(z) &= |z_1|^2 + \cdots + |z_n|^2 - |z_{n+1}|^2 .
+\end{align*}
+From this, we define the associated ``orthogonal groups:'' 
+\begin{align*}
+  \SO(1,n) &= \{g\in \SL_{n+1}(\dR):q_1(g x) = q_1(x)\text{ for all }x\in \dR^{n+1}\} \\
+  \SU(1,n) &= \{g\in \SL_{n+1}(\dC):q_2(g z) = q_2(z)\text{ for all }x\in \dC^{n+1}\} .
+\end{align*}
+Note that $\SO(1,n)$ and $\SU(1,n)$ can be interpreted as the real points of 
+simple algebraic groups over $\dR$, but we will not do this. 
 
-Theorem. Let $\Gamma$ be a discrete subgroup with finite covolume in $H(\dR)$, 
-where $H$ is a non-compact almost-simple real algebraic group. Then
-$\Gamma$ is arithmetic unless $H$ is isogenous to $\SO(1,n)$ or 
-$\SU(1,n)$. 
+\begin{theorem}[Margulis]
+Let $H_{/\dR}$ be a simple algebraic group such that $H(\dR)$ is not compact, 
+$\Gamma\subset H(\dR)$ a lattice. Then $\Gamma$ is arithmetic unless $H$ is 
+isogenous to $\SO(1,n)$ or $\SU(1,n)$. 
+\end{theorem}
+\begin{proof}
+This is a special case of the ``Theorem A'' from \cite[IX \S 1]{margulis-1991}. 
+\end{proof}
 
 Since $\SL_2(\dR)$ is isogenous to $\SO(1,2)$, the theorem doesn't apply to 
-$\SL_2(\dR)$ -- moreover it's false. 
-
-There are countably many arithmetic subgroups of $\SL_2(\dR)$, but every 
-compact Riemann surface of genus $g\geqslant 2$ is the quotient of 
-$\mathfrak H$ by a discrete subgroup of $\PSL_2(\dR)$. Since there are 
-continuous families of such surfaces [$M_2$], there are more discrete, 
-finite covolume subgroups of $\SL_2(\dR)$ than arithmetic subgroups. 
-
+$\SL_2(\dR)$. In fact, it doesn't hold in this setting. For, there are only 
+countably many arithmetic subgroups of $\SL_2(\dR)$. However, every compact 
+Riemann surface of genus $g\geqslant 2$ is the quotient of the upper half-plane 
+$\fH=\{z\in \dC:\Im z>0\}$ by a discrete subgroup of $\SL_2(\dR)$. Since the 
+``space of genus-$g$ compact Riemann surfaces,'' denoted $M_g$, is itself 
+$(3g-3)$-dimensional variety over $\dC$, there are uncountably many 
+isomorphism-classes of lattices in $\SL_2(\dR)$. By cardinality considerations, 
+there are non-arithmetic lattices in $\SL_2(\dR)$. 
 
 
 
@@ -1042,162 +1133,130 @@ finite covolume subgroups of $\SL_2(\dR)$ than arithmetic subgroups.
 
 \subsection{Finite simple groups of Lie type}
 
-Let $G_{/k}$ be a split reductive group, 
-$\fg=\ft\oplus \bigoplus_{\alpha\in R} \fg_\alpha$ the root decomposition of 
-its Lie algebra. Recall that there are $T$-equivariant embeddings 
-$\fg_\alpha\iso U_\alpha\simeq \Ga\subset G$. The group $G$ is generated by 
-$T$ and $\{U_\alpha:\alpha\in R\}$. We constructed a bijection bewteen 
-isomorphism classes of split connected reductive groups over $k$ and 
-root data. 
-
-Let $\sR=(X,R,\check X,\check R)$ be a root datum corresponding to an 
-adjoint simple group. For any field $k$, there is a unique split reductive 
-group $G_{\sR/k}$ that is adjoint, with root datum $\sR$. So $\sR$ could be 
-any of 
-$\typeA_n,\typeB_n,\typeC_n,\typeD_n,\typeE_6,\typeE_7,\typeE_8,\typeF_4,\typeG_2$. 
-
-Let $Q=\dZ\cdot R$, $\check Q=\dZ \check R$, $n=\rank(X)$. Define 
-$\fg_\dZ = \ft\oplus \bigoplus_{\alpha\in R} \dZ e_\alpha$, where 
-$\ft=\check Q\simeq \dZ^n$. Give $\fg_\dZ$ a Lie bracket: 
-\begin{align*}
-  [\ft,\ft] &= 0 \\
-  [x,e_\alpha] &= \langle \alpha,x\rangle e_\alpha \qquad (x\in \ft,\alpha\in R) \\
-  [e_\alpha,e_{-\alpha}] &= \check\alpha (\alpha\in R) \\
-  [e_\alpha,e_\beta] &= 0 (\alpha+\beta\notin R) \\
-  [e_\alpha,e_\beta] &= c_{\alpha,\beta} e_{\alpha+\beta} (\alpha+\beta\in R) .
-\end{align*}
-The ``mystery constants'' $c_{\alpha,\beta}$ are up to sign 
-$c_{\alpha,\beta}=\pm(r+1)$, where the $r,r'$ are maximal integers such 
-$\beta-r\alpha,\dots,\beta-\alpha,\beta,\beta+\alpha,\dots,\beta+r'\alpha$ are 
-all in $R$. [$r=r_{\alpha,\beta}$; $r'$ not really needed here -- could have 
-stopped with $\beta$.] There is a recipe for the signs (different choices). 
-In [?], we gave a recipe for the $c_{\alpha,\beta}$ for simply laced diagrams. 
-
-The key point is: we end up with a simple Lie algebra $\fg_\dZ$ over $\dZ$. 
-For any field $k$, $\fg_\dZ\otimes k$ is a Lie algebra over $k$ with the same 
-root datum. We want to recover a group from $\fg_k=\fg_\dZ\otimes k$. 
-
-We'll construct $G$ such that $\adjoint:G\to \GL(\fg)$ is an embedding. First, 
-we'll construct the $U_\alpha\subset \GL(\fg)$. Define a homomorphism 
-$u_\alpha:\Ga\to \GL(\fg)$ by $x\mapsto \exp(x\cdot \adjoint(e_\alpha)) = \sum_{n\geqslant 0} \frac{x^n\adjoint(e_\alpha)^n}{n!}$. One has: 
+Consider for a moment how we might try to use algebraic geometry to construct 
+simple abstract groups. Clearly, if $G_{/S}$ is a group scheme, then $G(X)$ is 
+an abstract group for any $X_{/S}$. If $x\in X$ is a point, then there is a 
+natural homomorphism $G(X)\to G(k(x))$, probably with nontrivial kernel, so it 
+makes sense to only study $G(k)$ for $k$ a field and $G_{/k}$ an algebraic 
+group. The unipotent radical $\rad G$ is normal in $G$, so we may as well 
+require that $\rad G=1$, i.e.~that $G$ be semisimple. Simple factors of $G$ 
+yield big normal subgroups, so we finally arrive at the case where $G$ is a 
+simple algebraic group. One would think that we should look at 
+$G^\mathrm{ad}(k)$, where $G^\mathrm{ad}=G/\zentrum(G)$, but from the long 
+exact sequence 
 \[
-  u_\alpha(x) = 1+x\adjoint(e_\alpha) + x^2\frac{\adjoint(e_\alpha)^2}{2} .
+  1 \to Z(k) \to G^\mathrm{sc}(k) \to G^\mathrm{ad}(k) \to \h^1(k,Z) \to \cdots ,
 \]
-(except in $\typeG_2$. This makes sense if $2$ is invertible. The whole thing 
-$\frac 1 2 \adjoint(e_\alpha)^2$ works over $\dZ$\ldots the whole power series 
-actually lives over $\dZ$.) So we've defined an injective homomorphism 
-$u_\alpha:\Ga\monic \GL(\fg)$; put $U_\alpha=\image(u_\alpha)$. 
+we see that $G^\mathrm{ad}(k)$ will have an abelian quotient, namely 
+(a subgroup of) $\h^1(k,Z)$. Thus, it makes sense to consider 
+\[
+  \image(G^\mathrm{sc}(k) \to G^\mathrm{ad}(k)) .
+\]
+If $R$ is a root system, write $G^\mathrm{sc}_{R/\dZ}$ 
+(resp.~$G^\mathrm{ad}_{R/\dZ}$) for the unique simply connected (resp.~adjoint) 
+Chevalley-Demazure group scheme over $\dZ$ with root system of type $R$. If 
+$q$ is a prime power, we define 
+\[
+  R(q) = \image\left(G_{R/\dZ}^\mathrm{sc}(\dF_q) \to G_{R/\dZ}^\mathrm{ad}(\dF_q)\right) .
+\]
+Note that $R(q)$ is \emph{not} the $\dF_q$-points of an algebraic group. We 
+will use this construction to give a complete (up to finitely many) list of 
+all finite simple groups. 
 
-We'll construct a split torus $T=\Gm^n$. Identify $X(T)$ with $Q=\dZ R$. Then 
-$T\monic \GL(\fg)$, where $T$ acts on $\ft$ trivially, and on 
-$\fg_\alpha$ by the character $\alpha\in Q=X(T)$. Let $G$ be the algebraic 
-subgroup of $\GL(\fg)$ generated by $T$ and the $\{U_\alpha:\alpha\in R\}$. Then 
-$G$ is a connected reductive group over $k$, $T\subset G$ is a split maximal 
-torus, we have the same decomposition of $\fg$, and $G$ has the same root 
-datum as we started out with. 
-
-[See SGA 3 for this done more carefully.]
-
-[next time for construction of some finite simple groups.]
-
-List:
+\begin{theorem}[Classification theorem]
+Every finite simple group is one of the following:
 \begin{itemize}
   \item cyclic: $\dZ/p$
-  \item alternating: $A_n$ ($n>4$)
+  \item alternating: $A_n$ ($n\geqslant 5$)
   \item Chevalley groups:
   \begin{itemize}
-    \item $\typeA_n(q)$, $\typeB_n(q)$, $n>1$
-    \item $\typeC_n(q)$, $n>2$
-    \item $\typeD_n(q)$, $n>3$
-    \item $\typeE_6(q)$, $\typeE_7(q)$, $\typeE_8(q)$
-    \item $\typeF_4(q)$, $\typeG_2(q)$
+    \item $\typeA_n(q)$, $n\geqslant 1$
+    \item $\typeB_n(q)$, $n\geqslant 2$
+    \item $\typeC_n(q)$, $n\geqslant 2$
+    \item $\typeD_n(q)$, $n\geqslant 3$
+    \item $\typeE_6(q)$, $\typeE_7(q)$, $\typeE_8(q)$, $\typeF_4(q)$, and 
+      $\typeG_2(q)$
   \end{itemize}
   \item Steinberg groups:
   \begin{itemize}
-    \item $\prescript{2}{}{A_n(q^2)}$, $n>1$
-    \item $\prescript{2}{}{D_n(q^2)}$, $n>3$
-    \item $\prescript{2}{}{E_6(q^2)}$, $\prescript{3}{}{D_4(q^3)}$
+    \item $\prescript{2}{}{\typeA_n}(q^2)$, $n\geqslant 2$
+    \item $\prescript{2}{}{\typeD_n}(q^2)$, $n\geqslant 2$
+    \item $\prescript{2}{}{\typeE_6}(q^2)$, $\prescript{3}{}{\typeD_4}(q^3)$
   \end{itemize}
-  \item Suzuki groups: $\prescript{2}{}{B_2(2^{2n+1})}$, $n\geqslant 1$
-  \item Ree groups: $\prescript{2}{}{F_4(2^{2n+1})}$, $n\geqslant 1$ and 
-    $\prescript{2}{}{G_2(3^{2n+1})}$, $n\geqslant 1$. 
-  \item Tits group: $\prescript{2}{}{F_4(2)^1}$. 
-  \item And $26$ sporadic groups. 
+  \item Suzuki groups: $\prescript{2}{}{\typeB_2}(2^{2n+1})$, $n\geqslant 1$
+  \item Ree groups: $\prescript{2}{}{\typeF_4}(2^{2n+1})$, $n\geqslant 1$ and 
+    $\prescript{2}{}{\typeG_2}(3^{2n+1})$, $n\geqslant 1$. 
+  \item Tits group: $\prescript{2}{}{\typeF_4}(2)^1$. 
+  \item The $26$ sporadic groups. 
 \end{itemize}
+Here, $q$ ranges over all primes powers. 
+\end{theorem}
 
-Here $q$ is a prime power. All of these groups are simple, except 
+See the table in Chapter 1 of \cite{gorenstein-lyons-solomon-1994} for a 
+complete list that includes all the sporadics. The ``groups of Lie type'' which 
+are not simple are All of these groups are simple, except 
 $\typeA_1(2)$, $\typeA_1(3)$, $\typeB_2(2)$, $\typeG_2(2)$, and 
-$\prescript{3}{}{A_2(2^2)}$. 
+$\prescript{3}{}{\typeA_2}(2^2)$. 
 
-Let $k$ be a field (eventually $k=\dF_q$). There is a bijection between 
-isomorphism classes of connected split reductive groups over $k$, and 
-reduced root data. An algebraic group $G_{/k}$ is \emph{split} if there is 
-a maximal torus $T\subset G$ such that $T\simeq \Gm^n$ (over $k$). The 
-base-change $T_{\bar k}\subset G_{\bar k}$ will be a maximal torus. 
+\begin{example}[type $\typeA_n$]
+One has $\typeA_n(q)=\image(\SL_{n+1}(\dF_q)\to \PGL_{n+1}(\dF_q))$. This 
+group is often written $\PSL_n(q)$, but as we have discussed elsewhere, this 
+notation is misleading. For example, $\typeA_n(2^f) = \SL_{n+1}(\dF_{2^f})$. 
+\end{example}
 
-Last time, given an irreducible reduced root system $R\subset V$, there 
-is an adjoint and split algebraic groups over $k$ of type $R$. 
-Such groups are simple. 
+\begin{example}[type $\typeD_n$]
+Recall that the simply-connected form of $\typeD_n$ is $\Spin(2n)$, and the 
+adjoint form is $\SO(2n)/\dmu_2$. Thus $\typeD_n(q)$ is an index-two subgroup 
+of $\SO_{2n}(\dF_q)/\{\pm 1\}$. 
+\end{example}
 
-Example. If $R=\typeA_n$, the corresponding group adjoint group is 
-$\PGL(n+1)$. 
+\begin{example}[type $\prescript{2}{}{\typeA_n}$]
+These are constructed via ``unitary groups.'' Recall that $\SL(n+1)$ has 
+Dynkin diagram 
+\[
+\begin{tikzcd}
+  \bullet \ar[r, dash] 
+    & \bullet \ar[r, dash] 
+    & \cdots \ar[r, dash] 
+    & \bullet \ar[r, dash] 
+    & \bullet
+\end{tikzcd}
+\qquad\text{($n$ vertices)} .
+\]
+This has an automorphism (flip accross vertical axis). The induced outer 
+automorphism of $\SL(n+1)$ is $g\mapsto \transpose g^{-1}$. One puts 
+\[
+  \SU(n) = \{g\in \SL_n(\dC):\bar g = \transpose g^{-1}\} .
+\]
+For a finite field $\dF_q$, the appropriate analogue of complex conjugation 
+is the unique nontrivial element $\sigma\in \galois(\dF_{q^2}/\dF_q)$. Put 
+\[
+  \prescript{2}{}{\typeA_n}(q^2) = \{g\in \SL_{n+1}(\dF_{q^2}) : \sigma(g) = \transpose g^{-1}\} / (\text{center}) .
+\]
+\end{example}
 
-Start with the group $G_{/\dF_q}$. [adjoint form] There's a multiplicative 
-isogeny $G^\mathrm{sc}\epic G^\mathrm{ad}$. [i.e. the kernel is a multiplicative 
-group: this doesn't always hold for isogenies in characteristic $p$]
+One obtains the other Steinberg groups similarly: they are of the form 
+\[
+  \{g\in R(q^2):\sigma(g) = \phi(g)\} ,
+\]
+where $\phi$ is an automorphism of $\dynkin(R)$ of order $2$. For 
+$\prescript{3}{}{\typeD_4}(q)$, one chooses a generator
+$\sigma\in \galois(\dF_{q^3}/\dF_q)$ and an outer automorphism $\phi$ of 
+$\typeD_4$ of order $3$. Essentially the same construction can be done with 
+$\sigma$ and $\phi$. 
 
-For $\SL(2)$, we have $\SL(2)\epic \PGL(2)$. 
+The Suzuki and Ree groups come from the so-called ``special isogenies'' in 
+characteristics $2$ and $3$. Roughly, these come from the fact that in 
+characteristic $p$, a directed multi-arrow in a Dynkin diagram should be 
+replaced with $p$ undirected edges. Thus in characteristic $2$, the Dynkin 
+diagram for $\typeB_2$ is $\bullet=\bullet$, which has a nontrivial 
+automorphism. Similarly, in characteristic $2$, The Dynkin diagram of 
+type $\typeF_4$ should be $\bullet-\bullet=\bullet-\bullet$, which also 
+has an automorphism. Finally, in characteristic $3$, $\dynkin(\typeG_2)$ 
+should be $\bullet\equiv\bullet$. 
 
-Put $R(q) = \image(G^\mathrm{sc}(\dF_q)\to G^\mathrm{ad}(\dF_q))$. In most 
-cases, this is also the commutator subgroup of $G^\mathrm{ad}(\dF_q)$. 
-
-Example. $\typeA_1(q)=\image(\SL_2(\dF_q)\to \PGL_2(\dF_q))=\SL_2(\dF_q)/\{\pm 1\}$; 
-so $\typeA_1(2^f) = \SL_2(\dF_{2^f})$. So we've defined all the Chevalley groups. 
-
-Example. $\typeD_n(q)$ is computed via $\SO(2n)$. The group $\SO(2n)$ is 
-neither simply connected nor adjoint. It fits into a diagram 
-$\Spin(2n)\epic \SO(2n)\epic \SO(2n)/\dmu_2$. So 
-$\typeD_n(q)=\image(\Spin_{2n}(\dF_q)\to \SO_{2n}(\dF_q)/\{\pm 1\})$; so 
-$\typeD_n(q)$ is an index two subgroup of $\SO_{2n}(\dF_q)/\pm 1$. 
-
-There are also unitary groups. Recall that $\SL(n+1)$ has Dynkin diagram 
-$\bullet-\bullet-\cdots-\bullet$, which has an outer automorphism (flip 
-accross $y$-axis). It sends $g\mapsto \transpose g^{-1}$. So 
-$\SU(n)=\{g\in \SL_n(\dC):\bar g=\transpose g^{-1}\}$. One typically puts 
-$g^{-1}=g^\ast$, where $g^\ast=\overline{\transpose g}$. 
-
-There is a quadratic extension $\dF_{q^2}/\dF_q$; it has Galois group 
-generated by some $\sigma$. Put 
-$\SU_{n+1}(q^2) = \{g\in \SL_{n+1}(\dF_{q^2}):\sigma(g) = \transpose g^{-1}\}$. 
-Finally, $\prescript{2}{}{\typeA_n(q^2)} = \SU_{n+1}(q^2)/\zentrum$. 
-
-One defines the other Steinberg groups similarly: they are obtained from
-$\{g\in G(\dF_q):\sigma(g) = f(g)\}$, where $f$ is an outer automorphism of 
-order $2$. For $\prescript{3}{}{\typeD_4}(q)$, choose a generator 
-$\sigma\in \galois(\dF_{q^3}/\dF_q)$; let $f$ be an outer automorphism of 
-$\typeD_4$ of order $3$. One does essentially the same thing with $f$ and 
-$\sigma$ as before. 
-
-[add historical remarks]
-
-Suzuki groups. A group $G$ can have a \emph{special isogeny} in characteristic 
-$2$ or $3$. Vaguely, in characteristic $p$, replace ``$>$'' from edges of 
-the Dynkin diagram with $p$ edges. In characteristic $2$, the Dynkin diagram 
-for $\typeB_2=\typeC_2$ are both $\bullet=\bullet$. It has an automorphism 
-(flip). The group $G$ has an isogeny $f:G\to G$ such that $f^2:G\to G$ is 
-the Frobenius isogeny (induced by $x\mapsto x^{2^{2n+1}}$). Let 
-$\sigma:G\to G$ be the isogeny induced by some sort of Frobenius. 
-
-Put 
-$\prescript{2}{}{\typeB_2}(2^{2n+1})=\{g\in G(\dF_{2^{2n+1}}):f\circ \sigma(g)=g\}$. 
-
-Also in characteristic $2$, the ``Dynkin diagram'' for $\typeF_4$ is 
-$\bullet-\bullet=\bullet-\bullet$. 
-
-In characteristic $3$, $\typeG_3$ is [dot three lines dot], so the same thing 
-works. 
-
-Note: $\#\typeE_8(2) \approx 3.3\cdot 10^{74}$. In contrast, the Monster 
+Finite simple groups of exceptional Lie type can be quite large. For example, 
+$\#\typeE_8(2) \approx 3.3\cdot 10^{74}$. In contrast, the Monster 
 group has cardinality $\approx 8.1\cdot 10^{53}$. 
 
 
