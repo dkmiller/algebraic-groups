@@ -6,7 +6,7 @@
 
 
 
-A \emph{Lie algebra} is a linear object whose representation theory is (in 
+A Lie algebra is a linear object whose representation theory is (in 
 principle) manageable. To any linear algebraic group $G$ we will associate a 
 Lie algebra $\fg=\lie(G)$, and study the representation theory of $G$ via that 
 of $\fg$. 
@@ -69,28 +69,28 @@ $\gl(k^n)$.
 \end{example}
 
 Often, we will just write $\gl_n$ instead of $\gl_n(k)$. We will also do this 
-for the other named Lie algebras. 
+for the other ``named'' Lie algebras. 
 
 \begin{example}[Special linear]
-Put $\Sl_n(k)=\{X\in \gl_n(k):\trace X=0\}$. Since $\trace [X,Y]=0$, this is a 
+Put $\Sl_n(k)=\{X\in \gl_n(k):\trace x=0\}$. Since $\trace [x,y]=0$, this is a 
 Lie subalgebra of $\gl_n$. In fact, $[\gl_n,\gl_n]\subset \Sl_n$. 
 \end{example}
 
 \begin{example}[Special orthogonal]
-Put $\so_n(k) = \{X\in \gl_n(k):\transpose X=-X\}$. This is a Lie subalgebra 
-of $\gl_n(k)$ because if $X,Y\in \so_n(k)$, then 
+Put $\so_n(k) = \{x\in \gl_n(k):\transpose x=-x\}$. This is a Lie subalgebra 
+of $\gl_n(k)$ because if $x,y\in \so_n(k)$, then 
 \begin{align*}
-  \transpose{[X,Y]} 
-    &= \transpose Y \transpose X-\transpose X \transpose Y \\
-    &= (-Y)(-X) - (-X)(-Y) \\
-    &= -[X,Y] .
+  \transpose{[x,y]} 
+    &= \transpose y \transpose x-\transpose x \transpose y \\
+    &= (-y)(-x) - (-x)(-y) \\
+    &= -[x,y] .
 \end{align*}
 \end{example}
 
 \begin{example}[Symplectic]
-Let $J_n=\begin{pmatrix} & -I_n \\ I_n \end{pmatrix}\in \gl_{2n}(k)$. Put 
+Let $J_n=\mat{}{-1_n}{1_n}{}\in \gl_{2n}(k)$. Put 
 \[
-  \fsp_{2n}(k) = \{X\in \gl_{2n}(k):J X+\transpose X\cdot J=0\} .
+  \fsp_{2n}(k) = \{x\in \gl_{2n}(k):J x+\transpose x J=0\} .
 \]
 As an exercise, check that this is a Lie subalgebra of $\gl_{2n}$. 
 \end{example}
@@ -155,7 +155,7 @@ isomorphism  $\fg/\ker(\varphi)\iso \image(\varphi)\subset \fh$.
 Give $k$ the trivial Lie bracket. Then $\trace:\gl_n(k) \to k$ is a a 
 homomorphism. Indeed, 
 \[
-  \trace [X,Y]=\trace(X Y)-\trace(Y X)= 0 .
+  \trace [x,y]=\trace(x y)-\trace(y x)= 0 .
 \]
 We could have defined $\Sl_n(k)=\ker(\trace)$; this is an ideal in 
 $\gl_n$, and $\gl_n(k)/\Sl_n(k)\iso k$. 
@@ -301,7 +301,7 @@ from a section $e:\spectrum(k)\to G$ of the structure $G\to \spectrum(k)$. The
 By definition, $\fg(A)=\ker\left(G(A[\varepsilon])\to G(A)\right)$ for any 
 $k$-algebra $A$. Just as with algebraic groups, we will write $\fg_{/k}$ for 
 $\fg$ thought of as a group scheme 
-over $k$, and just $\fg$ for the $\fg(k)$. 
+over $k$, and just $\fg$ for $\fg(k)$. 
 \end{hard}
 
 
@@ -363,7 +363,7 @@ $X(k)=\hom_k(A,k)$ is the set of maximal ideas in $A$.
 
 \subsection{Affine group schemes and Hopf algebras}
 
-A affine group $G_{/k}$ will give us a functor $G:\algebras k\to \groups$. As 
+An affine group $G_{/k}$ will give us a functor $G:\algebras k\to \groups$. As 
 such, it should have morphisms 
 \begin{align*}
   m :G\times G &\to G && \text{``multiplication''} \\
@@ -402,7 +402,7 @@ commutativity of the following diagram:
   A \ar[r, "\Delta"] \ar[d, "\Delta"] 
     & A\otimes_k A \ar[d, "\id\otimes \Delta"] \\
   A\otimes_k A \ar[r, "\Delta\otimes \id"] 
-    & A\otimes_k A\otimes_k A
+    & A\otimes_k A\otimes_k A .
 \end{tikzcd}\]
 The tuple $(A,\Delta,\varepsilon,\sigma)$ is called a \emph{Hopf algebra}. In 
 principle, all theorems about algebraic groups can be rephrased as theorems 
@@ -426,7 +426,7 @@ subgroup-scheme of $\GL(V)$.
 \begin{hard}
 If $S$ is a dedekind scheme (noetherian, one-dimensional, regular) and $G_{/S}$ 
 is a affine flat separated group scheme of finite type over $S$, then the 
-obvious generalization of autoref{thm:groups-linear} holds for $G$; it is a 
+obvious generalization of \autoref{thm:groups-linear} holds for $G$; it is a 
 closed subgroup of $\GL(\sL)$ for $\sL$ a locally free sheaf on $S$ 
 \cite[VI\textsubscript{B} 13.5]{sga3-i}. 
 Interestingly, this fails for more general base schemes. 
@@ -438,8 +438,8 @@ Interestingly, this fails for more general base schemes.
 
 \subsection{Examples of group schemes}
 
-So all group varieties over $k$ embed into $\GL(n)_{/k}$ \emph{as an algebraic 
-group}. We can think of an algebraic group in several ways: 
+So all affine group varieties over $k$ embed into $\GL(n)_{/k}$ \emph{as an 
+algebraic group}. We can think of an algebraic group in several ways: 
 \begin{enumerate}
   \item As a group-valued functor on $\algebras k$. 
   \item As a commutative Hopf algebra over $k$. 
@@ -479,29 +479,30 @@ $f_1,\dots,f_r$, then the $k$-valued points could be computed as
 \]
 
 \begin{example}[Special linear]
-Let $G=\SL(n)_{/k}$. Note that $G\subset \GL(n)$ is cut out by $\det=1$. So 
-$\fg=\lie(G)=\Sl_n$ is 
+Consider $\SL(n)_{/k}\subset \GL(n)_{/k}$, cut out by $\det=1$. Its Lie algebra  
+$\Sl_n=\lie(\Sl_n)$ is 
 \[
-  \Sl_n = \left\{1+X\varepsilon:X\in \matrices_n(k)\text{ and }\det(1+X\varepsilon)=1\right\} .
+  \Sl_n = \left\{1+x\varepsilon:x\in \matrices_n(k)\text{ and }\det(1+x\varepsilon)=1\right\} .
 \]
 The expansion of determinant is 
-$\det(1+X\varepsilon)=1+\trace(X)\varepsilon + O(\varepsilon^2)$. Thus 
+$\det(1+x\varepsilon)=1+\trace(x)\varepsilon + O(\varepsilon^2)$. Thus 
 \[
-  \Sl_n = \left\{X\in \matrices_n(k):\trace(X)=0\right\} .
+  \Sl_n = \left\{x\in \matrices_n :\trace(x)=0\right\} .
 \]
-As a functor, $\Sl_n(A)=\{X\in \matrices_n(A):\trace X=0\}$. 
+As a functor on $k$-algebras, $\Sl_n(A)=\{x\in \matrices_n(A):\trace x=0\}$. 
 \end{example}
 
 \begin{example}[Orthogonal]
-Recall that $G=\Or(n)\subset \GL(n)$ is cut out by $g \transpose g=1$. So 
+Recall that $\Or(n)\subset \GL(n)$ is cut out by $g \transpose g=1$. So 
 \begin{align*}
-  \fg
-    &= \{1+X\varepsilon  (1+X\varepsilon) \transpose{(1+X\varepsilon)}=1\} \\
-    &= \{1+X\varepsilon:X+\transpose X=0\} \\
-    &\simeq \{X\in \matrices_n(k):\transpose X=-X\} \\
-    &= \so_n(k) .
+  \lie(\Or_n)
+    &= \{1+x\varepsilon : (1+x\varepsilon) \transpose{(1+x\varepsilon)}=1\} \\
+    &= \{1+X\varepsilon:x+\transpose X=0\} \\
+    &\simeq \{X\in \matrices_n :\transpose x=-x\} \\
+    &= \so_n .
 \end{align*}
-If the characteristic of $k$ is not $2$, then $\dim(\so_n)=n(n-1)/2$. 
+If the characteristic of the base field is not $2$, then 
+$\dim(\so_n)=n(n-1)/2$. 
 \end{example}
 
 
@@ -519,10 +520,10 @@ new group functor, and we can define the \emph{Lie algebra} of $G$ to be
 A priori, this is a group functor. Often, we will write $\fg=\lie(G)$ to mean 
 $\lie(G)(k)$. If $G\subset \GL(n)$ is cut out by $f_1,\dots,f_r$, then 
 \[
-  \fg=\left\{1+\varepsilon X:X\in \matrices_n(k)\text{ and }f_\alpha(1+\varepsilon X)=0\text{ for all }\alpha\right\} .
+  \fg=\left\{1+\varepsilon x:x\in \matrices_n(k)\text{ and }f_\alpha(1+\varepsilon x)=0\text{ for all }\alpha\right\} .
 \]
-The group operation is addition on $X$, 
-i.e.~$(1+\varepsilon X)(1+\varepsilon Y)=1+\varepsilon(X+Y)$. Thus 
+The group operation is addition on $x$, 
+i.e.~$(1+\varepsilon x)(1+\varepsilon y)=1+\varepsilon(x+y)$. Thus 
 $\fg$ is a $k$-vector space. 
 
 \begin{hard}
@@ -544,7 +545,7 @@ $X\to Y$ making the following diagram commute:
 \[\begin{tikzcd}
   X \ar[r] \ar[dr] 
     & Y \ar[d] \\
-  & S 
+  & S .
 \end{tikzcd}\]
 There is an easy generalization of $\sO$ to a ring object 
 $\sO\in\schemes S$. It sends a scheme $X$ to the ring $\h^0(X,\sO_X)$ of 
@@ -561,7 +562,7 @@ to give
 \]
 the structure of an $A$-module. Given $a\in A$, define 
 $\sigma_a:A[\varepsilon]\to A[\varepsilon]$ by 
-$\varepsilon\mapsto a\varepsilon$. This is a ring homomorphism,so it induces 
+$\varepsilon\mapsto a\varepsilon$. This is a ring homomorphism, so it induces 
 $\sigma_a:\jet_1 X(A)\to \jet_1 X(A)$. The restriction of this map to 
 $(\jet_1 X)_{/X}(A)$ is the desired action of $A$. See \cite[II 3.4.1]{sga3-i} 
 for a more careful proof that this gives $(\jet_1 X)_{/X}$ the structure of 
@@ -587,12 +588,12 @@ Let $J=\begin{pmatrix} & -1_n \\ 1_n \end{pmatrix}$. Recall that
 Let's compute the Lie algebra of $\Sp_{2n}$. For $X\in \matrices_{2n}(A)$, we 
 have 
 \begin{align*}
-  \transpose{(1+\varepsilon X)} J (1+\varepsilon X) 
-    &= (1+\varepsilon\transpose X) J (1+\varepsilon X) \\
-    &= J+\varepsilon(\transpose X J+J X) .
+  \transpose{(1+\varepsilon x)} J (1+\varepsilon x) 
+    &= (1+\varepsilon\transpose x) J (1+\varepsilon x) \\
+    &= J+\varepsilon(\transpose x J+J x) .
 \end{align*}
 So 
-$\fsp_{2n}(A) \simeq \left\{X\in \matrices_{2n}(A):\transpose X J+J X = 0\right\}$. 
+$\fsp_{2n}(A) \simeq \left\{x\in \matrices_{2n}(A):\transpose x J+J x = 0\right\}$. 
 \end{example}
 
 Algebraic groups can be highly non-abelian, and so far all we've done is give 
@@ -614,7 +615,7 @@ points, this is $a\mapsto a^n$ for $a\in A^\times$.
 
 As before, let $f:G\to H$ be a morphism of algebraic groups. Let 
 $\fg=\lie(G)$, $\fh=\lie(G)$. There is an induced map 
-$f_\ast=\lie(f):\fg\to \fh$. On functors of points, it is induced by the 
+$\lie(f):\fg\to \fh$. On functors of points, it is induced by the 
 inclusions $\fg\subset \jet_1 G$, $\fh\subset \jet_1 H$ and the fact that 
 $f:\jet_1 G\to \jet_1 H$ is a group homomorphism. That is, for each 
 $k$-algebra $A$, $f_\ast:\fg(A)\to \fh(A)$ is induced by the commutative 
@@ -660,7 +661,7 @@ if $X$ and $Y$ are schemes over $k$, then $\hom(X,Y)$ is the functor whose
 \]
 We recover the usual hom-set as $\hom(X,Y)(k)$. Similarly, we define 
 $\automorphisms(G)(A)=\automorphisms_{\groups_A}(G_A)$. These functors are not 
-usually representable, but they are sheaves all the reasonable Grothendieck 
+usually representable, but they are sheaves for all the reasonable Grothendieck 
 topologies on $\schemes k$. See \cite[I \S 1--3, II \S 1]{sga3-i} for a careful 
 exposition along these lines. 
 \end{hard}
@@ -670,8 +671,8 @@ $\automorphisms(G)\to \automorphisms(\fg)$. Composing this with the map
 $\adjoint:G\to \automorphisms(G)$ gives a map 
 $\adjoint:G\to \automorphisms(\fg)$. Explicitly, the map 
 $\adjoint:G(A)\to \automorphisms(\fg)(A)=\automorphisms(\fg_A)$ sends 
-$g$ to the automorphism $X\mapsto g X g^{-1}$ for any 
-$X\in G(B[\varepsilon])$, $B\in \algebras A$. It is easy to see that this 
+$g$ to the automorphism $x\mapsto g x g^{-1}$ for any 
+$x\in G(B[\varepsilon])$, $B\in \algebras A$. It is easy to see that this 
 action respects $\sO$-module structure on $\fg$, so we in fact have a 
 representation $\adjoint:G\to \GL(\fg)$. Since 
 $\fg(A)=\fg(k)\otimes_k A$, we can think of $\fg$ as an honest 
@@ -737,7 +738,9 @@ simply-connected semisimple algebraic group $G$ with $\lie(G)=\fg$.
 \begin{example}
 Let's go over the Lie bracket on $\GL(n)$ in a more elementary manner. We have 
 \[
-  \gl_n = \ker\left(\GL_n(k[\varepsilon])\to\GL_n(k)\right) = \{1+\varepsilon X:X\in \matrices_n(k)\} \iso \matrices_n(k) .
+  \gl_n 
+    = \ker\left(\GL_n(k[\varepsilon])\to\GL_n(k)\right) 
+    = \{1+\varepsilon x:x\in \matrices_n(k)\} \iso \matrices_n(k) .
 \]
 We'll write elements of $\matrices_n(k[\varepsilon])$ as $x+y\varepsilon$; 
 these should be thought of as a ``point'' $x$ together with an ``infinitesimal 

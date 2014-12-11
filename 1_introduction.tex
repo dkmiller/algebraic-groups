@@ -7,9 +7,8 @@
 
 
 The latest version of these notes can be found online at 
-\url{http://www.math.cornell.edu/~dkmiller/bin/6490.pdf}. The source code 
-is at \url{https://github.com/dkmiller/6490}. Comments and corrections are 
-appreciated. 
+\url{http://www.math.cornell.edu/~dkmiller/bin/6490.pdf}. 
+Comments and corrections are appreciated. 
 
 
 
@@ -22,7 +21,7 @@ their Lie algebras, taught by David Zywina at Cornell University. However, the
 notes have been substantially modified since then, and are not an exact 
 reflection of the content and style of the original lectures. In particular, 
 the notes often switch from a somewhat elementary approach to a more 
-sheaf-theoretic approach. 
+sheaf-theoretic approach. Any errors are solely the fault of the author. 
 
 
 
@@ -43,7 +42,7 @@ The notation $X_{/S}$ will mean ``$X$ is a scheme over $S$.'' If
 $S=\spectrum(A)$, we will write $X_{/A}$ to mean that $X$ is a scheme over 
 $\spectrum(A)$. 
 
-We write $\transpose X$ for the transpose of a matrix $X$. 
+We write $\transpose x$ for the transpose of a matrix $x$. 
 
 Examples are closed with a triangle $\triangleright$. 
 
@@ -71,9 +70,9 @@ somewhat in the middle is Jantzen's book \cite{jantzen-2003}.
 \subsection{A bestiary of examples}
 
 Let $k$ be an algebraically closed field whose characteristic is \emph{not} 
-$2$. For example, $k$ could be $\dC$. At the moment, we define a 
-\emph{linear algebraic group} over $k$ to be a subgroup $G\subset \GL_n(k)$ 
-defined by polynomial equations. 
+$2$. For example, $k$ could be $\dC$ or $\overline{\dF_p(t)}$. For now, we 
+define a \emph{linear algebraic group} over $k$ to be a subgroup 
+$G\subset \GL_n(k)$ defined by polynomial equations. 
 
 \begin{example}[General linear]
 The archetypal example of an algebraic group is 
@@ -144,7 +143,7 @@ isomorphic to some $\Gm^n$ a torus.
 \end{example}
 
 This list almost exhausts the class of simple algebraic groups over an 
-algebraically closed field. But note that all of these groups make sense over 
+algebraically closed field. All of these groups make sense over 
 an arbitrary field. But over non-algebraically closed fields (or even base 
 rings that are not fields) thinking of algebraic groups in terms of their sets 
 of points doesn't work very well. 
@@ -158,7 +157,8 @@ of points doesn't work very well.
 The standard references \cite{borel-1991,humphreys-1975,springer-2009} all treat 
 algebraic groups in terms of their sets of points in an algebraically closed 
 field. This leads to convoluted arguments, and (sometimes) theorems that are 
-actually wrong. 
+actually wrong. It is better to use schemes. Since we will (almost) never use 
+non-affine schemes, we can study algebraic groups via their coordinate rings. 
 
 \begin{example}
 Consider $G=\GL_n(k)$. For $g=(g_{i j})\in \matrices_n(k)$, we have 
@@ -199,7 +199,7 @@ other words, $k[G_d]=k[x,y]/(x^2-d y^2-1)$. The group operation is
 \]
 We would like to realize $G_d$ as a matrix group. Consider the map 
 $\varphi_d:G_d\to \GL(2)_{/k}$ given by 
-$(x,y)\mapsto \begin{pmatrix} x & d y \\ y & x\end{pmatrix}$. As an exercise, 
+$(x,y)\mapsto \mat{x}{dy}{y}{x}$. As an exercise, 
 check that this is an isomorphism between $G_d$ and the subgroup 
 $\{g_{11}=g_{22},x_{12}=d x_{21}\}$ of $\GL(2)_{/k}$. 
 
@@ -244,7 +244,7 @@ $\h^1(k,\dZ/2)=k^\times/2$.
 
 \subsection{Structure theory for linear algebraic groups}\label{sec:str-thry-lag}
 
-Let $G$ be linear algebraic group over $k$. There is a nice filtration of normal 
+Let $G$ be linear algebraic group over $k$. There is a filtration of normal 
 subgroups 
 \begin{center}
 \begin{tikzpicture}

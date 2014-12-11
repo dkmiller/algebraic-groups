@@ -119,7 +119,7 @@ $X_{/Y}(A)\to X_{/Y}(K)$ is a bijection. If $f:X\to Y$ is a morphism of
 varieties over $\dC$, then by \cite[XII 3.2]{sga1}, $f$ is proper if and 
 $f:X(\dC)\to Y(\dC)$ is proper in the topological sense. (Following 
 \cite[I \S10.2 th.1]{bourbaki-topology-1-4}, a map $f:X\to Y$ between 
-Hausdorff spaces is proper if it is closed, and the preimage of a compact 
+Hausdorff spaces is proper if it is closed, and the preimage of any compact 
 set is compact.)
 
 \begin{theorem}\label{thm:borel-fixed}
@@ -128,7 +128,7 @@ and $X_{/k}$ a proper non-empty $G$-variety. Then $X^G\ne\varnothing$.
 \end{theorem}
 \begin{proof}
 We induct on the dimension of $G$. If $G$ is one-dimensional, then 
-$G$ is one of $\{\Ga,\Gm\}$, so in particular neither $G$ nor any of its 
+$G$ is one of $\{\Ga,\Gm\}$, so neither $G$ nor any of its 
 nontrivial quotients are proper. For $x\in X(k)$, let 
 $G_x=\stabilizer_G(x)$. Either $G_x=G$, in which case $x\in X^G(k)$, or 
 $G_x$ is finite, in which case we have an embedding $G/G_x\monic X$ given 
@@ -167,11 +167,35 @@ By \cite[II 5.5.3]{ega2}, projective morphisms are proper. In particular,
 if we work over a base field $k$, all closed subschemes of 
 $\dP(V)$ for a finite-dimensional $k$-vector space $V$ are proper. 
 
+You need to be careful when taking quotients. As motivation, suppose $G_{/k}$ 
+is an algebraic group and $Z\subset \zentrum(G)$ is a central subgroup. For any 
+$k$-algebra $A$, we have a long exact sequence 
+\[
+  1\to Z(A)\to G(A)\to (G/Z)(A) \to \h^1_\fppf(A,Z)\to \cdots
+\]
+So $(G/Z)(A)$ is ``easy'' to understand when $Z$ is ``cohomologically 
+trivial'' in some sense. Conversely, when $Z$ has nontrivial cohomology, 
+$G/Z$ tends to be trickier to study directly. 
 
+\begin{example}
+Consider the algebraic group $\PGL(n)=\GL(n)/\Gm$. See 
+\cite[1.6.3]{conrad-rgs} for a careful construction. It is well-known that 
+$\h^1(A,\Gm)=\picard(A)$, the group of isomorphism classes of invertible 
+$A$-modules. Thus if $A$ is a Dedekind domain with non-trivial class group, the 
+map $\GL_n(A)/A^\times \to \PGL_n(A)$ is \emph{not} surjective. But since 
+$\picard(k)=0$ for all fields $K$, one has 
+$\PGL_n(k)=\GL_n(k)/k^\times$. 
+\end{example}
 
-caution: you need to be careful with quotients. Example $\SL(n)/\dmu_n$ 
-versus $\GL(n)/\Gm$. See 
-\url{http://mathoverflow.net/questions/16145/what-is-the-difference-between-psl-2-and-pgl-2}. 
+\begin{example}
+This problem presents itself even earlier with $\PSL(n)=$``$\SL(n)/\dmu_n$.'' 
+The problem is, by Kummer theory, $\h^1(k,\dmu_n)=k^\times/n$ whenever $n$ is 
+invertible in $k$. So, for example, $\SL_2(\dR)\to \PSL_2(\dR)$ should not be 
+surjective, because it has cokernel $\h^1(\dR,\dmu_2)=\dZ/2$. It turns out that 
+the quotient sheaf $\SL(n)/\dmu_n$ is actually $\PGL(n)$. For this reason, we 
+will only use notation $\PSL(n)$ when taking its $k$-valued points. See 
+\url{http://mathoverflow.net/questions/16145/} for more discussion of this. 
+\end{example}
 
 
 
@@ -458,7 +482,7 @@ assume $T$ is diagonalizable (i.e.~, a \emph{split} torus). By
 where for $\alpha\in \characters^\ast(T)$, the space 
 $\fg_\alpha=\{x\in \fg:t g=\alpha(t) g\text{ for all }t\in T\}$. Let 
 $\roots(G,T) = \{\alpha\in \characters^\ast(T)\smallsetminus 0:\fg_\alpha\ne 0\}$. 
-Then we tautologically have a decomposition 
+Then we have a decomposition 
 \[
   \fg=\fg_0\oplus \bigoplus_{\alpha\in \roots(G,T)} \fg_\alpha .
 \]
@@ -472,7 +496,7 @@ $\roots(G,T)$ sitting inside the real vector space $V$ is an example of a
 a combinatorial classification of irreducible root systems into 
 types 
 $\typeA_n,\typeB_n,\typeC_n,\typeD_n,\typeG_2,\typeF_4,\typeE_6,\typeE_7,\typeE_8$. 
-The root datum $\roots(G,T)\subset V$ will recover $G/\zentrum(G)$. 
+The root system $\roots(G,T)\subset V$ will recover $G/\zentrum(G)$. 
 
 
 
