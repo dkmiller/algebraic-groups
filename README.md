@@ -1,4 +1,4 @@
-6490
+Linear algebraic groups and their Lie algebras
 ====
 
-Notes from Math 6490: Algebraic groups
+Notes from the course MATH 6490, taught at Cornell University by David Zywina.
