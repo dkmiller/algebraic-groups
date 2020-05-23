@@ -1,6 +1,6 @@
 # Linear algebraic groups and their Lie algebras
 
-![xelatex](https://github.com/dkmiller/algebraic-groups/workflows/xelatex/badge.svg)
+[![xelatex](https://github.com/dkmiller/algebraic-groups/workflows/xelatex/badge.svg)](https://github.com/dkmiller/algebraic-groups/actions?query=workflow%3Axelatex)
 
 Notes from the course MATH 6490, taught at Cornell University by
 [David Zywina](mailto:zywina@math.cornell.edu).
