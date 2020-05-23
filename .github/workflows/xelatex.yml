@@ -9,8 +9,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # https://stackoverflow.com/a/58521709
+    # https://github.com/vipintm/docker-xelatex
     container: vipintm/xelatex
     steps:
     - uses: actions/checkout@v2
     - name: xelatex
       run: make
+
+    # https://github.com/actions/upload-artifact
+    - uses: actions/upload-artifact@v2
+      with:
+        name: algebraic-groups
+        path: algebraic-groups.pdf
