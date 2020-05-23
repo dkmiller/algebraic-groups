@@ -13,6 +13,3 @@ installed.
 ```powershell
 docker run --volume ${PWD}:/src --workdir /src vipintm/xelatex make
 ```
-
-
-

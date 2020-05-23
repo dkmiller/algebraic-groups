@@ -17,8 +17,12 @@ jobs:
     - name: xelatex
       run: make
 
-    # https://github.com/actions/upload-artifact
-    - uses: actions/upload-artifact@v2
+    # https://github.com/marketplace/actions/upload-files-to-a-github-release
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v1-release
       with:
-        name: algebraic-groups
-        path: '**/*.pdf'
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: algebraic-groups.pdf
+        asset_name: algebraic-groups
+        tag: ${{ github.ref }}
+        overwrite: true
