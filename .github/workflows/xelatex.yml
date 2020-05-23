@@ -2,7 +2,7 @@ name: xelatex
 
 on:
   push:
-    branches: [ master, fix-link ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
