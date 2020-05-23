@@ -1,0 +1,16 @@
+name: xelatex
+
+on
+  push:
+    branches: [ master, fix-link ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: vipintm/xelatex
+    steps:
+      uses: actions/checkout@v2
+      - name: xelatex
+      - run: make
