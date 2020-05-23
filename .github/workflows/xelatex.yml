@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     container: vipintm/xelatex
     steps:
-      uses: actions/checkout@v2
-      - name: xelatex
-      - run: make
+    - uses: actions/checkout@v2
+    - name: xelatex
+      run: make
