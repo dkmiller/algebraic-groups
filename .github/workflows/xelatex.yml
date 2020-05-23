@@ -1,0 +1,28 @@
+name: xelatex
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # https://stackoverflow.com/a/58521709
+    # https://github.com/vipintm/docker-xelatex
+    container: vipintm/xelatex
+    steps:
+    - uses: actions/checkout@v2
+    - name: xelatex
+      run: make
+
+    # https://github.com/marketplace/actions/upload-files-to-a-github-release
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: algebraic-groups.pdf
+        asset_name: algebraic-groups.pdf
+        tag: ${{ github.ref }}
+        overwrite: true
