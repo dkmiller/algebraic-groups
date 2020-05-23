@@ -23,6 +23,6 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: algebraic-groups.pdf
-        asset_name: algebraic-groups
+        asset_name: algebraic-groups.pdf
         tag: ${{ github.ref }}
         overwrite: true
