@@ -1,6 +1,6 @@
 name: xelatex
 
-on
+on:
   push:
     branches: [ master, fix-link ]
   pull_request:
